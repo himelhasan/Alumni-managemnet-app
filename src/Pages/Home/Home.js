@@ -18,7 +18,7 @@ const Home = () => {
       <MembersStat />
       <SuccessStories />
       <NewsCard />
-      <EmailSubScribe />
+      <EmailSubScribe />      
     </>
   );
 };
