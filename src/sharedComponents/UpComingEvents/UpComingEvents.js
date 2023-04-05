@@ -1,18 +1,17 @@
 import React from "react";
-import { GrFormNext } from "react-icons/gr";
 import { MdNavigateNext } from "react-icons/md";
 
 const UpComingEvents = () => {
   return (
     <>
-      <div className="sm:flex justify-between items-center sm:w-full max-w-5xl mx-auto px-5 py-7 bg-[#2D6B5A] mt-3 gap-6">
+      <div className="sm:flex justify-between items-center sm:w-full max-w-5xl mx-auto px-5 py-7 bg-primary mt-3 gap-6">
         {/* images */}
         <div className="sm:w-1/2 w-full">
           <img src="https://i.ibb.co/k50VDVN/events-hall.jpg" alt="events-hall" />
         </div>
         {/* content */}
         <div className="sm:w-1/2 w-full">
-          <h1 className="text-white text-3xl font-semibold">UpComing Events</h1>
+          <h1 className="text-white text-2xl font-semibold">UpComing Events</h1>
           <div className="flex gap-4">
             <div>
               <span className="text-white text-sm text-center">Days</span>
@@ -34,9 +33,9 @@ const UpComingEvents = () => {
             time. To explore the event Join Now.
           </p>
 
-          <button className="btn bg-white p-2 mt-4 ">
-            <span className="text-[#2D6B5A] font-bold">
-              Join Now <MdNavigateNext className="inline-block text-[#2D6B5A]" />
+          <button className="btn bg-secondary px-8 py-4 mt-4 ">
+            <span className="text-primary font-bold">
+              Join Now <MdNavigateNext className="inline-block text-primary" />
             </span>
           </button>
         </div>
@@ -47,12 +46,6 @@ const UpComingEvents = () => {
         you can share your skills for the next generation. We respect your time. To
         explore the event Join Now.
       </p>
-
-      <button className="btn bg-white p-2 mt-4 ">
-        <span className="text-[#2D6B5A] font-bold">
-          Join Now <GrFormNext className="inline-block text-[#2D6B5A]" />
-        </span>
-      </button>
     </>
   );
 };

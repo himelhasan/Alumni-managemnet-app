@@ -1,4 +1,3 @@
-// <<<<<<< HEAD
 import React from "react";
 import { MdNavigateNext } from "react-icons/md";
 
@@ -23,7 +22,7 @@ const SuccessStories = () => {
   ];
   return (
     <div className="mt-3 max-w-5xl mx-auto relative">
-      <h1 className="my-7 text-3xl font-semibold">Successful Stories</h1>
+      <h1 className="my-7 text-2xl font-semibold">Successful Stories</h1>
       <div className="flex gap-3 items-center mb-4">
         {storiesData.map((data) => (
           <div
@@ -35,9 +34,9 @@ const SuccessStories = () => {
         ))}
       </div>
       <div className="absolute bottom-0-0 right-0 text-white mb-6">
-        <button className="text-right bg-[#2D6B5A] p-2 rounded-tl-lg rounded-br-lg">
+        <button className=" py-4 px-8 text-right text-primary font-bold bg-secondary">
           <span>
-            More Stories <MdNavigateNext className="inline-block" color="white" />
+            More Stories <MdNavigateNext className="inline-block" color="blue" />
           </span>
         </button>
       </div>
