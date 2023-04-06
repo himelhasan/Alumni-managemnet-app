@@ -1,0 +1,9 @@
+.email-label {
+    left: 33%;
+    top: 20px;
+    transition: all 0.5s;
+}
+
+.input-field:focus ,.email-label{
+    top: -2px;
+}

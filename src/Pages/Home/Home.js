@@ -28,7 +28,7 @@ const Home = () => {
       </div>
 
       <div className="max-w-5xl mx-auto my-20">
-        <Gallery></Gallery>
+        {/* <Gallery></Gallery> */}
       </div>
 
       <div className=" bg-accent py-10 my-20">

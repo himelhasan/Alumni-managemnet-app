@@ -9,6 +9,7 @@ import Nakib from "../Pages/TestingPage/Nakib";
 import Rony from "../Pages/TestingPage/Rony";
 import Pervez from "../Pages/TestingPage/Pervez";
 import Uhai from "../Pages/TestingPage/Uhai";
+import SingleEvent from "../sharedComponents/Events/Category_Wise/SingleEvent";
 
 const routes = createBrowserRouter([
   {
@@ -17,6 +18,17 @@ const routes = createBrowserRouter([
     children: [
       { path: "/", element: <Home></Home> },
       { path: "/rakib", element: <Rakib /> },
+      {
+        path: "/uhai",
+        element: <Uhai />
+      },
+      {
+        path: '/events/:singleEventId',
+        loader: async ({ params }) => {
+          return fetch(`https://rowopyusay-server.vercel.app/events/${params.singleEventId}`);
+        },
+        element: <SingleEvent />
+      },
       {
         path: "/alumni-directory",
         loader: () => {
