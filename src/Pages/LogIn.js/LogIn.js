@@ -8,17 +8,9 @@ const LogIn = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-
-<<<<<<< HEAD:src/sharedComponents/LogIn.js/LogIn.js
-
-  const handleLogIn = (data) => {
-    console.log(data)
-  }
-=======
   const handleLogIn = (data) => {
     console.log(data);
   };
->>>>>>> c4116b0e04c2f2451db54d594f0c149fa32e5e12:src/Pages/LogIn.js/LogIn.js
 
   return (
     <div className=" flex justify-center items-center  bg-accent rounded-lg py-20">

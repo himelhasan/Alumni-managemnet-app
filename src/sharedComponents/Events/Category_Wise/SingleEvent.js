@@ -5,7 +5,6 @@ import CategoryWise from './CategoryWise';
 const SingleEvent = () => {
     const event = useLoaderData();
     const { description, image, name } = event;
-    console.log(event);
     return (
         <div className='max-w-5xl mx-auto md:flex justify-between gap-7 mt-4'>
             <div className='w-full mx-auto'>
