@@ -23,4 +23,8 @@ export const EventCategory = [
         eventCategory: "category-4",
         label: "Category-4",
     },
+    {
+        eventCategory: "category-5",
+        label: "Category-5",
+    },
 ];
