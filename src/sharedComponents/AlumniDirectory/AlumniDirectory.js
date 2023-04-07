@@ -1,3 +1,4 @@
+
 import React from "react";
 
 const AlumniDirectory = () => {
@@ -15,6 +16,7 @@ const AlumniDirectory = () => {
           Learn More{" "}
         </button>
       </div>
+
 
       <div className="ms-10 w-1/2">
         <img

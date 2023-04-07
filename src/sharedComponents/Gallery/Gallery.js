@@ -22,9 +22,12 @@ const Gallery = () => {
   }, []);
 
   if (!galleries) {
-    return <p>Loading....</p>;
+    return <progress className="progress w-56"></progress>;
   }
 
+  if (!gallery) {
+    return <progress className="progress w-56"></progress>;
+  }
   const handleButtonClick = (id) => {
     fetch(`https://alumni-managemnet-app-server.vercel.app/galleries/${id}`, {
       method: "GET",

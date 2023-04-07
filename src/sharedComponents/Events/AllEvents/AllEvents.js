@@ -9,6 +9,22 @@ const AllEvents = () => {
     const [category, setCategory] = useState("AllEvents");
     const [events, setEvents] = useState([]);
 
+    const [previous, setPrevious] = useState(0);
+    const [next, setNext] = useState(3);
+
+    const nextHandler = () => {
+        // if(next<=eventItems.length)
+        setNext(next + 3);
+        setPrevious(previous + 3);
+    }
+    const previousHandler = () => {
+        if (previous > 0) {
+            setNext(next - 3);
+            setPrevious(previous - 3);
+        }
+    }
+    console.log(previous + "=" + next);
+
     useEffect(() => {
         fetch("https://rowopyusay-server.vercel.app/events")
             .then((res) => res.json())
@@ -24,9 +40,6 @@ const AllEvents = () => {
         category === "AllEvents"
             ? events
             : events.filter((item) => item.event === category);
-    console.log(eventItems);
-    const length = eventItems.length;
-    console.log(length);
 
     return (
         <div className='max-w-5xl mx-auto sm:flex gap-3'>
@@ -38,7 +51,7 @@ const AllEvents = () => {
                             <button
                                 key={i}
                                 onClick={() => handleEventLoad(item.eventCategory)}
-                                className='px-5 py-2 w-full mr-6 md:w-auto mt-4 text-sm font-semibold bg-gray-300 focus:bg-primary focus:text-secondary hover:bg-primary hover:text-secondary'>
+                                className='px-5 py-2 w-full mr-6 md:w-auto mt-4 text-sm font-semibold bg-gray-300 focus:bg-primary focus:text-secondary hover:bg-primary hover:text-secondary text-gray-900'>
                                 {item.label}
                             </button>
                         ))
@@ -65,7 +78,7 @@ const AllEvents = () => {
                     <h2 className='text-2xl text-[#2D6B5A]'>Events</h2>
                     <div>
                         {
-                            eventItems.map((item) => (
+                            eventItems.slice(previous, next).map((item) => (
                                 <div
                                     key={item._id}
                                     className='md:flex gap-3 justify-between items-center'>
@@ -113,12 +126,18 @@ const AllEvents = () => {
                     </div>
                     {/* Pagination button */}
                     <div className="right-0 text-white mb-5 text-right mt-5 flex gap-4 justify-end items-center mr-3">
-                        <button className="text-right bg-primary">
+                        <button
+                            disabled={previous<=0}
+                            onClick={() => previousHandler()}
+                            className="text-right bg-primary">
                             <span>
                                 <MdNavigateNext className="inline-block rotate-180 font-semibold text-xl" color="white" />
                             </span>
                         </button>
-                        <button className="text-right bg-primary">
+                        <button
+                            disabled={next>eventItems.length}
+                            onClick={() => nextHandler()}
+                            className="text-right bg-primary">
                             <span>
                                 <MdNavigateNext className="inline-block font-semibold text-xl" color="white" />
                             </span>

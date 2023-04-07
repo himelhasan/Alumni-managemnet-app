@@ -2,45 +2,53 @@ import React from "react";
 
 const FundsForCause = () => {
   return (
-    <div className="mt-3 max-w-5xl mx-auto relative">
+    <div className="py-3 max-w-5xl mx-auto relative bg-accent">
       <div className="m-2">
-        <h2 className="text-2xl md:text-2xl font-semibold mb-3">Funds for a cause</h2>
-        <p className="mb-3">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, pariatur velit?
-          Ab voluptate sed optio repellendus doloremque odit natus, eligendi voluptatem
-          impedit quam atque neque tenetur laboriosam esse, qui nam.
-        </p>
+        <h2 className="text-2xl font-semibold text-center">
+          Donate to NPY Women's Council
+        </h2>
+        <p className="text-center text-sm mt-4 mb-10">All donations are tax-deductible.</p>
 
-        <button className="px-5 py-6 w-full md:w-auto text-xl rounded-tl-3xl rounded-br-3xl font-semibold bg-gray-300 focus:bg-green-800 focus:text-white">
-          $ 25
-        </button>
-        <button className="px-5 py-6 w-full md:w-auto md:ml-4 mt-3 text-xl rounded-tl-3xl rounded-br-3xl font-semibold bg-gray-300 focus:bg-green-800 focus:text-white">
-          $ 50
-        </button>
-        <button className="px-5 py-6 w-full md:w-auto md:ml-4 mt-3 text-xl rounded-tl-3xl rounded-br-3xl font-semibold bg-gray-300 focus:bg-green-800 focus:text-white">
-          $ 100
-        </button>
+        <div className="md:flex md:justify-center">
+          
 
-        <input
-          className="px-5 py-6 w-full lg:w-auto lg:ml-4 mt-3 text-xl rounded-tl-3xl rounded-br-3xl font-semibold bg-gray-300 focus:bg-green-800 focus:text-white"
+          <button className="px-8 py-4 w-full  md:w-auto mt-3   font-semibold bg-gray-400  focus:bg-primary focus:text-secondary hover:bg-primary hover:text-secondary ">
+            $20
+          </button>
+
+          <button className="px-8 py-4 w-full  md:w-auto md:ml-4 mt-3   font-semibold bg-gray-400   focus:bg-primary focus:text-secondary hover:bg-primary hover:text-secondary ">
+            $50
+          </button>
+          <button className="px-8 py-4 w-full  md:w-auto md:ml-4 mt-3   font-semibold bg-gray-400   focus:bg-primary focus:text-secondary hover:bg-primary hover:text-secondary ">
+            $100
+          </button>
+          <button className="px-8 py-4 w-full  md:w-auto md:ml-4 mt-3   font-semibold bg-gray-400   focus:bg-primary focus:text-secondary hover:bg-primary hover:text-secondary ">
+            $500
+          </button>
+          <button className="px-8 py-4 w-full  md:w-auto md:ml-4 mt-3   font-semibold bg-gray-400   focus:bg-primary focus:text-secondary hover:bg-primary hover:text-secondary">
+            $1000
+          </button>
+
+          <input
+          className="px-8 py-4 w-full text-sm lg:w-auto md:ml-4 mt-3 font-semibold bg-gray-300  "
           type="text"
           placeholder="Others"
         />
+          
+        </div>
 
-        <section className="flex mt-5">
-          <input type="checkbox" class="w-8 md:w-16" />
-          <p>
-            I agee with all <span className="text-blue-500">Condition</span>
-          </p>
-        </section>
 
-        <button className="px-5 py-6 w-full md:w-auto mt-4 text-xl rounded-tl-3xl rounded-br-3xl font-semibold bg-gray-300 focus:bg-green-800 focus:text-white">
-          Submit Funds
+        <div className="flex justify-center mt-5">
+        <button className="btn px-8 py-4 flex text-primary bg-secondary mt-4  font-bold  ">
+          Donate
         </button>
+        </div>
+        
 
-        <button className="px-5 py-6 w-full md:w-auto mt-4 md:ml-5 text-xl rounded-tl-3xl rounded-br-3xl font-semibold bg-gray-300 focus:bg-green-800 focus:text-white">
-          Cancel Funds
-        </button>
+        
+
+
+        
       </div>
     </div>
   );

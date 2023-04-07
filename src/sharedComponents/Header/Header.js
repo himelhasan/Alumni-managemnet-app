@@ -7,9 +7,7 @@ import logo from "../../assets/logo.png";
 const Header = () => {
   const [open, setOpen] = useState(false);
   return (
-
-    <nav className="bg-primary text-white ">
-
+    <nav className="bg-primary text-white sticky top-0 z-10 ">
       <div className="w-9/12 mx-auto flex flex-wrap  list-none justify-between items-center py-5 text-xl font-bold">
         <div>
           <img src={logo} alt="" className="h-16" />
@@ -27,8 +25,8 @@ const Header = () => {
             </>
           )}
           <div
-            className={`  flex w-full left-0 px-12 py-3 z-50 bg-[#2D6B5A] md:bg-transparent  md:px-0  flex-col absolute md:static duration-700 ease-in-out md:flex-row gap-5 ${
-              open ? "top-24" : "top-[-200px]"
+            className={`  flex w-full left-0 px-12 py-3 z-50 bg-primary md:bg-transparent  md:px-0  flex-col absolute md:static duration-700 ease-in-out md:flex-row gap-5 ${
+              open ? "top-24" : "top-[-300px]"
             }`}
           >
             <Link to="/">
@@ -42,6 +40,12 @@ const Header = () => {
             </Link>
             <Link to="/">
               <li>Gallery</li>
+            </Link>
+            <Link to="/login">
+              <li>Log In</li>
+            </Link>
+            <Link to="/signup">
+              <li>Sign Up</li>
             </Link>
           </div>
         </div>

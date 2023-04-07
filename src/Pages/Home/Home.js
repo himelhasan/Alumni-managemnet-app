@@ -11,6 +11,7 @@ import AlumniDirectory from "../../sharedComponents/AlumniDirectory/AlumniDirect
 import MissionHeading from "../../sharedComponents/MissionHeading/MissionHeading";
 import Contact from "../../sharedComponents/Contact/Contact";
 
+
 const Home = () => {
   return (
     <>

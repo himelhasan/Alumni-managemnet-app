@@ -4,7 +4,20 @@ import { Link } from 'react-router-dom';
 
 const CategoryWise = () => {
     const [categories, setCategories] = useState([]);
-    console.log(categories);
+
+    const [next, setNext] = useState(3);
+    const [previous, setPrevious] = useState(0);
+
+    const previousHandler = () => {
+        if (previous > 0) {
+            setNext(next - 3);
+            setPrevious(previous - 3);
+        }
+    }
+    const nextHandler = () => {
+        setNext(next + 3);
+        setPrevious(previous + 3);
+    }
     useEffect(() => {
         fetch("https://rowopyusay-server.vercel.app/events")
             .then(res => res.json())
@@ -17,7 +30,7 @@ const CategoryWise = () => {
         content = <div><h1 className='text-xl text-primary'>Loading...</h1></div>
     }
     else {
-        content = categories?.map((item) => (
+        content = categories?.slice(previous, next).map((item) => (
             <div
                 key={item._id}
                 className='md:flex gap-3 justify-between items-center'>
@@ -68,13 +81,20 @@ const CategoryWise = () => {
         <div>
             {content}
             {/* Pagination button */}
-            <div className="right-0 text-white mb-5 text-right mt-5 flex gap-4 justify-end items-center mr-3">
-                <button className="text-right bg-primary">
+            <div
+                className="right-0 text-white mb-5 text-right mt-5 flex gap-4 justify-end items-center mr-3">
+                <button
+                    onClick={() => previousHandler()}
+                    disabled={previous <= 0}
+                    className="text-right bg-primary">
                     <span>
                         <MdNavigateNext className="inline-block rotate-180 font-semibold text-xl" color="white" />
                     </span>
                 </button>
-                <button className="text-right bg-primary">
+                <button
+                    onClick={() => nextHandler()}
+                    disabled={next > categories.length}
+                    className="text-right bg-primary">
                     <span>
                         <MdNavigateNext className="inline-block font-semibold text-xl" color="white" />
                     </span>

@@ -27,14 +27,16 @@ const Footer = () => {
         </div>
         <div>
           <h2 className="text-xl font-medium  mb-3 mt-5 md:mt-0">Contact</h2>
-          <p className="mb-2">134, Mirpur 2, Dhaka City Bangladesh</p>
+          <p className="mb-2">
+            Jatrabari, Dhania, Dhaka Bangladesh 1232 Dhaka, Dhaka Division, Bangladesh
+          </p>
           <div className="flex items-center gap-3">
             <FaPhone className="text-secondary"></FaPhone>
-            <p className="mb-2"> +789995266632</p>
+            <p className="mb-2"> +880 151 6150 533</p>
           </div>
           <div className="flex items-center gap-3">
             <FaPhone className="text-secondary"></FaPhone>
-            <p className="mb-2"> +789995266632</p>
+            <p className="mb-2"> +880 197 6150 533</p>
           </div>
           <h2 className="text-xl font-medium my-3">Social Media</h2>
           <div className="flex  items-center gap-4 text-secondary">
