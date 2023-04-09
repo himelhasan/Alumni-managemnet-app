@@ -22,14 +22,16 @@ const routes = createBrowserRouter([
       { path: "/rakib", element: <Rakib /> },
       {
         path: "/uhai",
-        element: <Uhai />
+        element: <Uhai />,
       },
       {
-        path: '/events/:singleEventId',
+        path: "/events/:singleEventId",
         loader: async ({ params }) => {
-          return fetch(`https://rowopyusay-server.vercel.app/events/${params.singleEventId}`);
+          return fetch(
+            `https://rowopyusay-server.vercel.app/events/${params.singleEventId}`
+          );
         },
-        element: <SingleEvent />
+        element: <SingleEvent />,
       },
       {
         path: "/alumni-directory",

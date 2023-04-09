@@ -2,7 +2,7 @@ import React from "react";
 
 const MissionHeading = () => {
   return (
-    <div className="my-16 flex">
+    <div className="my-16 flex items-center">
       <div className="w-1/2">
         <img
           className=""

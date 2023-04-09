@@ -1,6 +1,6 @@
-import React from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
-import CategoryWise from './CategoryWise';
+import React from "react";
+import { Link, useLoaderData } from "react-router-dom";
+import CategoryWise from "./CategoryWise";
 
 const SingleEvent = () => {
     const event = useLoaderData();

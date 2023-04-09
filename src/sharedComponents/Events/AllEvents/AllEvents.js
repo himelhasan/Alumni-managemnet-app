@@ -78,6 +78,7 @@ const AllEvents = () => {
                     <h2 className='text-2xl text-[#2D6B5A]'>Events</h2>
                     <div>
                         {
+                        eventItems?
                             eventItems.slice(previous, next).map((item) => (
                                 <div
                                     key={item._id}
@@ -121,7 +122,8 @@ const AllEvents = () => {
                                         </Link>
                                     </div>
                                 </div>
-                            ))
+                            )) :
+                                <h1>Loading...</h1>
                         }
                     </div>
                     {/* Pagination button */}
@@ -134,6 +136,12 @@ const AllEvents = () => {
                                 <MdNavigateNext className="inline-block rotate-180 font-semibold text-xl" color="white" />
                             </span>
                         </button>
+
+
+
+
+
+                        
                         <button
                             disabled={next>eventItems.length}
                             onClick={() => nextHandler()}

@@ -8,6 +8,7 @@ const LogIn = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+
   const handleLogIn = (data) => {
     console.log(data);
   };
