@@ -1,7 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MdNavigateNext } from "react-icons/md";
+import { EventsData } from '../UpComingEvents/eventsData'
 
 const UpComingEvents = () => {
+  const [Data] = useState(EventsData);
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const lastIndex = Data.length - 1;
+    if (index < 0) {
+      setIndex(lastIndex);
+    }
+    if (index > lastIndex) {
+      setIndex(0);
+    }
+  }, [index, Data]);
+  console.log(index);
+  useEffect(() => {
+    let slider = setInterval(() => {
+      setIndex(index + 1);
+    }, 5000);
+    return () => {
+      clearInterval(slider);
+    };
+  }, [index]);
+
   return (
     <>
       <div className="sm:flex justify-between items-center sm:w-full max-w-5xl mx-auto bg-primary px-5 py-7 mt-8 gap-4 relative">
@@ -47,9 +70,17 @@ const UpComingEvents = () => {
               Join Now <MdNavigateNext className="inline-block text-[#2D6B5A]" />
             </span>
           </button>
-          <div className="bg-blue-600 text-white w-[100px] py-2 flex justify-evenly items-center absolute right-2 bottom-2">
-            <button className="text-right"><MdNavigateNext className="rotate-180" size={23}/> </button>
-            <button className="text-right"><MdNavigateNext className="" size={23}/> </button>
+
+          {/* slide button */}
+          <div className="bg-secondary text-white w-[100px] px-6 py-4 flex justify-between items-center absolute right-2 bottom-2">
+            <button
+              onClick={() => setIndex(index - 1)}
+              className="text-right"><MdNavigateNext className="rotate-180" size={23} />
+            </button>
+            <button
+              onClick={() => setIndex(index + 1)}
+              className="text-right"><MdNavigateNext className="" size={23} />
+            </button>
           </div>
         </div>
       </div>

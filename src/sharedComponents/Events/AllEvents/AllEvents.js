@@ -73,7 +73,7 @@ const AllEvents = () => {
                     }
                 </select>
             </div>
-            <div className='md:w-[80%] w-full'>
+            <div className='md:w-[80%] w-full bg-accent'>
                 <div>
                     <h2 className='text-2xl text-[#2D6B5A]'>Events</h2>
                     <div>
@@ -136,13 +136,7 @@ const AllEvents = () => {
                                 <MdNavigateNext className="inline-block rotate-180 font-semibold text-xl" color="white" />
                             </span>
                         </button>
-
-
-
-
-
-                        
-                        <button
+                       <button
                             disabled={next>eventItems.length}
                             onClick={() => nextHandler()}
                             className="text-right bg-primary">

@@ -6,7 +6,7 @@ const SingleEvent = () => {
     const event = useLoaderData();
     const { description, image, name } = event;
     return (
-        <div className='max-w-5xl mx-auto md:flex justify-between gap-7 mt-4'>
+        <div className='max-w-5xl mx-auto md:flex justify-between gap-7 mt-4 bg-accent'>
             <div className='w-full mx-auto'>
                 <div className='rounded-tl-xl rounded-br-xl '>
                     <img className='rounded-tl-xl rounded-br-xl' src={image} alt="Event" />
@@ -48,8 +48,8 @@ const SingleEvent = () => {
                     {/* </button> */}
                 </div>
             </div>
-            <div className=''>
-                <h1 className='text-2xl font-semibold'><span className='text-primary'>Explore</span> More Events</h1>
+            <div className='bg-accent'>
+                <h1 className='text-2xl font-semibold'><span className='text-primary'>Explore</span><br/> More Events</h1>
                 <CategoryWise />
             </div>
         </div>
