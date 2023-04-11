@@ -4,18 +4,24 @@ import { EventsData } from '../UpComingEvents/eventsData'
 
 const UpComingEvents = () => {
   const [Data] = useState(EventsData);
+  const [events, setEvents] = useState([]);
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    const lastIndex = Data.length - 1;
+    fetch("https://rowopyusay-server.vercel.app/events")
+      .then(res => res.json())
+      .then(data => setEvents(data))
+  }, [])
+  useEffect(() => {
+    const lastIndex = events.length - 1;
     if (index < 0) {
       setIndex(lastIndex);
     }
     if (index > lastIndex) {
       setIndex(0);
     }
-  }, [index, Data]);
-  console.log(index);
+  }, [index, events]);
+  console.log(events);
   useEffect(() => {
     let slider = setInterval(() => {
       setIndex(index + 1);

@@ -8,23 +8,19 @@ export const EventCategory = [
         label: "AllEvents",
     },
     {
-        eventCategory: "category-1",
-        label: "Category-1",
+        eventCategory: "help",
+        label: "Charity Fundraiser",
     },
     {
-        eventCategory: "category-2",
-        label: "Category-2",
+        eventCategory: "Entertainment",
+        label: "Concert in the Park",
     },
     {
-        eventCategory: "category-3",
-        label: "Category-3",
+        eventCategory: "skill",
+        label: "Art Exhibit Opening",
     },
     {
-        eventCategory: "category-4",
-        label: "Category-4",
-    },
-    {
-        eventCategory: "category-5",
-        label: "Category-5",
+        eventCategory: "hygiene",
+        label: "Food Festival",
     },
 ];

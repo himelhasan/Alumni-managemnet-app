@@ -1,45 +1,41 @@
-import React, { useEffect, useState } from 'react';
-import { EventCategory } from './utils';
-import { Link } from 'react-router-dom';
-import { MdNavigateNext } from 'react-icons/md';
+import React, { useEffect, useState } from "react";
+import { EventCategory } from "./utils";
+import { Link } from "react-router-dom";
+import { MdNavigateNext } from "react-icons/md";
 
 const AllEvents = () => {
+  const [category, setCategory] = useState("AllEvents");
+  const [events, setEvents] = useState([]);
 
+  const [previous, setPrevious] = useState(0);
+  const [next, setNext] = useState(3);
 
-    const [category, setCategory] = useState("AllEvents");
-    const [events, setEvents] = useState([]);
-
-    const [previous, setPrevious] = useState(0);
-    const [next, setNext] = useState(3);
-
-    const nextHandler = () => {
-        // if(next<=eventItems.length)
-        setNext(next + 3);
-        setPrevious(previous + 3);
+  const nextHandler = () => {
+    // if(next<=eventItems.length)
+    setNext(next + 3);
+    setPrevious(previous + 3);
+  };
+  const previousHandler = () => {
+    if (previous > 0) {
+      setNext(next - 3);
+      setPrevious(previous - 3);
     }
-    const previousHandler = () => {
-        if (previous > 0) {
-            setNext(next - 3);
-            setPrevious(previous - 3);
-        }
-    }
-    console.log(previous + "=" + next);
+  };
+  console.log(previous + "=" + next);
 
-    useEffect(() => {
-        fetch("https://rowopyusay-server.vercel.app/events")
-            .then((res) => res.json())
-            .then((data) => {
-                setEvents(data)
-            })
-    }, [])
-    function handleEventLoad(currentEvent) {
-        setCategory(currentEvent);
-    }
+  useEffect(() => {
+    fetch("https://rowopyusay-server.vercel.app/events")
+      .then((res) => res.json())
+      .then((data) => {
+        setEvents(data);
+      });
+  }, []);
+  function handleEventLoad(currentEvent) {
+    setCategory(currentEvent);
+  }
 
-    const eventItems =
-        category === "AllEvents"
-            ? events
-            : events.filter((item) => item.event === category);
+  const eventItems =
+    category === "AllEvents" ? events : events.filter((item) => item.event === category);
 
     return (
         <div className='max-w-5xl mx-auto sm:flex gap-3'>
