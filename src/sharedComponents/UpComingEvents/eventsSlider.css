@@ -8,7 +8,7 @@ h4 {
     margin-bottom: 0.75rem;
 }
 
-.section {
+/* .section {
     width: 90vw;
     margin: 5rem auto;
     max-width: 1170px;
@@ -18,7 +18,7 @@ h4 {
     .section {
         width: 95vw;
     }
-}
+} */
 
 .icon {
     font-size: 3rem;
@@ -28,7 +28,7 @@ h4 {
 .section-center {
     margin: 0 auto;
     margin-top: 4rem;
-    width: 80vw;
+    /* width: 80vw; */
     height: 450px;
     max-width: 800px;
     text-align: start;

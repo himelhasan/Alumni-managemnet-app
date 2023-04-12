@@ -26,7 +26,6 @@ const Home = () => {
           <AlumniDirectory />
         </div>
       </div>
-
       <div className="max-w-5xl mx-auto my-20">
         <Gallery></Gallery>
       </div>
