@@ -1,41 +1,87 @@
 [
     {
-        "source": {
-            "id": 1,
-            "name": "CNN"
-        },
-        "author": "Jane Smith",
-        "title": "Breaking News: Example Headline",
-        "description": "This is a brief summary of the article.",
-        "url": "https://www.example.com/article",
-        "urlToImage": "https://www.example.com/image.jpg",
-        "publishedAt": "2023-04-12T13:45:00Z",
-        "content": "This is the full text of the article."
+        "_id": 1,
+        "filter": "batch",
+        "batch": "2019",
+        "title": "Recently we create a massive project",
+        "description": "This the description of today news. You can find here our latest news.",
+        "image": [
+            "https://sayidan.kenzap.com/wp-content/uploads/2016/07/galery-popup-10-3-750x405.jpg"
+        ],
+        "author": {
+            "profileImage": "https://i.ibb.co/gwYSvj2/cat1.jpg",
+            "name": "Jerine",
+            "comments": 12,
+            "favorite": 23,
+            "postedTime": "3 hours ago"
+        }
     },
     {
-        "source": {
-            "id": 2,
-            "name": "BBC"
-        },
-        "author": "John Doe",
-        "title": "Second Breaking News: Another Example Headline",
-        "description": "This is another brief summary of the article.",
-        "url": "https://www.example.com/article2",
-        "urlToImage": "https://www.example.com/image2.jpg",
-        "publishedAt": "2023-04-12T12:00:00Z",
-        "content": "This is the full text of the second article."
+        "_id": 2,
+        "filter": "entertainment",
+        "batch": "2019",
+        "title": "Alumni Meet & Greet in Hong Kong",
+        "description": "This the description of today news. You can find here our latest news.",
+        "image": [
+            "https://sayidan.kenzap.com/wp-content/uploads/2016/07/single-event-img-3-569x331.jpg"
+        ],
+        "author": {
+            "profileImage": "https://i.ibb.co/gwYSvj2/cat1.jpg",
+            "name": "Jerine",
+            "comments": 12,
+            "favorite": 23,
+            "postedTime": "3 hours ago"
+        }
     },
     {
-        "source": {
-            "id": 3,
-            "name": "Reuters"
-        },
-        "author": null,
-        "title": "Third Breaking News: Yet Another Example Headline",
-        "description": "This is a third brief summary of the article.",
-        "url": "https://www.example.com/article3",
-        "urlToImage": "https://www.example.com/image3.jpg",
-        "publishedAt": "2023-04-12T10:30:00Z",
-        "content": "This is the full text of the third article."
+        "_id": 3,
+        "filter": "skill",
+        "batch": "2019",
+        "title": "TBA President's Dinner 2023",
+        "description": "This the description of today news. You can find here our latest news.",
+        "image": [
+            "https://img2.storyblok.com/f/103430/568x367/61d04575df/womens-history.PNG"
+        ],
+        "author": {
+            "profileImage": "https://i.ibb.co/gwYSvj2/cat1.jpg",
+            "name": "Jerine",
+            "comments": 12,
+            "favorite": 23,
+            "postedTime": "3 hours ago"
+        }
+    },
+    {
+        "_id": 4,
+        "filter": "batch",
+        "batch": "2019",
+        "title": "TBA President's Dinner 2023",
+        "description": "This the description of today news. You can find here our latest news.",
+        "image": [
+            "https://img2.storyblok.com/f/103430/568x367/61d04575df/womens-history.PNG"
+        ],
+        "author": {
+            "profileImage": "https://i.ibb.co/gwYSvj2/cat1.jpg",
+            "name": "Jerine",
+            "comments": 12,
+            "favorite": 23,
+            "postedTime": "3 hours ago"
+        }
+    },
+    {
+        "_id": 5,
+        "filter": "hygiene",
+        "batch": "2019",
+        "title": "TBA President's Dinner 2023",
+        "description": "This the description of today news. You can find here our latest news.",
+        "image": [
+            "https://img2.storyblok.com/f/103430/568x367/61d04575df/womens-history.PNG"
+        ],
+        "author": {
+            "profileImage": "https://i.ibb.co/gwYSvj2/cat1.jpg",
+            "name": "Jerine",
+            "comments": 12,
+            "favorite": 15,
+            "postedTime": "2 hours ago"
+        }
     }
 ]

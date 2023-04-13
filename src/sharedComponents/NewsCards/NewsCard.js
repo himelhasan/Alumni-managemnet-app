@@ -11,7 +11,7 @@ const NewsCard = ({ data }) => {
         style={{ backgroundImage: `url(${data.image})` }}>
       </div> */}
       <div className="w-[269px] mx-auto">
-        <img className="object-cover w-full h-full" src={data.image} alt="" />
+        <img className="object-cover w-full h-full" src={data.image[0]} alt="" />
       </div>
       {/*  */}
       <div className="px-5 pt-4 py-8 mt-3">

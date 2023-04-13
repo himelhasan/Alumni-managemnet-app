@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { MdNavigateNext } from "react-icons/md";
 import SuccessStoriesCard from "./SucessStoriesCard";
+import { FilterStory } from "./utils";
 
 const SuccessStoriesSection = () => {
+  const [filterStory, setFilterStory] = useState('allStory');
+  console.log(filterStory);
+  const [stories, setStories] = useState([]);
   const storiesData = [
     {
       _id: 1,
@@ -43,10 +47,49 @@ const SuccessStoriesSection = () => {
       },
     },
   ];
+
+  const handleFilter = (currentStory) => {
+    setFilterStory(currentStory);
+  }
   return (
     <div className="mt-3  mx-auto relative">
       <h1 className="my-7 text-3xl font-semibold text-center">Successful Stories</h1>
       <div className="w-[150px] h-[3px] bg-secondary mx-auto -mt-5 mb-7"></div>
+
+      <div className="mb-7">
+        {
+          FilterStory &&
+          FilterStory.map((item, i) => (
+            <button
+              className="px-5 py-2 w-full mr-6 md:w-auto mt-4 text-sm font-semibold bg-accent text-gray-900 focus:bg-primary focus:text-secondary hover:bg-primary hover:text-secondary"
+              key={i}
+              onClick={() => handleFilter(item.filter)}
+            >
+              {item.label}
+            </button>
+          ))
+        }
+        <div className='w-1/3 border-1 bg-gray-300 mt-10 p-3'>
+          <select
+            onChange={(e) => handleFilter(e.target.value)}
+            name="" id=""
+            className='w-full h-11 border-green-500'
+          >
+            {
+              FilterStory &&
+              FilterStory.map((item, i) => (
+                <option
+                  key={i}
+                  value={item.filter}
+                  className='text-xl font-semibold'
+                >
+                  {item.label}
+                </option>
+              ))
+            }
+          </select>
+        </div>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 items-center justify-between">
         {storiesData.map((data) => (
           <SuccessStoriesCard key={data.id} data={data}></SuccessStoriesCard>
