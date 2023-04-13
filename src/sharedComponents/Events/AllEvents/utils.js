@@ -1,7 +1,3 @@
-export const AllEventsData = [
-    
-];
-
 export const EventCategory = [
     {
         eventCategory: "AllEvents",

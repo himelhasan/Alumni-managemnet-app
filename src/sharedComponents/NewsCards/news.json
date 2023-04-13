@@ -1,0 +1,41 @@
+[
+    {
+        "source": {
+            "id": 1,
+            "name": "CNN"
+        },
+        "author": "Jane Smith",
+        "title": "Breaking News: Example Headline",
+        "description": "This is a brief summary of the article.",
+        "url": "https://www.example.com/article",
+        "urlToImage": "https://www.example.com/image.jpg",
+        "publishedAt": "2023-04-12T13:45:00Z",
+        "content": "This is the full text of the article."
+    },
+    {
+        "source": {
+            "id": 2,
+            "name": "BBC"
+        },
+        "author": "John Doe",
+        "title": "Second Breaking News: Another Example Headline",
+        "description": "This is another brief summary of the article.",
+        "url": "https://www.example.com/article2",
+        "urlToImage": "https://www.example.com/image2.jpg",
+        "publishedAt": "2023-04-12T12:00:00Z",
+        "content": "This is the full text of the second article."
+    },
+    {
+        "source": {
+            "id": 3,
+            "name": "Reuters"
+        },
+        "author": null,
+        "title": "Third Breaking News: Yet Another Example Headline",
+        "description": "This is a third brief summary of the article.",
+        "url": "https://www.example.com/article3",
+        "urlToImage": "https://www.example.com/image3.jpg",
+        "publishedAt": "2023-04-12T10:30:00Z",
+        "content": "This is the full text of the third article."
+    }
+]

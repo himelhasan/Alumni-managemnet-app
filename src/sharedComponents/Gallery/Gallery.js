@@ -39,7 +39,7 @@ const Gallery = () => {
   };
 
   return (
-    <div className="mt-3 max-w-5xl mx-auto relative">
+    <div className="mt-3  mx-auto relative">
       <div className="mt-10">
         <h2 className="text-2xl lg:text-2xl font-semibold my-3">Our Gallery</h2>
         <div>

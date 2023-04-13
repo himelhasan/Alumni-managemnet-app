@@ -3,13 +3,13 @@ import FundsForCause from "../../sharedComponents/FundsForCause/FundsForCause";
 import Gallery from "../../sharedComponents/Gallery/Gallery";
 import MembersStat from "../../sharedComponents/MembersStat/MembersStat";
 import Slider from "../../sharedComponents/Slider/Slider";
-import SuccessStories from "../../sharedComponents/SuccessStories/SuccessStories";
+import SuccessStoriesSection from "../../sharedComponents/SuccessStories/SuccessStoriesSection";
 import UpComingEvents from "../../sharedComponents/UpComingEvents/UpComingEvents";
-import NewsCard from "../../sharedComponents/NewsCards/NewsCards";
 import EmailSubScribe from "../../sharedComponents/EmailSubScribe/EmailSubScribe";
 import AlumniDirectory from "../AlumniDirectory/AlumniDirectory";
 import MissionHeading from "../../sharedComponents/MissionHeading/MissionHeading";
 import Contact from "../../sharedComponents/Contact/Contact";
+import NewsSection from "../../sharedComponents/NewsCards/NewsSection";
 
 const Home = () => {
   return (
@@ -31,14 +31,14 @@ const Home = () => {
       </div>
 
       <div className=" bg-accent py-10 my-20">
-        <div className="max-w-5xl mx-auto">
+        <div className="w-9/12 mx-auto">
           <MembersStat />
         </div>
       </div>
 
-      <div className="max-w-5xl mx-auto my-20">
-        <SuccessStories />
-        <NewsCard />
+      <div className="w-9/12 mx-auto my-20">
+        <SuccessStoriesSection />
+        <NewsSection />
         <Contact />
       </div>
       <EmailSubScribe />
