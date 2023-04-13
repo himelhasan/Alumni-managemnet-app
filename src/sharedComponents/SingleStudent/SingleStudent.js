@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import pervez from "../../assets/pervez.jpg";
 import {
   FaArrowLeft,
@@ -10,6 +10,21 @@ import {
 } from "react-icons/fa";
 
 const SingleStudent = () => {
+  const [previous, setPrevious] = useState(0);
+  const [next, setNext] = useState(8);
+
+  const handlePrevious = () => {
+    if (previous > 0) {
+      setPrevious(previous - 8);
+      setNext(next - 8);
+    }
+    console.log("Clicked Previous");
+  };
+  const handleNext = () => {
+    setPrevious(previous + 8);
+    setNext(next + 8);
+    console.log("clicked next");
+  };
   return (
     <div>
       <div className="bg-primary text-center text-white md:py-24 md:px-24 py-16 px-12 ">
@@ -206,8 +221,12 @@ const SingleStudent = () => {
             </div>
 
             <div className="flex items-center justify-end gap-3">
-              <FaArrowLeft className="text-primary hover:text-secondary duration-500 ease-in-out cursor-pointer"></FaArrowLeft>
-              <FaArrowRight className="text-primary hover:text-secondary duration-500 ease-in-out cursor-pointer"></FaArrowRight>
+              <button onClick={() => handlePrevious()}>
+                <FaArrowLeft className="text-primary hover:text-secondary duration-500 ease-in-out cursor-pointer"></FaArrowLeft>
+              </button>
+              <button onClick={() => handleNext()}>
+                <FaArrowRight className="text-primary hover:text-secondary duration-500 ease-in-out cursor-pointer"></FaArrowRight>
+              </button>
             </div>
           </div>
         </div>

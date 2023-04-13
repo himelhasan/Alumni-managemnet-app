@@ -26,7 +26,7 @@ const Header = () => {
           )}
           <div
             className={`  flex w-full left-0 px-12 py-3 z-50 bg-primary md:bg-transparent  md:px-0  flex-col absolute md:static duration-700 ease-in-out md:flex-row gap-5 ${
-              open ? "top-24" : "top-[-300px]"
+              open ? "top-24" : "top-[-500px]"
             }`}
           >
             <Link to="/">

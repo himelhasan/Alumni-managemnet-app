@@ -31,61 +31,73 @@ const BatchwiseStudent = () => {
           </div>
         </div>
         <div className="w-9/12 mx-auto md:my-32 my-16">
-          <div className=" grid md:grid-cols-3 gap-5">
-            <div className="bg-accent  ">
-              <img src={pervez} alt="" className="h-90 w-full" />
-              <div className="p-3">
+          <div className=" grid md:grid-cols-3 gap-10">
+            <div
+              style={{
+                height: "600px",
+                backgroundImage: `url(${pervez})`,
+              }}
+              className=" bg-cover bg-center relative   shadow-2xl "
+            >
+              <div className="w-full p-5 bg-white absolute bottom-0 left-0">
                 <h2 className="md:text-2xl text-xl font-semibold md:mt-3 mb-2">
                   Pervez Hossain
                 </h2>
-                <div className="flex gap-3 my-3">
-                  <div>
-                    <p className="">
-                      SSC Batch : <span className="font-normal ">2013</span>
-                    </p>
-                    <p className="">
-                      Group : <span className="font-normal ">Science</span>
-                    </p>
-                  </div>
-                  <div>
-                    <p className="">
-                      Blood Group : <span className="font-normal ">B+</span>
-                    </p>
-                    <p className="">
-                      Profession :{" "}
-                      <span className="font-normal ">Freelancer</span>
-                    </p>
-                  </div>
+                <div className="my-3">
+                  <p className="">
+                    SSC Batch : <span className="font-normal ">2013</span>
+                  </p>
+                  <p className="">
+                    Group : <span className="font-normal ">Science</span>
+                  </p>
                 </div>
                 <button className="bg-secondary text-primary px-4 py-2  font-semibold ">
                   Details
                 </button>
               </div>
             </div>
-            <div className="bg-accent  ">
-              <img src={pervez} alt="" className="h-90 w-full" />
-              <div className="p-3">
+            <div
+              style={{
+                height: "600px",
+                backgroundImage: `url("https://expertphotography.b-cdn.net/wp-content/uploads/2020/08/profile-photos-4.jpg")`,
+              }}
+              className=" bg-cover bg-center relative   shadow-2xl "
+            >
+              <div className="w-full p-5 bg-white absolute bottom-0 left-0">
                 <h2 className="md:text-2xl text-xl font-semibold md:mt-3 mb-2">
                   Pervez Hossain
                 </h2>
-                <div className="flex gap-3 my-3">
-                  <div>
-                    <p className="">
-                      SSC Batch : <span className="font-normal ">2013</span>
-                    </p>
-                    <p className="">
-                      Group : <span className="font-normal ">Science</span>
-                    </p>
-                  </div>
-                  <div>
-                    <p className="">
-                      Blood Group : <span className="font-normal ">B+</span>
-                    </p>
-                    <p className="">
-                      Profession :{" "}
-                      <span className="font-normal ">Freelancer</span>
-                    </p>
-                  </div>
+                <div className="my-3">
+                  <p className="">
+                    SSC Batch : <span className="font-normal ">2013</span>
+                  </p>
+                  <p className="">
+                    Group : <span className="font-normal ">Science</span>
+                  </p>
+                </div>
+                <button className="bg-secondary text-primary px-4 py-2  font-semibold ">
+                  Details
+                </button>
+              </div>
+            </div>
+            <div
+              style={{
+                height: "600px",
+                backgroundImage: `url("https://media.istockphoto.com/id/1338134336/photo/headshot-portrait-african-30s-man-smile-look-at-camera.jpg?b=1&s=170667a&w=0&k=20&c=j-oMdWCMLx5rIx-_W33o3q3aW9CiAWEvv9XrJQ3fTMU=")`,
+              }}
+              className=" bg-cover bg-center relative   shadow-2xl "
+            >
+              <div className="w-full p-5 bg-white absolute bottom-0 left-0">
+                <h2 className="md:text-2xl text-xl font-semibold md:mt-3 mb-2">
+                  Pervez Hossain
+                </h2>
+                <div className="my-3">
+                  <p className="">
+                    SSC Batch : <span className="font-normal ">2013</span>
+                  </p>
+                  <p className="">
+                    Group : <span className="font-normal ">Science</span>
+                  </p>
                 </div>
                 <button className="bg-secondary text-primary px-4 py-2  font-semibold ">
                   Details
