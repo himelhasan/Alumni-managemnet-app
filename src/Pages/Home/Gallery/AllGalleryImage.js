@@ -25,7 +25,8 @@ const AllGalleryImage = () => {
   if (!isLoading && !isError) {
     content = (
       <>
-        <div className="grid lg:grid-cols-6 gap-5">
+        <div data-aos="zoom-out-up"
+     data-aos-duration="3000" className="grid lg:grid-cols-6 gap-5">
           <PhotoProvider>
             {data?.slice(previous, next).map((galleryImg, idx) => (
               <PhotoView src={galleryImg.image_url}>

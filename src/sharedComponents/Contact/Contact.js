@@ -31,7 +31,8 @@ const Contact = () => {
   };
 
   return (
-    <div className="mt-16 mb-20">
+    <div data-aos="zoom-in"
+    data-aos-duration="3000" className="mt-16 mb-20">
       <h1 className=" text-2xl font-bold mb-10">Contact</h1>
       <form onSubmit={onSubmit}>
         <div className=" gap-12 ">

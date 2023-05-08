@@ -403,7 +403,8 @@ const SinglePerson = () => {
 
   return (
     <div>
-      <div className="bg-primary text-center text-white md:py-24 md:px-24 py-16 px-12 ">
+      <div data-aos="fade-up"
+     data-aos-duration="3000" className="bg-primary text-center text-white md:py-24 md:px-24 py-16 px-12 ">
         <div className="md:w-1/2 mx-auto ">
           <h2 className="md:text-4xl text-2xl mb-5">About {name}</h2>
           <hr className="border-2 w-24 mx-auto border-secondary " />

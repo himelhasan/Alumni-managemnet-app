@@ -64,13 +64,8 @@ const UpComingEventsCard = () => {
           .filter(filterByDate)
           .slice(previous, next)
           .map((eventData) => (
-            <div  data-aos="fade-up"
-            data-aos-offset="200"
-            data-aos-delay="50"
-            data-aos-duration="1000"
-            data-aos-easing="ease-in-out"
-            data-aos-mirror="true"
-            data-aos-once="false"
+            <div  data-aos="fade-left"
+            
               key={eventData._id}
               className="sm:flex shadow-soft-lg drop-shadow-lg	 justify-between items-center sm:w-full max-w-5xl mx-auto bg-primary  gap-4 relative -top-[24px]"
             >

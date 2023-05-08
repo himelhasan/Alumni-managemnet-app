@@ -32,7 +32,9 @@ const NewsSection = () => {
     newsContent = (
       <>
         {" "}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center justify-between gap-5">
+        <div data-aos="fade-right"
+     data-aos-offset="300"
+     data-aos-easing="ease-in-sine" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center justify-between gap-5">
           {newsData?.slice(previous, next).map((data, i) => (
             <NewsCard key={i} data={data}></NewsCard>
           ))}
@@ -55,10 +57,9 @@ const NewsSection = () => {
   };
 
   return (
-    <div data-aos="fade-right"
-    data-aos-offset="900"
-    data-aos-easing="ease-in-sine" className="mx-auto mt-[5.5rem]">
-      <h1 className="mt-[3.75rem] mb-[1rem] text-3xl font-semibold text-center">
+    <div 
+   className="mx-auto mt-[5.5rem]">
+      <h1 data-aos="zoom-out-up" className="mt-[3.75rem] mb-[1rem] text-3xl font-semibold text-center">
         Recent News
       </h1>
       <>{newsContent}</>

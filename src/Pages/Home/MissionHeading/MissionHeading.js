@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 const MissionHeading = () => {
   return (
     <div   data-aos="fade-right"
-    data-aos-offset="300"
-    data-aos-easing="ease-in-sine" className="my-16 grid md:grid-cols-2 gap-10 items-center">
+    className="my-16 grid md:grid-cols-2 gap-10 items-center">
       <div>
         <img
           className=""

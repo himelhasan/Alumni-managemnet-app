@@ -18,7 +18,9 @@ const Header = () => {
       });
   };
   return (
-    <nav className="bg-primary text-white sticky top-0 z-50 ">
+    <nav data-aos="fade-down"
+    data-aos-easing="linear"
+    data-aos-duration="1500" className="bg-primary text-white sticky top-0 z-50 ">
       <div className="w-9/12 mx-auto flex flex-wrap  list-none justify-between items-center py-5 text-xl font-bold">
         <div>
           <Link to="/">

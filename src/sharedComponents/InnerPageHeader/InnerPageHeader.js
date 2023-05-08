@@ -8,7 +8,9 @@ const InnerPageHeader = ({ title, img, description }) => {
         backgroundImage: `url(${img})`,
       }}
     >
-      <div className="w-full h-full flex  justify-center items-center backdrop-brightness-50">
+      <div data-aos="fade-left"
+        data-aos-offset="300"
+        data-aos-easing="ease-in-sine" className="w-full h-full flex  justify-center items-center backdrop-brightness-50">
         <div className=" text-white py-10 px-20 md:py-28 md:px-40 lg:px-96 mx-auto text-center">
           <div>
             <h2 className="md:text-3xl text-2xl font-semibold md:mb-4 capitalize">

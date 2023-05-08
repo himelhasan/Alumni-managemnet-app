@@ -28,7 +28,8 @@ const AllNewsPage = () => {
     newsContent = (
       <>
         {" "}
-        <div className="grid lg:grid-cols-3 gap-10">
+        <div data-aos="fade-right"
+     data-aos-duration="3000" className="grid lg:grid-cols-3 gap-10">
           {newsData?.map((news) => (
             <DisplayAllNews news={news} key={news._id}></DisplayAllNews>
           ))}

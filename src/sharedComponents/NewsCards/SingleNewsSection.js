@@ -54,12 +54,13 @@ const SingleNewsSection = () => {
     content = (
       <>
         {" "}
-        <div>
+        <div >
           <InnerPageHeader
             img={`${image}`}
             title={`${heading}`}
           ></InnerPageHeader>
-          <div className="w-9/12 mx-auto my-16">
+          <div data-aos="fade-up"
+     data-aos-duration="3000" className="w-9/12 mx-auto my-16">
             <div>
               <div className="grid lg:grid-cols-3 gap-10">
                 <div className="lg:col-span-2">

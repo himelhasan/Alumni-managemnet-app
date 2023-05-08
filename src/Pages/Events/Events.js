@@ -65,7 +65,8 @@ const Events = () => {
     eventsContent = (
       <>
         {" "}
-        <div className="grid grid-cols-1 md:grid-cols-2">
+        <div data-aos="fade-up"
+     data-aos-duration="3000" className="grid grid-cols-1 md:grid-cols-2">
           {eventsContentData
             .filter(filterCategoryWise)
             .slice(previous, next)
