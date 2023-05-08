@@ -46,7 +46,8 @@ const AllGallery = () => {
   };
   return (
     <div className="w-9/12 mx-auto my-16">
-      <h2 className="my-5 text-2xl ">All Gallery</h2>
+      <h2 className="my-5 text-2xl text-center ">All Gallery</h2>
+      <p className="text-center mb-10">Explore our gallery to see photos from past events and activities organized by our alumni management system. From alumni reunions and networking events to career fairs and fundraising initiatives, our gallery showcases the impact that strong alumni engagement can have on educational institutions. Click here to view our gallery and see how we're helping institutions build lifelong connections with their graduates.</p>
       {user?.email && user?.uid ? (
         <>
           <div className="overflow-x-auto">

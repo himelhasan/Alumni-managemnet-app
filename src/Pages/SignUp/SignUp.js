@@ -10,7 +10,8 @@ import {
 } from "../../features/Api/apiSlice";
 
 const SignUp = () => {
-  const { createUser, updateUserProfile, signInWithGoogle } = useContext(AuthContext);
+  const { createUser, updateUserProfile, signInWithGoogle } =
+    useContext(AuthContext);
 
   // use navigate
   const navigate = useNavigate();
@@ -43,10 +44,13 @@ const SignUp = () => {
     const formData = new FormData();
     formData.append("image", image_url);
 
-    fetch("https://api.imgbb.com/1/upload?key=dd1a5cd35aa9d832298beb50053079da", {
-      method: "POST",
-      body: formData,
-    })
+    fetch(
+      "https://api.imgbb.com/1/upload?key=dd1a5cd35aa9d832298beb50053079da",
+      {
+        method: "POST",
+        body: formData,
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         setPhotoURL(data.data.display_url);
@@ -148,7 +152,9 @@ const SignUp = () => {
   return (
     <div className=" flex justify-center items-center  bg-accent rounded-lg py-20">
       <div className=" lg:w-3/4 m-2">
-        <h2 className="text-4xl text-primary font-semibold text-center mb-5">Sign Up</h2>
+        <h2 className="text-4xl text-primary font-semibold text-center mb-5">
+          Sign Up
+        </h2>
         <form onSubmit={handleSubmit(handleSignUp)}>
           <div className="flex flex-col-reverse md:flex-row gap-2">
             <div className="w-full md:w-3/4">
@@ -282,7 +288,9 @@ const SignUp = () => {
                     placeholder="Date Of Birth"
                   />
                   {errors.dateOfBirth && (
-                    <p className="text-red-600">{errors.dateOfBirth?.message}</p>
+                    <p className="text-red-600">
+                      {errors.dateOfBirth?.message}
+                    </p>
                   )}
                 </div>
 
@@ -312,7 +320,9 @@ const SignUp = () => {
                   </select>
 
                   {errors.GraduationYear && (
-                    <p className="text-red-600">{errors.GraduationYear?.message}</p>
+                    <p className="text-red-600">
+                      {errors.GraduationYear?.message}
+                    </p>
                   )}
                 </div>
 
@@ -398,7 +408,9 @@ const SignUp = () => {
           >
             Google
           </button>
-          <button className="text-primary text-lg font-bold mr-5">FaceBook</button>
+          <button className="text-primary text-lg font-bold mr-5">
+            FaceBook
+          </button>
         </div>
 
         <p className="text-center mt-5 mb-10">

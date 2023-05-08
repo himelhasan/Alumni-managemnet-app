@@ -89,7 +89,7 @@ const LogIn = () => {
                 required: "Password is required",
               })}
               className="input input-bordered rounded-none bg-accent py-2 pl-3 text-lg  w-full"
-              placeholder="*********"
+              placeholder="***"
             />
             {errors.password && (
               <p className="text-red-600">{errors.password?.message}</p>

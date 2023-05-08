@@ -23,7 +23,7 @@ const DashBoardNavItem = ({ url, name, fontAwesome, bg, text }) => {
               : "bg-transparent text-slate-700"
           }`}
         >
-          <i class={fontAwesome}></i>
+          <i className={fontAwesome}></i>
         </div>
         <span
           className={`${text} ml-1 duration-300 opacity-100 pointer-events-none ease-soft text-slate-500 font-sans`}

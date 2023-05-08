@@ -172,7 +172,7 @@ const SingleEvent = () => {
         <InnerPageHeader
           title={event_title}
           img={image_url}
-          description="Learn More About the event"
+          description={`Welcome to the event page for ${event_title}!  Please review the details below and Join as soon as possible to secure your spot.`}
         />
         <div className="w-full md:w-9/12 mx-auto my-20 md:flex justify-between">
           <div className="w-full md:w-3/5 px-10 mx-auto">
