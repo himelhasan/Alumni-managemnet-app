@@ -3,8 +3,10 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../sharedComponents/UseContext/AuthProvider";
 import { toast } from "react-toastify";
+import { useState } from "react";
 
 const LogIn = () => {
+  const [isSaving , setIsSaving] = useState(false)
   const { signin, signInWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -15,28 +17,35 @@ const LogIn = () => {
   } = useForm();
 
   const handleLogIn = (data) => {
-    console.log(data.email, data.password);
+
+    setIsSaving(true)
+
     signin(data.email, data.password)
       .then((result) => {
         const user = result.user;
         console.log(user);
+        setIsSaving(false)
         toast.success("SuccessFully Login");
       })
       .catch((error) => {
+        setIsSaving(false)
         toast.error(error.message);
       });
   };
 
   const handleGoogleLogin = () => {
+    setIsSaving(true)
     signInWithGoogle()
       .then((result) => {
         const user = result.user;
         console.log(user);
+        setIsSaving(false)
         toast.success("SuccessFully  Login");
         navigate("/");
       })
       .catch((error) => {
         console.log(error);
+        setIsSaving(false)
         toast.error(error.message);
       });
   };
@@ -88,9 +97,17 @@ const LogIn = () => {
           </div>
 
           <div className="lg:w-2/3 mx-auto">
-            <button className="btn btn-primary w-full bg-primary text-lg mt-5 text-white border-none rounded-none">
-              Log In
+          <button type="submit" className="btn btn-primary w-full bg-primary text-lg mt-5 text-white border-none rounded-none" disabled={isSaving}>
+             {
+              isSaving ? <span className="flex items-center cursor-not-allowed">
+              <svg class="animate-spin text-white  rounded-full border-4 border-dashed h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
+                 
+                 </svg>
+                 Loging ...
+              </span> : "Log in"
+             }
             </button>
+          
           </div>
         </form>
         <p className="text-center mt-5 mb-10">

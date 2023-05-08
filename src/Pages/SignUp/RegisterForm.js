@@ -25,7 +25,7 @@ const RegisterForm = () => {
   const { user } = useContext(AuthContext);
   const { data: majorSubject } = useGetAllGraduationMajorQuery();
   const { data: graduationYear } = useGetAllBatchesQuery();
-  const [photo, setPhoto] = useState(null);
+  const [isSaving, setIsSaving] = useState(false)
   const [photoURL, setPhotoURL] = useState(null);
 
   // use navigate
@@ -66,6 +66,9 @@ const RegisterForm = () => {
   };
 
   const handleSignUp = (data) => {
+
+    setIsSaving(true)
+
     const firstName = data.firstName;
     const lastName = data.lastName;
     const name = `${data.firstName} ${data.lastName}`;
@@ -87,10 +90,13 @@ const RegisterForm = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        
         setPhotoURL(data.data.display_url);
         createUser(email, password)
           .then((result) => {
+            setIsSaving(false)
             toast.success("SuccessFully Signup");
+
             const userfromData = result.user;
             const user = {
               firstName: firstName,
@@ -136,7 +142,7 @@ const RegisterForm = () => {
               displayName: name,
               photoURL: photoURL,
             })
-              .then(() => {})
+              .then(() => { })
               .catch((error) => {
                 console.log(error);
               });
@@ -147,8 +153,12 @@ const RegisterForm = () => {
               headers: { "Content-Type": "application/json" },
             })
               .then((res) => res.json())
-              .then((data) => {})
+              .then((data) => {
+
+                setIsSaving(false)
+               })
               .catch((error) => {
+                setIsSaving(false)
                 console.error(error);
               });
 
@@ -160,10 +170,12 @@ const RegisterForm = () => {
           .catch((error) => {
             console.log(error);
             toast.error(error.message);
+            setIsSaving(false)
           });
       })
       .catch((error) => {
         console.log(error);
+        setIsSaving(false)
         toast.error(`${error.message}`, {
           position: toast.POSITION.TOP_LEFT,
         });
@@ -171,13 +183,16 @@ const RegisterForm = () => {
   };
 
   const handleGoogleSignup = () => {
+    setIsSaving(true)
     signInWithGoogle()
       .then((result) => {
         const user = result.user;
         console.log(user);
+        setIsSaving(false)
         toast.success("SuccessFully  Signup");
       })
       .catch((error) => {
+        setIsSaving(false)
         console.log(error);
         toast.error(error.message);
       });
@@ -461,12 +476,24 @@ const RegisterForm = () => {
                 .
               </label>
             </div>
-            <button
+            {/* <button disabled={isSaving} 
               type="submit"
               class="text-white bg-primary hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-secondary dark:hover:bg-primary dark:focus:ring-blue-800"
             >
-              Submit
+              {isSaving ? <span className="w-4 h-4  border-dashed rounded-full animate-spin bg-white"></span> : 'Save'}
+            </button> */}
+            <button type="submit" class="text-white bg-primary hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-secondary dark:hover:bg-primary dark:focus:ring-blue-800" disabled={isSaving}>
+             {
+              isSaving ? <span className="flex items-center cursor-not-allowed">
+              <svg class="animate-spin text-white  rounded-full border-4 border-dashed h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
+                 
+                 </svg>
+                 please wait ...
+              </span> : "Submit"
+             }
             </button>
+
+
           </form>
 
           <div className="mt-4 text-grey-600">
