@@ -18,11 +18,7 @@ const Header = () => {
       });
   };
   return (
-<<<<<<< HEAD
     <nav  className="bg-primary text-white sticky top-0 z-50 ">
-=======
-    <nav className="bg-primary text-white sticky top-0 z-50 ">
->>>>>>> 29110e49885fd9f1a3eab8c58ed05b12ca0342db
       <div className="w-9/12 mx-auto flex flex-wrap  list-none justify-between items-center py-5 text-xl font-bold">
         <div>
           <Link to="/">
