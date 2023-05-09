@@ -55,7 +55,9 @@ const Counter = ({ date, color }) => {
       {today > eventDate && (
         <>
           {" "}
-          <span className="bg-red-500 text-white px-4 py-1">Expired </span>{" "}
+          <span className="bg-secondary text-primary px-4 py-1">
+            Expired{" "}
+          </span>{" "}
         </>
       )}
 

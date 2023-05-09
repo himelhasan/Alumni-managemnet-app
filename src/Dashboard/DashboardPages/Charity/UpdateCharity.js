@@ -1,24 +1,30 @@
-import React, { useContext, useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
-import { AuthContext } from "../UseContext/AuthProvider";
-import { toast } from "react-toastify";
+import React, { useContext, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { AuthContext } from "../../../sharedComponents/UseContext/AuthProvider";
+import {
+  useEditCharityMutation,
+  useGetAllBatchesQuery,
+  useGetSingleCharityQuery,
+} from "../../../features/Api/apiSlice";
+import { toast } from "react-hot-toast";
 
 const UpdateCharity = () => {
-  const charityData = useLoaderData();
-  console.log(charityData);
-  const [batchYear, setBatchYear] = useState([]);
   const { user } = useContext(AuthContext);
-  useEffect(() => {
-    fetch("https://alumni-managemnet-app-server.vercel.app/all-batches")
-      .then((res) => res.json())
-      .then((data) => {
-        setBatchYear(data);
-        console.log(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  const param = useParams();
+  const { data: charityData } = useGetSingleCharityQuery(param?.id);
+  const { data: batchYear } = useGetAllBatchesQuery();
+
+  const [
+    editCharity,
+    {
+      data,
+      isSuccess: isEditSuccess,
+      isLoading: isEditLoading,
+      isError: isEditError,
+      error: errorEdit,
+    },
+  ] = useEditCharityMutation();
+
   const handleUpdateCharity = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -34,13 +40,10 @@ const UpdateCharity = () => {
     const time = new Date().toLocaleDateString();
     const formData = new FormData();
     formData.append("image", image_url);
-    fetch(
-      "https://api.imgbb.com/1/upload?key=86fe1764d78f51c15b1a9dfe4b9175cf",
-      {
-        method: "POST",
-        body: formData,
-      }
-    )
+    fetch("https://api.imgbb.com/1/upload?key=86fe1764d78f51c15b1a9dfe4b9175cf", {
+      method: "POST",
+      body: formData,
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -58,36 +61,30 @@ const UpdateCharity = () => {
         };
 
         console.log(updatedCharityInfo);
+
+        editCharity({
+          id: charityData._id,
+          data: updatedCharityInfo,
+        });
         form.reset();
-        fetch(
-          `https://alumni-managemnet-app-server.vercel.app/charity/${charityData._id}`,
-          {
-            method: "PUT",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify(updatedCharityInfo),
-          }
-        )
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-            if (data.modifiedCount > 0) {
-              toast.success("SuccessFully Updated");
-            }
-          })
-          .catch((error) => {
-            console.log(error);
-          });
       })
       .catch((error) => {
         console.log(error);
       });
   };
 
+  useEffect(() => {
+    if (isEditSuccess) {
+      toast.success("News Creation Success");
+    }
+    if (isEditError) {
+      toast.error("News Creation Error");
+    }
+  }, [isEditError, isEditSuccess]);
+
   return (
     <div className="w-9/12 mx-auto my-16">
-      <h2 className="text-4xl my-5">Charity</h2>
+      <h2 className="text-4xl my-5">Update Charity</h2>
 
       <form onSubmit={(event) => handleUpdateCharity(event)}>
         <div className="grid md:grid-cols-2 gap-5">
@@ -151,16 +148,9 @@ const UpdateCharity = () => {
           />
         </div>
         <div className="form-control w-full mt-5 ">
-          <select
-            required
-            className="select select-bordered"
-            name="batchNumber"
-          >
+          <select required className="select select-bordered" name="batchNumber">
             {batchYear?.map((batchYear) => (
-              <option
-                defaultValue={charityData?.batchNumber}
-                key={batchYear._id}
-              >
+              <option defaultValue={charityData?.batchNumber} key={batchYear._id}>
                 {batchYear.batchNumber}
               </option>
             ))}

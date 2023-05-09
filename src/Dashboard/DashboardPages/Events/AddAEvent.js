@@ -1,5 +1,5 @@
 import React from "react";
-import CreateEvents from "../../DashboardComponents/CreateEvents/CreateEvents";
+import CreateEvents from "./CreateEvents";
 
 const AddAEvent = () => {
   return (
@@ -7,7 +7,7 @@ const AddAEvent = () => {
       <div className="w-3/4 p-2 m-2 ">
         <CreateEvents />
       </div>
-      <div className="w-1/4 p-2 m-2 bg-red-500"></div>
+      <div className="w-1/4 p-2 m-2 "></div>
     </div>
   );
 };

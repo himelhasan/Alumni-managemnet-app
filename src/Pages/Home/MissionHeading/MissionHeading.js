@@ -3,23 +3,30 @@ import { Link } from "react-router-dom";
 
 const MissionHeading = () => {
   return (
-    <div   data-aos="fade-right"
-    className="my-16 grid md:grid-cols-2 gap-10 items-center">
+    <div
+      data-aos="fade-right"
+      data-aos-offset="300"
+      data-aos-easing="ease-in-sine"
+      className="my-16 grid md:grid-cols-2 gap-10 items-center"
+    >
       <div>
         <img
           className=""
-          src="https://thumbs.dreamstime.com/b/business-person-working-computer-his-office-desk-112097175.jpg"
+          src="https://www.hec.edu/sites/default/files/inline-images/Alumni%20Reunion-23.jpg"
           alt=""
         />
       </div>
 
       <div>
-        <h1 className="mb-6 text-2xl font-semibold">Mission Heading</h1>
-        <p>
-          There are many company Lorem ipsm dolor sitg amet, csetur adipicing elit, sed do
-          eiusmod tempor dncint ut labore et dolore magna alis enim ad minim veniam, quis
-          csetur adipicing elit, sed do eiusmod tempor dncint ut labore et dolore magna
-          alis{" "}
+        <h1 className="mb-6 text-2xl font-semibold">
+          Connecting Alumni: Uniting Graduates
+        </h1>
+        <p className="text-justify">
+          Alumni management system aims to provide innovative and efficient solutions to
+          help alumni communities stay connected and engaged. By empowering alumni with
+          cutting-edge management tools, the system seeks to enhance the overall alumni
+          experience and foster stronger relationships between alumni and their alma
+          mater.
         </p>
         <button className="mt-8 py-4 px-8 text-right text-primary font-bold bg-secondary">
           <Link to="/about-us">Learn More</Link>

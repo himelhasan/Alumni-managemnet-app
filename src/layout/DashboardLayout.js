@@ -1,6 +1,12 @@
 import React, { useContext, useEffect, useRef } from "react";
 import DashBoardNavbar from "../Dashboard/DashboardComponents/DashBoardNavbar";
-import { Link, NavLink, Outlet, useLocation, useParams } from "react-router-dom";
+import {
+  Link,
+  NavLink,
+  Outlet,
+  useLocation,
+  useParams,
+} from "react-router-dom";
 import logo from "../../src/assets/logo/logo-black.png";
 import DashBoardNavItem from "../Dashboard/DashboardComponents/DashBoardNavItem/DashBoardNavItem";
 import ResizeObserver from "resize-observer-polyfill";
@@ -122,7 +128,8 @@ const DashboardLayout = () => {
               url="/dashboard/successfulStory"
             />
             {(pathname === "/dashboard/successfulStory" ||
-              pathname === "/dashboard/successfulStory/add-a-successfulStory") && (
+              pathname ===
+                "/dashboard/successfulStory/add-a-successfulStory") && (
               <DashBoardNavItem
                 name="Add a Story"
                 fontAwesome="fa-regular fa-file-lines"
@@ -133,7 +140,7 @@ const DashboardLayout = () => {
             <DashBoardNavItem
               name="Profile"
               fontAwesome="fa-solid fa-user"
-              url={`/dashboard/profile/${user.email}`}
+              url={`/dashboard/profile/${user?.email}`}
             />
 
             {/* LOG OUT BUTTON */}
@@ -154,7 +161,7 @@ const DashboardLayout = () => {
                       : "bg-transparent text-slate-700"
                   }`}
                 >
-                  <i class="fa-solid fa-right-from-bracket"></i>
+                  <i className="fa-solid fa-right-from-bracket"></i>
                 </div>
                 <span
                   className={`text-white ml-1 duration-300 opacity-100 pointer-events-none ease-soft text-slate-500 font-sans`}

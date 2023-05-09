@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../UseContext/AuthProvider";
+
 
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { AuthContext } from "../../../sharedComponents/UseContext/AuthProvider";
 
 const AllCharity = () => {
   const { user } = useContext(AuthContext);

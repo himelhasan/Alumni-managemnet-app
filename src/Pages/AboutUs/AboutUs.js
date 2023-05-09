@@ -11,21 +11,15 @@ const AboutUs = () => {
         title={"About Us"}
         img={student}
         description={
-          "There are many company Lorem ipsm dolor sitg amet, csetur "
+          "At our alumni management system, we are dedicated to helping educational institutions build stronger relationships with their alumni communities. Our system offers a range of tools and resources to support engagement, philanthropy, and lifelong learning, including a robust alumni directory, event management capabilities, and targeted communication tools. Scroll here to learn more about our mission, values, and team, and how we can help your institution achieve its alumni engagement goals."
         }
       ></InnerPageHeader>
 
       <div className="md:w-9/12 mx-auto grid md:grid-cols-2 px-5  gap-16 items-center my-16">
         <div>
           <h2 className="md:text-4xl text-3xl mb-5">Who we are</h2>
-          <p>
-            Alumni are former students of a school, college, or university who
-            have either attended or graduated in some fashion from the
-            institution. The feminine plural alumnae is sometimes used for
-            groups of women. The word is Latin and means "one who is being
-            nourished".Traditionally, "alumnus" refers specifically to a
-            singular male graduate and "alumni" is the plural form for a group
-            of male graduates
+          <p className="text-justify">
+          We are a team of experienced professionals with a passion for helping educational institutions engage with their alumni communities. With a deep understanding of the challenges facing educational institutions today, we have developed a comprehensive alumni management system that provides institutions with the tools and resources they need to build stronger relationships with their graduates. Our mission is to help institutions foster engagement, philanthropy, and lifelong learning, and we are committed to providing exceptional service and support to our clients.
           </p>
         </div>
         <div>
@@ -43,9 +37,7 @@ const AboutUs = () => {
               Our Dedicated Team
             </p>
             <p className="text-base text-gray-700 md:text-lg">
-              Alumni are former students of a school, college, or university who
-              have either attended or graduated in some fashion from the
-              institution.
+            Our web developers are highly skilled and committed to delivering exceptional results. With expertise in web design, programming, and user experience, they ensure our alumni management system is user-friendly and effective.
             </p>
           </div>
           <div className="grid gap-10 mx-auto sm:grid-cols-2 lg:grid-cols-4 lg:max-w-screen-lg">
@@ -227,12 +219,8 @@ const AboutUs = () => {
 
         <div>
           <h2 className="md:text-4xl text-3xl mb-5">Why we Care</h2>
-          <p>
-            Alumni refers to people who have graduated from an institution (most
-            commonly a university) while alma mater is the institution from
-            which a person has graduated. A graduate is a person (male or
-            female) who has completed a degree at a university/college. Alumni
-            are male graduates. Alumnae are female graduates.
+          <p className="text-justify">
+          At our alumni management system, we care deeply about helping educational institutions build stronger relationships with their alumni communities. We believe that strong alumni engagement is critical to the success of educational institutions, and we are dedicated to providing the tools and resources that institutions need to foster engagement, philanthropy, and lifelong learning. We are passionate about what we do, and we are committed to making a difference in the world through our work.
           </p>
         </div>
       </div>

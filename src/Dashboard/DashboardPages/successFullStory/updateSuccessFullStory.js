@@ -1,22 +1,40 @@
-import React, { useEffect, useState } from "react";
-import { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../../sharedComponents/UseContext/AuthProvider";
+import {
+  useEditSuccessfulStoriesMutation,
+  useGetAllBatchesQuery,
+} from "../../../features/Api/apiSlice";
+import { toast } from "react-hot-toast";
 
-const CreateSuccessFullStory = () => {
-  const [batchYear, setBatchYear] = useState([]);
+const UpdateSuccessFullStory = () => {
+  const updateStoryData = useLoaderData();
   const { user } = useContext(AuthContext);
+  const { data: batchYear } = useGetAllBatchesQuery();
+
+  // useEditSuccessfulStoriesMutation
+
+  const [
+    editSuccessfulStories,
+    {
+      data,
+      isLoading: isEditLoading,
+      isSuccess: isEditSuccess,
+      isError: isEditError,
+      error: editError,
+    },
+  ] = useEditSuccessfulStoriesMutation();
+
   useEffect(() => {
-    fetch("https://alumni-managemnet-app-server.vercel.app/all-batches")
-      .then((res) => res.json())
-      .then((data) => {
-        setBatchYear(data);
-        console.log(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-  const handleSuccessStory = (event) => {
+    if (isEditSuccess) {
+      toast.success("Successfully toasted!");
+    }
+    if (isEditError) {
+      toast.error(editError?.message);
+    }
+  }, [editError, isEditError, isEditSuccess]);
+
+  const updateSuccessStory = (event) => {
     event.preventDefault();
     const form = event.target;
     const title = form.title.value;
@@ -26,13 +44,10 @@ const CreateSuccessFullStory = () => {
     const time = new Date().toLocaleDateString();
     const formData = new FormData();
     formData.append("image", image_url);
-    fetch(
-      "https://api.imgbb.com/1/upload?key=86fe1764d78f51c15b1a9dfe4b9175cf",
-      {
-        method: "POST",
-        body: formData,
-      }
-    )
+    fetch("https://api.imgbb.com/1/upload?key=86fe1764d78f51c15b1a9dfe4b9175cf", {
+      method: "POST",
+      body: formData,
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -50,26 +65,12 @@ const CreateSuccessFullStory = () => {
           likes: 0,
         };
 
-        console.log(successFullStoryInfo);
-        form.reset();
+        editSuccessfulStories({
+          id: updateStoryData._id,
+          data: successFullStoryInfo,
+        });
 
-        fetch(
-          "https://alumni-managemnet-app-server.vercel.app/successFullStory",
-          {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify(successFullStoryInfo),
-          }
-        )
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        form.reset();
       })
       .catch((error) => {
         console.log(error);
@@ -77,15 +78,16 @@ const CreateSuccessFullStory = () => {
   };
   return (
     <div className="w-9/12 mx-auto my-16">
-      <h2 className="text-4xl my-5">SuccessFull Story</h2>
+      <h2 className="text-4xl my-5">Update SuccessFull Story</h2>
 
-      <form onSubmit={(event) => handleSuccessStory(event)}>
+      <form onSubmit={(event) => updateSuccessStory(event)}>
         <div className="grid md:grid-cols-2 gap-5">
           <input
             type="text"
             placeholder="SuccessFull Story Title"
             className="input input-bordered w-full "
             name="title"
+            defaultValue={updateStoryData?.title}
             required
           />
           <div className="form-control w-full  ">
@@ -98,7 +100,7 @@ const CreateSuccessFullStory = () => {
           </div>
         </div>
         <div className="form-control w-full mt-5 ">
-          <select className="select select-bordered" name="batchNumber">
+          <select required className="select select-bordered" name="batchNumber">
             {batchYear?.map((batchYear) => (
               <option key={batchYear._id}>{batchYear.batchNumber}</option>
             ))}
@@ -108,6 +110,7 @@ const CreateSuccessFullStory = () => {
           className="textarea textarea-bordered w-full my-5"
           placeholder="SuccessFull Story Details"
           name="details"
+          defaultValue={updateStoryData?.details}
           required
         ></textarea>
         <button className="px-6 py-4 w-full rounded-lg bg-primary text-white font-semibold">
@@ -118,4 +121,4 @@ const CreateSuccessFullStory = () => {
   );
 };
 
-export default CreateSuccessFullStory;
+export default UpdateSuccessFullStory;

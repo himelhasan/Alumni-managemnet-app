@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import StatsCard from "../DashboardComponents/StatsCard";
 import ProfileBlogCards from "../DashboardComponents/ProfileBlogCards";
 import ProfileBlogCardsImage from "../DashboardComponents/ProfileBlogCardsImage";
@@ -6,7 +6,27 @@ import LineChart from "../DashboardComponents/Charts/DashboardChart/LineChart";
 import { linedata as lineData } from "../DashboardComponents/Charts/DashboardChart/lineData";
 
 const DashboardMain = () => {
-  const increment = 55;
+  const [charityDonation, setCharityDonation] = useState([]);
+  useEffect(() => {
+    fetch("https://alumni-managemnet-app-server.vercel.app/charityDonation")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setCharityDonation(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
+  let totalDonation = 0;
+
+  for (const donation of charityDonation) {
+    console.log(donation);
+    const allDonation = parseInt(donation?.cus_donationAmount);
+    totalDonation = totalDonation + allDonation;
+  }
+  const increment = 30;
   return (
     <div className="px-4 mb-10">
       <div className="relative grid grid-cols-2 md:grid-cols-4 items-center space-between w-full gap-2 md:gap-5 mb-2 md:mb-6 ">
@@ -15,13 +35,13 @@ const DashboardMain = () => {
           icon="fa-solid fa-coins"
           text="Total Donation"
           stats={` ${increment > 0 ? "+" : "-"}${increment}%`}
-          number={`$${increment}`}
+          number={`$${totalDonation}`}
         />
         <StatsCard
           icon="fa-solid fa-coins"
-          text="Total Students"
+          text="Total Donar"
           stats={` ${increment > 0 ? "+" : "-"}${increment}%`}
-          number={`${increment}`}
+          number={`${charityDonation?.length}`}
         />
         <StatsCard
           icon="fa-solid fa-coins"

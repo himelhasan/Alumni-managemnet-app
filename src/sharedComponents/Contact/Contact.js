@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import emailjs from "@emailjs/browser";
+import { toast } from "react-toastify";
 
 const Contact = () => {
   const {
@@ -22,6 +23,7 @@ const Contact = () => {
       .then(
         (result) => {
           console.log("Message Sent Successfully");
+          toast.success("Message Sent Successfully");
           reset();
         },
         (error) => {

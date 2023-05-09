@@ -12,6 +12,7 @@ import AboutUs from "../Pages/AboutUs/AboutUs";
 import SingleEvent from "../Pages/SingleEvent/SingleEvent";
 import SinglePerson from "../Pages/SinglePerson/SinglePerson";
 import AlumniPage from "../Pages/AlumniDirectory/AlumniPage";
+// import MembershipForm from "../Pages/MembershipForm/MembershipForm";
 import DashboardLayout from "../layout/DashboardLayout";
 import DashboardMain from "../Dashboard/DashboardPages/DashboardMain";
 import DashboardTestPage from "../Dashboard/DashboardPages/DashboardTestPage";
@@ -22,25 +23,32 @@ import BatchWiseStudent from "../Pages/BatchwiseStudent/BatchwiseStudent";
 import DisplaySingleCharity from "../sharedComponents/ShowCharity/DisplaySingleCharity";
 import AllGalleryImage from "../Pages/Home/Gallery/AllGalleryImage";
 import PrivateRoutes from "./PrivateRoutes";
-import NewsCreateForm from "../Dashboard/DashboardComponents/NewsCreateForm/NewsCreateForm";
+import NewsCreateForm from "../Dashboard/DashboardPages/News/NewsCreateForm";
 import CreateGallery from "../Dashboard/DashboardPages/CreateGallery/CreateGallery";
-import CreateSuccessFullStory from "../Dashboard/DashboardPages/CreateSuccessFullStory/CreateSuccessFullStory";
+import CreateSuccessFullStory from "../Dashboard/DashboardPages/successFullStory/CreateSuccessFullStory";
 import SingleSuccessFullStory from "../Pages/singleSuccessfulStory/SingleSuccessFullStory";
-import CreateCharity from "../Dashboard/DashboardPages/Charity/CreateCharity";
+// import CreateCharity from "../Dashboard/DashboardPages/CreateCharity/CreateCharity";
 import AllEvents from "../Dashboard/DashboardPages/Events/AllEvents";
-import UpdateStory from "../sharedComponents/UpdateStory/UpdateStory";
-import UpdateCharity from "../sharedComponents/UpdateCharity/UpdateCharity";
+import UpdateSuccessFullStory from "../Dashboard/DashboardPages/successFullStory/updateSuccessFullStory";
+import UpdateCharity from "../Dashboard/DashboardPages/Charity/UpdateCharity";
 import UpdateGallery from "../sharedComponents/UpdateGallery/UpdateGallery";
 import NewsUpdatePage from "../sharedComponents/NewsUpdatePage/NewsUpdatePage";
-import NewsUpdate from "../sharedComponents/NewsUpdate/NewsUpdate";
-import AllCharity from "../Dashboard/DashboardPages/Charity/AllCharity";
+import NewsUpdate from "../Dashboard/DashboardPages/News/NewsUpdate";
+// import AllCharity from "../Dashboard/DashboardPages/CreateCharity/AllCharity";
 import AllNews from "../Dashboard/DashboardPages/News/AllNews";
-import AllSuccessFullStory from "../Dashboard/DashboardPages/AllSuccessFullStory/AllSuccessFullStory";
+import AllSuccessFullStory from "../Dashboard/DashboardPages/successFullStory/AllSuccessFullStory";
 import AllNewsPage from "../Pages/AllNews/AllNews";
 import AllGallery from "../Dashboard/DashboardPages/AllGallery/AllGallery";
 import AllAlumni from "../Dashboard/DashboardPages/Alumni/AllAlumni";
+import EventUpdate from "../Dashboard/DashboardPages/Events/EventUpdate";
 import MembershipForm from "../Dashboard/DashboardPages/MembershipForm/MembershipForm";
+import Donation from "../sharedComponents/Donation/Donation";
 import RegisterPage from "../Pages/SignUp/RegisterPage";
+import PaymentSuccessful from "../sharedComponents/PaymnetSuccessfull/PaymnetSuccessfull";
+import CharityPaymentFail from "../sharedComponents/PaymnetSuccessfull/CharityPaymentFail";
+import TotalCharityDonation from "../sharedComponents/TotalCharityDonation/TotalCharityDonation";
+import CreateCharity from "../Dashboard/DashboardPages/Charity/CreateCharity";
+import AllCharity from "../Dashboard/DashboardPages/Charity/AllCharity";
 
 const routes = createBrowserRouter([
   {
@@ -55,34 +63,40 @@ const routes = createBrowserRouter([
       },
       {
         path: "/rony",
-        element: <MembershipForm />,
+        element: <MembershipForm></MembershipForm>,
       },
       {
         path: "/events",
         element: <Events />,
       },
       {
+        path: "/charity/donation/:id",
+        loader: async ({ params }) => {
+          return fetch(
+            `https://alumni-managemnet-app-server.vercel.app/charity/donation/${params.id}`
+          );
+        },
+        element: <Donation></Donation>,
+      },
+
+      {
+        path: "/payment/success",
+        // loader: async ({ params }) => {
+        //   return fetch(
+        //     `https://alumni-managemnet-app-server.vercel.app/payment/success/${params.id}`
+        //   );
+        // },
+        element: <PaymentSuccessful></PaymentSuccessful>,
+      },
+      {
+        path: "/payment/fail",
+        element: <CharityPaymentFail></CharityPaymentFail>,
+      },
+      {
         path: "/successFullStory/:id",
         element: <SingleSuccessFullStory></SingleSuccessFullStory>,
       },
-      {
-        path: "/updateStory/:id",
-        loader: async ({ params }) => {
-          return fetch(
-            `https://alumni-managemnet-app-server.vercel.app/successFullStory/${params.id}`
-          );
-        },
-        element: <UpdateStory></UpdateStory>,
-      },
-      {
-        path: "/updateCharity/:id",
-        loader: async ({ params }) => {
-          return fetch(
-            `https://alumni-managemnet-app-server.vercel.app/charity/${params.id}`
-          );
-        },
-        element: <UpdateCharity></UpdateCharity>,
-      },
+
       {
         path: "/updateGallery/:id",
         loader: async ({ params }) => {
@@ -109,6 +123,7 @@ const routes = createBrowserRouter([
         path: "/charity/:id",
         element: <DisplaySingleCharity></DisplaySingleCharity>,
       },
+
       {
         path: "/events/:singleEventId",
         element: <SingleEvent />,
@@ -118,12 +133,16 @@ const routes = createBrowserRouter([
         path: "/alumni",
         element: <AlumniPage />,
       },
+      {
+        path: "/charityDonation",
+        element: <TotalCharityDonation></TotalCharityDonation>,
+      },
 
       {
         path: "/alumni/batch/:year",
         element: <BatchWiseStudent />,
       },
-
+      // single student / alumni page data
       {
         path: "/alumni/:email",
         element: <SinglePerson />,
@@ -141,16 +160,17 @@ const routes = createBrowserRouter([
         path: "/signup",
         element: <RegisterPage />,
       },
-      {
-        path: "/newsUpdatePage",
-        element: <NewsUpdatePage></NewsUpdatePage>,
-      },
-      {
-        path: "/newsUpdate/:id",
-        element: <NewsUpdate></NewsUpdate>,
-        loader: ({ params }) =>
-          fetch(`https://alumni-managemnet-app-server.vercel.app/news/${params.id}`),
-      },
+      // {
+      //   path: "/newsUpdatePage",
+      //   element: <NewsUpdatePage></NewsUpdatePage>,
+      // },
+
+      // {
+      //   path: "/eventUpdate/:id",
+      //   element: <EventUpdate></EventUpdate>,
+      //   loader: ({ params }) =>
+      //     fetch(`https://alumni-managemnet-app-server.vercel.app/events/${params.id}`),
+      // },
     ],
     errorElement: <ErrorPage></ErrorPage>,
   },
@@ -163,29 +183,57 @@ const routes = createBrowserRouter([
     ),
     children: [
       { path: "/dashboard/", element: <DashboardMain /> },
+
+      // Alumni //
       { path: "/dashboard/alumni/", element: <AllAlumni /> },
-
+      { path: "/dashboard/profile/:email", element: <MembershipForm /> },
+      // All News
       { path: "/dashboard/news/", element: <AllNews /> },
-      { path: "/dashboard/news/add-a-news", element: <AddAEvent /> },
-
+      { path: "/dashboard/news/add-a-news", element: <NewsCreateForm /> },
+      {
+        path: "/dashboard/news/edit/:id",
+        element: <NewsUpdate></NewsUpdate>,
+      },
+      // E V E N T S
       { path: "/dashboard/events", element: <AllEvents /> },
       { path: "/dashboard/events/add-a-event", element: <AddAEvent /> },
+      { path: "/dashboard/events/edit/:id", element: <EventUpdate /> },
 
-      { path: "/dashboard/charity", element: <AllCharity /> },
-      { path: "/dashboard/charity/add-a-charity", element: <CreateCharity /> },
+      // CHARITY
+      { path: "/dashboard/charity", element: <AllCharity></AllCharity> },
+      {
+        path: "/dashboard/charity/add-a-charity",
+        element: <CreateCharity></CreateCharity>,
+      },
+      {
+        path: "/dashboard/charity/edit/:id",
+        element: <UpdateCharity></UpdateCharity>,
+      },
 
+      //  GALLERY
       { path: "/dashboard/gallery/", element: <CreateGallery /> },
 
+      // Successful Story
       {
         path: "/dashboard/successfulStory/",
         element: <AllSuccessFullStory />,
       },
+      // create a new  Successful story
       {
         path: "/dashboard/successfulStory/add-a-successfulStory",
         element: <CreateSuccessFullStory />,
       },
 
-      { path: "/dashboard/profile/:email", element: <MembershipForm /> },
+      {
+        path: "/dashboard/successfulStory/edit/:id",
+        loader: async ({ params }) => {
+          return fetch(
+            `https://alumni-managemnet-app-server.vercel.app/successFullStory/${params.id}`
+          );
+        },
+        element: <UpdateSuccessFullStory></UpdateSuccessFullStory>,
+      },
+
       { path: "/dashboard/Checkout/", element: <CheckoutPage /> },
     ],
   },

@@ -92,13 +92,16 @@ const AlumniPage = () => {
   return (
     <>
       <InnerPageHeader
-        title="Our Alumni" 
-        description="Browse our proud alumni"
+        title="Our Alumni"
+        description="Explore our alumni directory and connect with fellow graduates from your alma mater. Get in touch with old friends and colleagues, expand your professional network, and stay up-to-date on news and events related to your educational community."
         img="https://media.cnn.com/api/v1/images/stellar/prod/220624140259-01-college-students-stock.jpg?c=16x9&q=h_720,w_1280,c_fill"
       />
-      <div data-aos="fade-up"
-     data-aos-offset="300"
-     data-aos-easing="ease-in-sine" className="bg-white">
+      <div
+        data-aos="fade-up"
+        data-aos-offset="300"
+        data-aos-easing="ease-in-sine"
+        className="bg-white"
+      >
         <div>
           {/* Mobile filter dialog */}
           <Transition.Root show={mobileFiltersOpen} as={Fragment}>
@@ -176,7 +179,7 @@ const AlumniPage = () => {
                                 </Disclosure.Button>
                               </h3>
                               <Disclosure.Panel className="pt-6">
-                                <div  className="space-y-6">
+                                <div className="space-y-6">
                                   {section.options.map((option, optionIdx) => (
                                     <div key={option.value} className="flex items-center">
                                       <input

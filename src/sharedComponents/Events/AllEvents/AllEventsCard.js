@@ -68,7 +68,7 @@ const AllEventsCard = ({ item }) => {
 
         {/*  */}
         <Link to={`/events/${item._id}`} className="text-white font-bold">
-          <button className="mt-4 py-2 px-6 text-right text-primary font-bold bg-secondary">
+          <button className="mt-4 py-2 px-6 text-right text-white font-bold bg-primary">
             {" "}
             Learn More{" "}
           </button>
