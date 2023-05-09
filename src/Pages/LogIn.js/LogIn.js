@@ -39,8 +39,9 @@ const LogIn = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        setIsSaving(false)
+        
         toast.success("SuccessFully  Login");
+        setIsSaving(false)
         navigate("/");
       })
       .catch((error) => {
