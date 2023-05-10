@@ -122,8 +122,6 @@ const DisplayNewSuccessComments = ({ comment, handleCommentsDelete }) => {
           ) : (
             <>
               <div className="flex gap-5 items-center cursor-pointer">
-                <AiFillLike className="text-primary"></AiFillLike>
-                <AiFillDislike className="text-primary"></AiFillDislike>
                 <div>
                   {/* The button to open modal */}
                   {user?.email === comment?.email ? (

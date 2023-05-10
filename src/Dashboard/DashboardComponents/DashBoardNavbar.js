@@ -11,7 +11,7 @@ const DashBoardNavbar = () => {
         <nav>
           {/* <!-- breadcrumb --> */}
           <ol className="flex flex-wrap pt-1 mr-12 bg-transparent rounded-lg sm:mr-16">
-            <li className="leading-normal text-sm breadcrumb-item">
+            {/* <li className="leading-normal text-sm breadcrumb-item">
               <a
                 className="text-slate-700 opacity-30 "
                 href="javascript:;"
@@ -69,9 +69,9 @@ const DashBoardNavbar = () => {
               aria-current="page"
             >
               Default
-            </li>
+            </li> */}
           </ol>
-          <h6 className="mb-0 font-bold capitalize ">Default</h6>
+          {/* <h6 className="mb-0 font-bold capitalize ">Default</h6> */}
         </nav>
 
         <div className="flex items-center">
@@ -108,7 +108,7 @@ const DashBoardNavbar = () => {
           <ul className="flex flex-row justify-end pl-0 mb-0 list-none md-max:w-full">
             <li className="flex items-center">
               <a
-                href="./pages/authentication/signin/illustration.html"
+                href="/login"
                 className="block px-0 py-2 font-semibold transition-all ease-nav-brand text-sm text-slate-500 "
               >
                 <i className="fa fa-user sm:mr-1" aria-hidden="true"></i>
@@ -175,10 +175,14 @@ const DashBoardNavbar = () => {
                       </div>
                       <div className="flex flex-col justify-center">
                         <h6 className="mb-1 font-normal leading-normal text-sm group-hover:text-slate-700 ">
-                          <span className="font-semibold">New message</span> from Laur
+                          <span className="font-semibold">New message</span>{" "}
+                          from Laur
                         </h6>
                         <p className="mb-0 leading-tight text-xs text-slate-400 group-hover:text-slate-700  dark:opacity-80">
-                          <i className="mr-1 fa fa-clock" aria-hidden="true"></i>
+                          <i
+                            className="mr-1 fa fa-clock"
+                            aria-hidden="true"
+                          ></i>
                           13 minutes ago
                         </p>
                       </div>
@@ -200,10 +204,15 @@ const DashBoardNavbar = () => {
                       </div>
                       <div className="flex flex-col justify-center">
                         <h6 className="mb-1 font-normal leading-normal text-sm group-hover:text-slate-700 ">
-                          <span className="font-semibold">New album</span> by Travis Scott
+                          <span className="font-semibold">New album</span> by
+                          Travis Scott
                         </h6>
                         <p className="mb-0 leading-tight text-xs text-slate-400 group-hover:text-slate-700  dark:opacity-80">
-                          <i className="mr-1 fa fa-clock" aria-hidden="true"></i>1 day
+                          <i
+                            className="mr-1 fa fa-clock"
+                            aria-hidden="true"
+                          ></i>
+                          1 day
                         </p>
                       </div>
                     </div>
@@ -226,7 +235,12 @@ const DashBoardNavbar = () => {
                           xmlnsXlink="http://www.w3.org/1999/xlink"
                         >
                           <title>credit-card</title>
-                          <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+                          <g
+                            stroke="none"
+                            strokeWidth="1"
+                            fill="none"
+                            fillRule="evenodd"
+                          >
                             <g
                               transform="translate(-2169.000000, -745.000000)"
                               fill="#FFFFFF"
@@ -254,7 +268,11 @@ const DashBoardNavbar = () => {
                           Payment successfully completed
                         </h6>
                         <p className="mb-0 leading-tight text-xs text-slate-400 group-hover:text-slate-700  dark:opacity-80">
-                          <i className="mr-1 fa fa-clock" aria-hidden="true"></i>2 days
+                          <i
+                            className="mr-1 fa fa-clock"
+                            aria-hidden="true"
+                          ></i>
+                          2 days
                         </p>
                       </div>
                     </div>

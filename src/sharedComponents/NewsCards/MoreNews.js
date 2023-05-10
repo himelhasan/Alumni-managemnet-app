@@ -48,7 +48,7 @@ const MoreNews = ({ _id }) => {
                     >
                       <div
                         style={{
-                          backgroundImage: `url(${story.image})`,
+                          backgroundImage: `url(${story?.image})`,
                           backgroundPosition: "center",
                           backgroundRepeat: "no-repeat",
                           backgroundSize: "cover",

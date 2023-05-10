@@ -45,7 +45,7 @@ const DashboardLayout = () => {
 
           <label
             htmlFor="my-drawer-2"
-            className="btn btn-primary drawer-button lg:hidden sticky top-1 z-10"
+            className="btn btn-primary drawer-button ml-5 mt-3 bg-primary lg:hidden sticky top-1 z-10"
           >
             <FaStream></FaStream>
           </label>
