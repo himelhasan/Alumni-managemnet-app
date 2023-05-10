@@ -4,14 +4,21 @@ import { toast } from "react-toastify";
 import ShowComments from "./ShowComments";
 import { useQuery } from "@tanstack/react-query";
 import { AiFillDislike, AiFillLike } from "react-icons/ai";
+import { useForm } from "react-hook-form";
 
 const Comments = ({ data }) => {
   const { user } = useContext(AuthContext);
 
-  const handleComments = (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const comments = form.comments.value;
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset,
+    formState: { errors },
+  } = useForm();
+
+  const handleStoryComments = (myData) => {
+    const comments = myData?.comments;
     const time = new Date().toLocaleDateString();
     const commentsInfo = {
       comments,
@@ -36,7 +43,6 @@ const Comments = ({ data }) => {
       .then((data) => {
         console.log(data);
         if (data.acknowledged) {
-          form.reset();
         }
       })
       .catch((error) => {
@@ -48,10 +54,11 @@ const Comments = ({ data }) => {
 
   return (
     <div>
-      <form onSubmit={(event) => handleComments(event)}>
+      <form onSubmit={handleSubmit(handleStoryComments)}>
         <textarea
+          {...register("comments")}
           className=" border-2 p-5 w-full mt-5 "
-          placeholder="Comments"
+          placeholder="comments"
           name="comments"
           required
         ></textarea>

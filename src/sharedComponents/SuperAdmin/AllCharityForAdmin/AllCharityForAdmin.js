@@ -59,7 +59,6 @@ const AllCharityForAdmin = () => {
         });
     }
   };
-
   const handleDetails = (_id) => {
     setDetailsId(_id);
   };
@@ -85,7 +84,7 @@ const AllCharityForAdmin = () => {
                   <tr key={allCharity?._id}>
                     <th>{idx + 1}</th>
                     <td>
-                      {allCharity?.title.length >= 40 ? (
+                      {allCharity?.title?.length >= 40 ? (
                         <>{`${allCharity?.title.slice(0, 40)}...`}</>
                       ) : (
                         <>{allCharity?.title}</>

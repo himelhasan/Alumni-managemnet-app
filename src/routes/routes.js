@@ -50,6 +50,12 @@ import TotalCharityDonation from "../sharedComponents/TotalCharityDonation/Total
 import CreateCharity from "../Dashboard/DashboardPages/Charity/CreateCharity";
 import AllCharity from "../Dashboard/DashboardPages/Charity/AllCharity";
 import AdminRoutes from "./adminRoute";
+import AllDonation from "../Dashboard/DashboardPages/Dontation/allDonation";
+import AllSuccessFulStoryOfUser from "../Dashboard/DashboardPages/successFullStory/AllSucessfulStoryOfUser";
+import AllEventsOfUser from "../Dashboard/DashboardPages/Events/AllEventsOfUser";
+import AllCharityOfUser from "../Dashboard/DashboardPages/Charity/AllCharityOfUser";
+import AllNewsOfUser from "../Dashboard/DashboardPages/News/AllNewsOfUser";
+import BatchWiseSuccessfulStory from "../Dashboard/DashboardPages/successFullStory/BatchWiseSuccessfulStory";
 
 const routes = createBrowserRouter([
   {
@@ -216,6 +222,31 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard/charity/edit/:id",
         element: <UpdateCharity></UpdateCharity>,
+      },
+      {
+        path: "/dashboard/charity/allDonation",
+        element: <AllDonation></AllDonation>,
+      },
+      {
+        path: "/dashboard/successfulStory/mySuccessStory",
+        element: <AllSuccessFulStoryOfUser></AllSuccessFulStoryOfUser>,
+      },
+      {
+        path: "/dashboard/successfulStory/batchWiseSuccessfullStory",
+        element: <BatchWiseSuccessfulStory></BatchWiseSuccessfulStory>,
+      },
+      {
+        path: "/dashboard/events/myEvents",
+        element: <AllEventsOfUser></AllEventsOfUser>,
+      },
+      {
+        path: "/dashboard/charity/batchWiseCharity",
+        element: <AllCharityOfUser></AllCharityOfUser>,
+      },
+
+      {
+        path: "/dashboard/news/myNews",
+        element: <AllNewsOfUser></AllNewsOfUser>,
       },
 
       //  GALLERY
