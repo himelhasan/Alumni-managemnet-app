@@ -15,9 +15,9 @@ export const filterBySort = (alumni, sort) => {
     case "Name Z to A":
       return sortedAlumni.sort((a, b) => b?.name.localeCompare(a?.name));
     case "Batch: Old to New":
-      return sortedAlumni.sort((a, b) => a.graduation_year - b.graduation_year);
+      return sortedAlumni.sort((a, b) => a?.graduation_year - b?.graduation_year);
     case "Batch: New to Old":
-      return sortedAlumni.sort((a, b) => b.graduation_year - a.graduation_year);
+      return sortedAlumni.sort((a, b) => b?.graduation_year - a?.graduation_year);
     default:
       // If no sort option is selected, return the original array
       return sortedAlumni;

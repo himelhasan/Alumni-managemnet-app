@@ -33,7 +33,7 @@ export const DirectoryDetails = () => {
     if (bloodGroup?.length > 0) {
       // this returns true if bloodGroup array elements match with
       // single alumni blood group at => singleAlumni.personal_information.blood_group
-      return bloodGroup?.includes(alumniData.personal_information.blood_group);
+      return bloodGroup?.includes(alumniData?.personal_information?.blood_group);
     }
     return true;
   };
@@ -43,7 +43,7 @@ export const DirectoryDetails = () => {
     if (selectedMajor?.length > 0) {
       // this returns true if bloodGroup array elements match with
       // single alumni blood group at => singleAlumni.personal_information.blood_group
-      return selectedMajor?.includes(alumniData.major);
+      return selectedMajor?.includes(alumniData?.major);
     }
     return true;
   };
@@ -54,7 +54,7 @@ export const DirectoryDetails = () => {
     if (batchWise?.length > 0) {
       // this returns true if bloodGroup array elements match with
       // single alumni blood group at => singleAlumni.personal_information.blood_group
-      return batchWise?.includes(alumniData.graduation_year);
+      return batchWise?.includes(alumniData?.graduation_year);
     }
 
     return true;
@@ -85,17 +85,17 @@ export const DirectoryDetails = () => {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3  lg:max-w-full">
           {sortedArray
             // this filter the data based on the blood filter function
-            .filter(filterByBloodGroup) // Filter by blood group
-            .filter(filterByMajorSubject) // Filter by major subject
-            .filter(filterByBatchYear)
-            .slice(previous, next)
-            .map((singleAlumni) => (
-              <AlumniBatchDataCard key={singleAlumni._id} singleAlumni={singleAlumni} />
+            ?.filter(filterByBloodGroup) // Filter by blood group
+            ?.filter(filterByMajorSubject) // Filter by major subject
+            ?.filter(filterByBatchYear)
+            ?.slice(previous, next)
+            ?.map((singleAlumni) => (
+              <AlumniBatchDataCard key={singleAlumni?._id} singleAlumni={singleAlumni} />
             ))}
 
           {/* if the filtered array doesn't have anything it will show no results found */}
-          {sortedArray.filter(filterByBloodGroup).filter(filterByMajorSubject).length ===
-            0 && <p>No results found.</p>}
+          {sortedArray?.filter(filterByBloodGroup)?.filter(filterByMajorSubject)
+            ?.length === 0 && <p>No results found.</p>}
         </div>
       </>
     );
