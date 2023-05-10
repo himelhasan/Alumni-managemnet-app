@@ -1,18 +1,25 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../sharedComponents/UseContext/AuthProvider";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import Loading from "../sharedComponents/Loading/Loading";
 
 const PrivateRoutes = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
+  const location = useLocation();
+
   if (loading) {
+    console.log(" Loading from private routes");
     return <Loading></Loading>;
   }
   if (user && user.uid) {
-    return children;
+    return <>{children}</>;
+  } else {
+    return (
+      <div>
+        <Navigate to="/login" state={{ from: location }} replace={true} />
+      </div>
+    );
   }
-
-  return <Navigate to="/login"></Navigate>;
 };
 
 export default PrivateRoutes;

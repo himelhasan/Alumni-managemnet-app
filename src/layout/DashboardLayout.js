@@ -1,12 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import DashBoardNavbar from "../Dashboard/DashboardComponents/DashBoardNavbar";
-import {
-  Link,
-  NavLink,
-  Outlet,
-  useLocation,
-  useParams,
-} from "react-router-dom";
+import { Link, NavLink, Outlet, useLocation, useParams } from "react-router-dom";
 import logo from "../../src/assets/logo/logo-black.png";
 import DashBoardNavItem from "../Dashboard/DashboardComponents/DashBoardNavItem/DashBoardNavItem";
 import ResizeObserver from "resize-observer-polyfill";
@@ -21,7 +15,7 @@ const DashboardLayout = () => {
   const elementRef = useRef(null);
   const pathname = location.pathname;
 
-  const [isAdmin] = useAdmin(user?.email);
+  // const [isAdmin] = useAdmin(user?.email);
 
   useEffect(() => {
     const resizeObserver = new ResizeObserver(
@@ -141,8 +135,7 @@ const DashboardLayout = () => {
               url="/dashboard/successfulStory"
             />
             {(pathname === "/dashboard/successfulStory" ||
-              pathname ===
-                "/dashboard/successfulStory/add-a-successfulStory") && (
+              pathname === "/dashboard/successfulStory/add-a-successfulStory") && (
               <DashBoardNavItem
                 name="Add a Story"
                 fontAwesome="fa-regular fa-file-lines"
