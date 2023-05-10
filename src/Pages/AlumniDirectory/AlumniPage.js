@@ -144,17 +144,17 @@ const AlumniPage = () => {
                     <form className="mt-4 border-t border-gray-200">
                       <h3 className="sr-only">Categories</h3>
                       <ul role="list" className="px-2 py-3 font-medium text-gray-900">
-                        {subCategories.map((category) => (
-                          <li key={category.graduationMajor}>
-                            <p className="block px-2 py-3">{category.name}</p>
+                        {subCategories?.map((category) => (
+                          <li key={category?.graduationMajor}>
+                            <p className="block px-2 py-3">{category?.name}</p>
                           </li>
                         ))}
                       </ul>
 
-                      {BloodGroupFiltersData.map((section) => (
+                      {BloodGroupFiltersData?.map((section) => (
                         <Disclosure
                           as="div"
-                          key={section.id}
+                          key={section?.id}
                           className="border-t border-gray-200 px-4 py-6"
                         >
                           {({ open }) => (
@@ -162,7 +162,7 @@ const AlumniPage = () => {
                               <h3 className="-mx-2 -my-3 flow-root">
                                 <Disclosure.Button className="flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500">
                                   <span className="font-medium text-gray-900">
-                                    {section.name}
+                                    {section?.name}
                                   </span>
                                   <span className="ml-6 flex items-center">
                                     {open ? (
@@ -175,21 +175,21 @@ const AlumniPage = () => {
                               </h3>
                               <Disclosure.Panel className="pt-6">
                                 <div className="space-y-6">
-                                  {section.options.map((option, optionIdx) => (
+                                  {section?.options?.map((option, optionIdx) => (
                                     <div key={option.value} className="flex items-center">
                                       <input
-                                        id={`filter-mobile-${section.id}-${optionIdx}`}
-                                        name={`${section.id}[]`}
-                                        defaultValue={option.value}
+                                        id={`filter-mobile-${section?.id}-${optionIdx}`}
+                                        name={`${section?.id}[]`}
+                                        defaultValue={option?.value}
                                         type="checkbox"
-                                        defaultChecked={option.checked}
+                                        defaultChecked={option?.checked}
                                         className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
                                       />
                                       <label
-                                        htmlFor={`filter-mobile-${section.id}-${optionIdx}`}
+                                        htmlFor={`filter-mobile-${section?.id}-${optionIdx}`}
                                         className="ml-3 min-w-0 flex-1 text-gray-500"
                                       >
-                                        {option.label}
+                                        {option?.label}
                                       </label>
                                     </div>
                                   ))}
@@ -236,19 +236,19 @@ const AlumniPage = () => {
                     <Menu.Items className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <div className="py-1">
                         {sortOptions.map((option) => (
-                          <Menu.Item key={option.name}>
+                          <Menu.Item key={option?.name}>
                             {({ active }) => (
                               <p
                                 className={classNames(
-                                  option.current
+                                  option?.current
                                     ? "font-medium text-gray-900"
                                     : "text-gray-500",
                                   active ? "bg-gray-100" : "",
                                   "block px-4 py-2 text-xs"
                                 )}
-                                onClick={() => sortByFilterHandler(option.name)}
+                                onClick={() => sortByFilterHandler(option?.name)}
                               >
-                                {option.name}
+                                {option?.name}
                               </p>
                             )}
                           </Menu.Item>
@@ -279,18 +279,18 @@ const AlumniPage = () => {
                 <form className="hidden lg:block">
                   <h3 className="sr-only">Categories</h3>
                   <ul className="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium text-gray-900">
-                    {subCategories.map((category) => (
-                      <li key={category.name}>
-                        <p>{category.name}</p>
+                    {subCategories?.map((category) => (
+                      <li key={category?.name}>
+                        <p>{category?.name}</p>
                       </li>
                     ))}
                   </ul>
 
-                  {BloodGroupFiltersData.length > 0 &&
+                  {BloodGroupFiltersData?.length > 0 &&
                     BloodGroupFiltersData?.map((section) => (
                       <Disclosure
                         as="div"
-                        key={section.id}
+                        key={section?.id}
                         className="border-b border-gray-200 py-6"
                       >
                         {({ open }) => (
@@ -298,7 +298,7 @@ const AlumniPage = () => {
                             <h3 className="-my-3 flow-root">
                               <Disclosure.Button className="flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500">
                                 <span className="font-medium text-gray-900">
-                                  {section.name}
+                                  {section?.name}
                                 </span>
                                 <span className="ml-6 flex items-center">
                                   {open ? (
@@ -312,21 +312,21 @@ const AlumniPage = () => {
                             <Disclosure.Panel className="pt-6">
                               <div className="space-y-4 grid grid-cols-3">
                                 {section.options.map((option, optionIdx) => (
-                                  <div key={option.value} className="flex items-center">
+                                  <div key={option?.value} className="flex items-center">
                                     <input
-                                      id={`filter-${section.id}-${optionIdx}`}
-                                      name={`${section.id}[]`}
-                                      defaultValue={option.value}
+                                      id={`filter-${section?.id}-${optionIdx}`}
+                                      name={`${section?.id}[]`}
+                                      defaultValue={option?.value}
                                       type="checkbox"
-                                      defaultChecked={option.checked}
+                                      defaultChecked={option?.checked}
                                       onClick={() => sortByBloodGroupHandler(option)}
                                       className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
                                     />
                                     <label
-                                      htmlFor={`filter-${section.id}-${optionIdx}`}
+                                      htmlFor={`filter-${section?.id}-${optionIdx}`}
                                       className="ml-3 text-sm text-gray-600"
                                     >
-                                      {option.label}
+                                      {option?.label}
                                     </label>
                                   </div>
                                 ))}
@@ -363,18 +363,18 @@ const AlumniPage = () => {
                               <div key={option._id} className="flex items-center">
                                 <input
                                   id={`filter-Batch-year-${optionIdx}`}
-                                  name={`${option.batchNumber}[]`}
-                                  defaultValue={option.batchNumber}
-                                  defaultChecked={option.checked}
+                                  name={`${option?.batchNumber}[]`}
+                                  defaultValue={option?.batchNumber}
+                                  defaultChecked={option?.checked}
                                   type="checkbox"
                                   className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
-                                  onClick={() => sortByYearHandler(option.batchNumber)}
+                                  onClick={() => sortByYearHandler(option?.batchNumber)}
                                 />
                                 <label
                                   htmlFor={`filter-Batch-year-${optionIdx}`}
                                   className="ml-3 text-sm text-gray-600"
                                 >
-                                  {option.batchNumber}
+                                  {option?.batchNumber}
                                 </label>
                               </div>
                             ))}
@@ -410,20 +410,20 @@ const AlumniPage = () => {
                               <div key={option._id} className="flex items-center">
                                 <input
                                   id={`filter-major-${optionIdx}`}
-                                  name={`${option.graduationMajor}[]`}
-                                  defaultValue={option.graduationMajor}
-                                  defaultChecked={option.checked}
+                                  name={`${option?.graduationMajor}[]`}
+                                  defaultValue={option?.graduationMajor}
+                                  defaultChecked={option?.checked}
                                   type="checkbox"
                                   className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
                                   onClick={() =>
-                                    sortByMajorSubjectHandler(option.graduationMajor)
+                                    sortByMajorSubjectHandler(option?.graduationMajor)
                                   }
                                 />
                                 <label
                                   htmlFor={`filter-major-${optionIdx}`}
                                   className="ml-3 text-sm text-gray-600"
                                 >
-                                  {option.graduationMajor}
+                                  {option?.graduationMajor}
                                 </label>
                               </div>
                             ))}

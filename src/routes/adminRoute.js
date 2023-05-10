@@ -6,7 +6,6 @@ import useAdmin from "../customHooksReact/useAdmin";
 
 const AdminRoutes = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
-
   const [isAdmin, isAdminLoading] = useAdmin(user?.email);
   const location = useLocation();
 
@@ -16,9 +15,13 @@ const AdminRoutes = ({ children }) => {
 
   if (user && isAdmin) {
     return children;
+  } else {
+    return (
+      <div>
+        <Navigate to="/login" state={{ from: location }} replace={true} />
+      </div>
+    );
   }
-
-  return <Navigate to="/login" state={{ from: location }} replace={true}></Navigate>;
 };
 
 export default AdminRoutes;

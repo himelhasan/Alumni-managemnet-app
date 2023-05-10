@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { BiMenu } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo/logo_white.png";
 import { AuthContext } from "../UseContext/AuthProvider";
 import MegaMenu from "./MegaMenu";
 
@@ -79,10 +79,7 @@ const Header = () => {
             ) : (
               <>
                 <div className="dropdown lg:dropdown-end text-black mt-8 md:mt-0">
-                  <label
-                    tabIndex={0}
-                    className="btn btn-ghost btn-circle avatar"
-                  >
+                  <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                     <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                       {user?.photoURL ? (
                         <img src={user?.photoURL} alt="" />

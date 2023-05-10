@@ -46,7 +46,7 @@ const AllNewsPage = () => {
         img={
           "https://images.pexels.com/photos/7942549/pexels-photo-7942549.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
         }
-        description="Stay up to date with the latest news and updates from our alumni management system. From new features and product releases to industry trends and best practices, our news section provides valuable insights and information for institutions looking to build stronger relationships with their alumni communities. Scroll here to read our latest news and stay informed."
+        description="Learn about product releases that can help your institution build stronger connections with former students."
       ></InnerPageHeader>
       <div className="w-9/12 mx-auto my-16">
         <>{newsContent}</>

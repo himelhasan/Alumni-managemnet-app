@@ -12,7 +12,7 @@ const AboutUs = () => {
         title={"About Us"}
         img={student}
         description={
-          "At our alumni management system, we are dedicated to helping educational institutions build stronger relationships with their alumni communities. Our system offers a range of tools and resources to support engagement, philanthropy, and lifelong learning, including a robust alumni directory, event management capabilities, and targeted communication tools. Scroll here to learn more about our mission, values, and team, and how we can help your institution achieve its alumni engagement goals."
+          "Empowering Educational Institutions with our AK High School Alumni Management System"
         }
       ></InnerPageHeader>
 

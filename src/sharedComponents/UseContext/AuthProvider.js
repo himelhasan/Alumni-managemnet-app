@@ -67,15 +67,6 @@ const AuthProvider = ({ children }) => {
     });
   };
 
-  // //  Update Name
-  // const updateUserProfile = (name, photo) => {
-  //   setLoading(true);
-  //   return updateProfile(auth.currentUser, {
-  //     displayName: name,
-  //     photoURL: photo,
-  //   });
-  // };
-
   useEffect(() => {
     //this part will execute once the component is mounted.
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {

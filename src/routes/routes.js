@@ -167,17 +167,6 @@ const routes = createBrowserRouter([
         path: "/signup",
         element: <RegisterPage />,
       },
-      // {
-      //   path: "/newsUpdatePage",
-      //   element: <NewsUpdatePage></NewsUpdatePage>,
-      // },
-
-      // {
-      //   path: "/eventUpdate/:id",
-      //   element: <EventUpdate></EventUpdate>,
-      //   loader: ({ params }) =>
-      //     fetch(`https://alumni-managemnet-app-server.vercel.app/events/${params.id}`),
-      // },
     ],
     errorElement: <ErrorPage></ErrorPage>,
   },

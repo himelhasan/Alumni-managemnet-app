@@ -67,7 +67,7 @@ const AllGalleryImage = () => {
           img={
             "https://media.istockphoto.com/id/1347652268/photo/group-of-colleagues-celebrating-success.jpg?s=612x612&w=0&k=20&c=dojtkf9ItX21j3jtlGOGpbKDs320TTAuofoGnNSZD8Y="
           }
-          description="welcome To Gallery Page"
+          description="Memories Preserved: Explore Our Alumni Gallery"
         ></InnerPageHeader>
       </div>
       <div className="w-9/12 mx-auto my-16">
