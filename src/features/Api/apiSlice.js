@@ -107,10 +107,7 @@ export const apiSlice = createApi({
         body: data,
       }),
 
-      invalidatesTags: (result, error, arg) => [
-        "events",
-        { type: "event", id: arg.id },
-      ],
+      invalidatesTags: (result, error, arg) => ["events", { type: "event", id: arg.id }],
     }),
 
     /// delete a event
@@ -118,6 +115,9 @@ export const apiSlice = createApi({
       query: (id) => ({
         url: `/event/delete/${id}`,
         method: "DELETE",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("access_token")}`,
+        },
       }),
       invalidatesTags: ["events"],
     }),
@@ -167,10 +167,7 @@ export const apiSlice = createApi({
         method: "PUT",
         body: data,
       }),
-      invalidatesTags: (result, error, arg) => [
-        "allNews",
-        { type: "news", id: arg.id },
-      ],
+      invalidatesTags: (result, error, arg) => ["allNews", { type: "news", id: arg.id }],
     }),
 
     /// delete a news
@@ -178,6 +175,9 @@ export const apiSlice = createApi({
       query: (id) => ({
         url: `/news/delete/${id}`,
         method: "DELETE",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("access_token")}`,
+        },
       }),
       invalidatesTags: ["allNews"],
     }),
@@ -211,6 +211,9 @@ export const apiSlice = createApi({
       query: (id) => ({
         url: `/newsComments/${id}`,
         method: "DELETE",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("access_token")}`,
+        },
       }),
       invalidatesTags: ["newsComments"],
     }),
@@ -279,6 +282,9 @@ export const apiSlice = createApi({
       query: (email) => ({
         url: `/alumni/${email}`,
         method: "DELETE",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("access_token")}`,
+        },
       }),
       invalidatesTags: ["alumni"],
     }),
@@ -325,10 +331,7 @@ export const apiSlice = createApi({
         method: "PUT",
         body: data,
       }),
-      invalidatesTags: (result, error, arg) => [
-        "stories",
-        { type: "story", id: arg.id },
-      ],
+      invalidatesTags: (result, error, arg) => ["stories", { type: "story", id: arg.id }],
     }),
 
     // delete stroy
@@ -336,6 +339,9 @@ export const apiSlice = createApi({
       query: (id) => ({
         url: `/successFullStory/${id}`,
         method: "DELETE",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("access_token")}`,
+        },
       }),
       invalidatesTags: ["stories"],
     }),
@@ -452,6 +458,9 @@ export const apiSlice = createApi({
       query: (id) => ({
         url: `/charity/${id}`,
         method: "DELETE",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("access_token")}`,
+        },
       }),
       invalidatesTags: ["charities"],
     }),

@@ -107,10 +107,10 @@ const AllAlumni = () => {
   // re render components on status change
   useEffect(() => {
     if (isDeleteSuccess) {
-      toast.success("Successfully toasted!");
+      toast.success("Successfully Deleted!");
     }
     if (isDeleteError) {
-      toast.error(errorDelete.message);
+      toast.error("You don't  have permission");
     }
   }, [errorDelete, isDeleteError, isDeleteSuccess]);
 
