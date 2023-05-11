@@ -200,7 +200,7 @@ console.log(totalDonation)
               <p className="mb-0 leading-tight text-xs text-slate-600">
                 {` ${charity.state}, ${charity.city}, ${charity.country}  `?.slice(
                   0,
-                  30
+                  50
                 )}
               </p>
             </td>
