@@ -11,7 +11,6 @@ const ShowCharity = () => {
     fetch("https://alumni-managemnet-app-server.vercel.app/charity")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setShowCharity(data);
       })
       .catch((error) => {
@@ -19,16 +18,13 @@ const ShowCharity = () => {
       });
   }, []);
 
-  console.log(showCharity);
   const handlePrevious = () => {
-    console.log("previous");
     if (previous > 0) {
       setNext(next - 3);
       setPrevious(previous - 3);
     }
   };
   const handleNext = () => {
-    console.log("next");
     setNext(next + 3);
     setPrevious(previous + 3);
   };
@@ -42,10 +38,7 @@ const ShowCharity = () => {
             ?.filter((charity) => charity?.status === true)
             .slice(previous, next)
             .map((charity) => (
-              <DisplayCharity
-                charity={charity}
-                key={charity._id}
-              ></DisplayCharity>
+              <DisplayCharity charity={charity} key={charity._id}></DisplayCharity>
             ))}
         </div>
       </>
@@ -57,9 +50,7 @@ const ShowCharity = () => {
               <FaArrowLeft></FaArrowLeft>
             </button>
             <button
-              disabled={
-                next === showCharity?.length || next > showCharity?.length
-              }
+              disabled={next === showCharity?.length || next > showCharity?.length}
               onClick={() => handleNext()}
             >
               <FaArrowRight></FaArrowRight>

@@ -195,25 +195,25 @@ const AllAlumni = () => {
                 <button
                   // onClick={() => handleBatchAdmin(alumni?._id)}
                   type="button"
-                  class="px-3 py-0.5 text-xs font-medium text-white bg-red-400 border border-gray-200 hover:bg-primary hover:text-white focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
+                  className="px-3 py-0.5 text-xs font-medium text-white bg-red-400 border border-gray-200 hover:bg-primary hover:text-white focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
                 >
                   Remove Admin
                 </button>
               )}
 
               {alumni?.role === "Batch_Admin" && (
-                <div class="flex flex-col rounded-md shadow-sm" role="group">
+                <div className="flex flex-col rounded-md shadow-sm" role="group">
                   <button
                     // onClick={() => handleBatchAdmin(alumni?._id)}
                     type="button"
-                    class="px-3 py-0.5 text-xs font-medium text-white bg-red-400 border border-gray-200 hover:bg-primary hover:text-white focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
+                    className="px-3 py-0.5 text-xs font-medium text-white bg-red-400 border border-gray-200 hover:bg-primary hover:text-white focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
                   >
                     Remove Batch Admin
                   </button>
                   <button
                     onClick={() => handleMakeAdmin(alumni?._id)}
                     type="button"
-                    class="px-3 py-0.5 text-xs font-medium bg-white border border-gray-200 hover:bg-primary hover:text-white focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
+                    className="px-3 py-0.5 text-xs font-medium bg-white border border-gray-200 hover:bg-primary hover:text-white focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
                   >
                     Admin
                   </button>
@@ -221,11 +221,11 @@ const AllAlumni = () => {
               )}
 
               {!alumni?.role && (
-                <div class="flex flex-col rounded-md shadow-sm" role="group">
+                <div className="flex flex-col rounded-md shadow-sm" role="group">
                   <button
                     onClick={() => handleMakeAdmin(alumni?._id)}
                     type="button"
-                    class="px-3 py-0.5 text-xs font-medium bg-white border border-gray-200 hover:bg-primary hover:text-white focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
+                    className="px-3 py-0.5 text-xs font-medium bg-white border border-gray-200 hover:bg-primary hover:text-white focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
                   >
                     Admin
                   </button>
@@ -233,7 +233,7 @@ const AllAlumni = () => {
                   <button
                     onClick={() => handleMakeBatchAdmin(alumni?._id)}
                     type="button"
-                    class="px-3 py-0.5 text-xs font-medium bg-white border border-gray-200 hover:bg-primary hover:text-white focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
+                    className="px-3 py-0.5 text-xs font-medium bg-white border border-gray-200 hover:bg-primary hover:text-white focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
                   >
                     Batch Admin
                   </button>

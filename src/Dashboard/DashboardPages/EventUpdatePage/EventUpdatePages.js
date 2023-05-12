@@ -8,32 +8,23 @@ import { toast } from "react-toastify";
 const EventUpdatePages = () => {
   const { user } = useContext(AuthContext);
   const [Events, setEvents] = useState([]);
-  // console.log(Events);
 
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(
-          `https://alumni-managemnet-app-server.vercel.app/event/${user?.email}`
-        )
+        .get(`https://alumni-managemnet-app-server.vercel.app/event/${user?.email}`)
         .then((data) => setEvents(data.data))
         .catch((error) => console.error(error));
     }
   }, [user?.email]);
 
   const handleDelete = (id) => {
+    const agree = window.confirm(`Are you want to Delete ?`);
 
-    const agree = window.confirm(
-      `Are you want to Delete ?`
-    );
-
-    if(agree){
-      fetch(
-        `https://alumni-managemnet-app-server.vercel.app/event/delete/${id}`,
-        {
-          method: "DELETE",
-        }
-      )
+    if (agree) {
+      fetch(`https://alumni-managemnet-app-server.vercel.app/event/delete/${id}`, {
+        method: "DELETE",
+      })
         .then((res) => res.json())
         .then((data) => {
           if (data.deletedCount > 0) {
@@ -41,7 +32,6 @@ const EventUpdatePages = () => {
           }
         });
     }
-
   };
 
   return (

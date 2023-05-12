@@ -13,7 +13,6 @@ const PaymentForCharity = () => {
       .then((res) => res.json())
       .then((data) => {
         setBatchYear(data);
-        console.log(data);
       })
       .catch((error) => {
         console.log(error);
@@ -24,7 +23,6 @@ const PaymentForCharity = () => {
     fetch("https://alumni-managemnet-app-server.vercel.app/charity")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setShowCharity(data);
       })
       .catch((error) => {
@@ -35,7 +33,6 @@ const PaymentForCharity = () => {
     fetch("https://alumni-managemnet-app-server.vercel.app/funding-projects")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setFunds(data);
       })
       .catch((error) => {
@@ -60,7 +57,7 @@ const PaymentForCharity = () => {
       details,
       donationAmount,
     };
-    console.log(paymentCharityInfo);
+
     fetch("https://alumni-managemnet-app-server.vercel.app/funding-projects/", {
       method: "POST",
       headers: {
@@ -69,15 +66,11 @@ const PaymentForCharity = () => {
       body: JSON.stringify(paymentCharityInfo),
     })
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      })
+      .then((data) => {})
       .catch((error) => {
         console.log(error);
       });
   };
-
-  console.log(funds);
 
   return (
     <div className="w-9/12 mx-auto my-16">

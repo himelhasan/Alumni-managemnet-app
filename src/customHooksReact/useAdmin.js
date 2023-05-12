@@ -10,7 +10,6 @@ const useAdmin = (email) => {
     if (email !== null || email !== undefined) {
       if (!isLoading && !isError) {
         setAdmin(data.isAdmin);
-        console.log("data.isAdmin", data.isAdmin);
         setUseAdminLoading(false);
       }
     }

@@ -4,7 +4,7 @@ import { useLoaderData } from "react-router-dom";
 
 const PaymentSuccessful = () => {
   const paymentInfo = useLoaderData();
-  console.log(paymentInfo);
+
   const {
     transactionId,
     currency,

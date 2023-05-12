@@ -6,13 +6,12 @@ const CreateGallery = () => {
   const [batchYear, setBatchYear] = useState([]);
 
   const { user } = useContext(AuthContext);
-  console.log(user);
+
   useEffect(() => {
     fetch("https://alumni-managemnet-app-server.vercel.app/galleryCategories")
       .then((res) => res.json())
       .then((data) => {
         setGalleryCategory(data);
-        console.log(data);
       })
       .catch((error) => {
         console.log(error);
@@ -24,15 +23,11 @@ const CreateGallery = () => {
       .then((res) => res.json())
       .then((data) => {
         setBatchYear(data);
-        console.log(data);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
-
-  console.log(galleryCategory);
-  console.log(batchYear);
 
   const handleGallery = (event) => {
     event.preventDefault();
@@ -42,20 +37,16 @@ const CreateGallery = () => {
     const gallery_category = form.gallery_category.value;
     const details = form.details.value;
     const time = new Date().toLocaleDateString();
-    console.log(time);
+
     const image_url = form.image.files[0];
     const formData = new FormData();
     formData.append("image", image_url);
-    fetch(
-      "https://api.imgbb.com/1/upload?key=86fe1764d78f51c15b1a9dfe4b9175cf",
-      {
-        method: "POST",
-        body: formData,
-      }
-    )
+    fetch("https://api.imgbb.com/1/upload?key=86fe1764d78f51c15b1a9dfe4b9175cf", {
+      method: "POST",
+      body: formData,
+    })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         const galleryInfo = {
           title,
           batchNumber,
@@ -79,20 +70,16 @@ const CreateGallery = () => {
           body: JSON.stringify(galleryInfo),
         })
           .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-          })
+          .then((data) => {})
           .catch((error) => {
             console.log(error);
           });
-        console.log(galleryInfo);
+
         form.reset();
       })
       .catch((error) => {
         console.log(error);
       });
-
-    console.log("Submit");
   };
   return (
     <div className="w-9/12 mx-auto my-16">
@@ -117,24 +104,14 @@ const CreateGallery = () => {
             />
           </div>
           <div className="form-control w-full ">
-            <select
-              required
-              className="select select-bordered"
-              name="gallery_category"
-            >
+            <select required className="select select-bordered" name="gallery_category">
               {galleryCategory?.map((gCaterogy) => (
-                <option key={gCaterogy.gallery_category_id}>
-                  {gCaterogy.name}
-                </option>
+                <option key={gCaterogy.gallery_category_id}>{gCaterogy.name}</option>
               ))}
             </select>
           </div>
           <div className="form-control w-full ">
-            <select
-              required
-              className="select select-bordered"
-              name="batchNumber"
-            >
+            <select required className="select select-bordered" name="batchNumber">
               {batchYear?.map((batchYear) => (
                 <option key={batchYear._id}>{batchYear.batchNumber}</option>
               ))}

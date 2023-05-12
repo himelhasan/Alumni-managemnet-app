@@ -8,7 +8,6 @@ const PrivateRoutes = ({ children }) => {
   const location = useLocation();
 
   if (loading) {
-    console.log(" Loading from private routes");
     return <Loading></Loading>;
   }
   if (user && user.uid) {

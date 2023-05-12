@@ -60,7 +60,6 @@ const BatchWiseStudent = () => {
   }
 
   const { year } = useParams();
-  console.log({ year });
 
   //
   const { data, isLoading, isError, error } = useGetBatchWiseEventsQuery(year);

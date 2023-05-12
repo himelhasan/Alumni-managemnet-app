@@ -7,7 +7,6 @@ const Donation = () => {
   const { user } = useContext(AuthContext);
 
   const donationInfo = useLoaderData();
-  console.log(donationInfo);
   const handleDonationSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -35,7 +34,6 @@ const Donation = () => {
       donationId: donationInfo?._id,
       donationTitle: donationInfo?.title,
     };
-    console.log(charityDonationInfo);
 
     fetch("https://alumni-managemnet-app-server.vercel.app/charityDonation", {
       method: "POST",
@@ -46,7 +44,6 @@ const Donation = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         window.location.replace(data?.url);
       })
       .catch((error) => {

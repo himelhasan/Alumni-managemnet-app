@@ -58,7 +58,6 @@ const SinglePerson = () => {
     education,
     personal_information,
   } = singleAlumni || {};
-  console.log(singleAlumni);
 
   let content;
 
@@ -78,12 +77,10 @@ const SinglePerson = () => {
       setPrevious(previous - 8);
       setNext(next - 8);
     }
-    console.log("Clicked Previous");
   };
   const handleNext = () => {
     setPrevious(previous + 8);
     setNext(next + 8);
-    console.log("clicked next");
   };
 
   const {
@@ -273,11 +270,7 @@ const SinglePerson = () => {
                       <FaLinkedin className="text-primary hover:text-secondary duration-500 ease-in-out"></FaLinkedin>
                     </div>
                     <button className="bg-primary px-6 py-2  items-center text-white font-semibold shadow-soft-xl  rounded-md mt-3">
-                      <a
-                        href={`mailto: ${email}`}
-                        alt=""
-                        className="flex gap-2"
-                      >
+                      <a href={`mailto: ${email}`} alt="" className="flex gap-2">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -361,12 +354,7 @@ const SinglePerson = () => {
                               <td>
                                 {personal_information?.languages ? (
                                   <>
-                                    <p>
-                                      {" "}
-                                      {personal_information?.languages.join(
-                                        ", "
-                                      )}
-                                    </p>
+                                    <p> {personal_information?.languages.join(", ")}</p>
                                   </>
                                 ) : (
                                   <></>
@@ -395,11 +383,7 @@ const SinglePerson = () => {
                           {
                             <tr>
                               <th>
-                                {education?.degree ? (
-                                  <>{education?.degree}</>
-                                ) : (
-                                  <></>
-                                )}
+                                {education?.degree ? <>{education?.degree}</> : <></>}
                               </th>
                               <td>
                                 {education?.institution ? (
@@ -409,11 +393,7 @@ const SinglePerson = () => {
                                 )}
                               </td>
                               <td>
-                                {education?.major ? (
-                                  <>{education?.major}</>
-                                ) : (
-                                  <></>
-                                )}
+                                {education?.major ? <>{education?.major}</> : <></>}
                               </td>
                               <td>
                                 {education?.graduation_year ? (

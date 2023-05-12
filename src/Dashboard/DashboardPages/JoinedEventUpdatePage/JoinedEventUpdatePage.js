@@ -12,7 +12,6 @@ const JoinedEventUpdatePage = () => {
   const { user } = useContext(AuthContext);
   const [Events, setEvents] = useState([]);
   const [singleEvent, setSingleEvent] = useState([]);
-  console.log(singleEvent);
 
   useEffect(() => {
     if (user?.email) {
@@ -26,8 +25,6 @@ const JoinedEventUpdatePage = () => {
   }, [user?.email]);
 
   const handleUpdate = (id) => {
-    // console.log(id);
-
     for (const index in Events) {
       if (Events[index]._id === id) {
         setSingleEvent(Events[index]);
@@ -58,8 +55,6 @@ const JoinedEventUpdatePage = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-
         toast.success("Update Successfully.");
         emailjs
           .sendForm(
@@ -69,9 +64,7 @@ const JoinedEventUpdatePage = () => {
             "hWyA-erRGdIIJOqPT"
           )
           .then(
-            (result) => {
-              // console.log(result.text);
-            },
+            (result) => {},
             (error) => {
               console.log(error.text);
             }
@@ -80,18 +73,12 @@ const JoinedEventUpdatePage = () => {
   };
 
   const handleDelete = (id) => {
+    const agree = window.confirm(`Are you want to Delete ?`);
 
-    const agree = window.confirm(
-      `Are you want to Delete ?`
-    );
-
-    if(agree){
-      fetch(
-        `https://alumni-managemnet-app-server.vercel.app/join-event/delete/${id}`,
-        {
-          method: "DELETE",
-        }
-      )
+    if (agree) {
+      fetch(`https://alumni-managemnet-app-server.vercel.app/join-event/delete/${id}`, {
+        method: "DELETE",
+      })
         .then((res) => res.json())
         .then((data) => {
           if (data.deletedCount > 0) {
@@ -104,9 +91,7 @@ const JoinedEventUpdatePage = () => {
   return (
     <div className="w-9/12 mx-auto my-16">
       <div>
-        <h2 className="text-2xl ">
-          Show Personal Joined Event for update and delete
-        </h2>
+        <h2 className="text-2xl ">Show Personal Joined Event for update and delete</h2>
 
         <div className="overflow-x-auto">
           <table className="table w-full">
@@ -179,10 +164,7 @@ const JoinedEventUpdatePage = () => {
 
             <form ref={form} onSubmit={(event) => handleEventEdit(event)}>
               <div className="hidden">
-                <input
-                  name="event_title"
-                  defaultValue={singleEvent.event_title}
-                />
+                <input name="event_title" defaultValue={singleEvent.event_title} />
                 <input name="date" defaultValue={singleEvent.date} />
               </div>
 

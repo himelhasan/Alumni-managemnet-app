@@ -46,7 +46,6 @@ const UpdateCharity = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         const updatedCharityInfo = {
           title,
           goal_amount,
@@ -59,8 +58,6 @@ const UpdateCharity = () => {
           image_url: data?.data?.display_url,
           time,
         };
-
-        console.log(updatedCharityInfo);
 
         editCharity({
           id: charityData._id,

@@ -50,8 +50,6 @@ const UpdateSuccessFullStory = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-
         const successFullStoryInfo = {
           title,
           batchNumber,

@@ -9,35 +9,29 @@ import { toast } from "react-toastify";
 const NewsUpdatePage = () => {
   const { user } = useContext(AuthContext);
   const [news, setNews] = useState([]);
-  console.log(news);
 
   useEffect(() => {
     if (user?.email) {
       axios
-        .get(
-          `https://alumni-managemnet-app-server.vercel.app/all-news/${user?.email}`
-        )
+        .get(`https://alumni-managemnet-app-server.vercel.app/all-news/${user?.email}`)
         .then((data) => setNews(data.data))
         .catch((error) => console.error(error));
     }
   }, [user?.email]);
 
   const handleDelete = (id) => {
+    const agree = window.confirm(`Are want to Delete ?`);
 
-    const agree = window.confirm(
-      `Are want to Delete ?`
-    );
-
-    if(agree){
+    if (agree) {
       fetch(`https://alumni-managemnet-app-server.vercel.app/news/delete/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.deletedCount > 0) {
-          toast.success(`Delete Successfully.`);
-        }
-      });
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.deletedCount > 0) {
+            toast.success(`Delete Successfully.`);
+          }
+        });
     }
   };
 

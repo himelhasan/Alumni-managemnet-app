@@ -6,7 +6,6 @@ import {
   useDeleteCharityMutation,
   useDeleteEventMutation,
   useGetBatchWiseEventsQuery,
- 
 } from "../../../features/Api/apiSlice";
 import { toast } from "react-hot-toast";
 
@@ -16,10 +15,9 @@ const BatchWiseEvents = () => {
     { name: "Location", id: 2 },
     { name: "Date", id: 3 },
     { name: "Action ", id: 4 },
-    
   ];
 
- const batch = 2023;
+  const batch = 2023;
 
   const {
     data: batchWiseEventContentData,
@@ -27,10 +25,6 @@ const BatchWiseEvents = () => {
     isError: isCharityError,
     error: charityError,
   } = useGetBatchWiseEventsQuery(batch);
-
-
-console.log(batchWiseEventContentData)
-  //
 
   // mutation for deleting data
   const [
@@ -62,20 +56,13 @@ console.log(batchWiseEventContentData)
   }, [errorDelete, isDeleteError, isDeleteSuccess]);
 
   const handleApprove = (_id) => {
-    console.log(_id);
-    const agree = window.confirm(
-      `Are you Sure . You want to Approve The Charity`
-    );
+    const agree = window.confirm(`Are you Sure . You want to Approve The Charity`);
     if (agree) {
-      fetch(
-        `https://alumni-managemnet-app-server.vercel.app/approveEvents/${_id}`,
-        {
-          method: "PUT",
-        }
-      )
+      fetch(`https://alumni-managemnet-app-server.vercel.app/approveEvents/${_id}`, {
+        method: "PUT",
+      })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data.modifiedCount > 0) {
             toast.success("Successfully Approved");
           }
@@ -87,19 +74,13 @@ console.log(batchWiseEventContentData)
   };
 
   const handleUnApprove = (_id) => {
-    const agree = window.confirm(
-      `Are you Sure . You want to unApprove The Charity`
-    );
+    const agree = window.confirm(`Are you Sure . You want to unApprove The Charity`);
     if (agree) {
-      fetch(
-        `https://alumni-managemnet-app-server.vercel.app/unApproveEvents/${_id}`,
-        {
-          method: "PUT",
-        }
-      )
+      fetch(`https://alumni-managemnet-app-server.vercel.app/unApproveEvents/${_id}`, {
+        method: "PUT",
+      })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data.modifiedCount > 0) {
             toast.success("Successfully unApproved");
           }
@@ -119,11 +100,7 @@ console.log(batchWiseEventContentData)
   if (!isCharityLoading && isCharityError) {
     charityContent = <ErrorAlert text={charityError} />;
   }
-  if (
-    !isCharityLoading &&
-    !isCharityError &&
-    batchWiseEventContentData?.length === 0
-  ) {
+  if (!isCharityLoading && !isCharityError && batchWiseEventContentData?.length === 0) {
     charityContent = <ErrorAlert text="No Category Find" />;
   }
   if (!isCharityLoading && !isCharityError && batchWiseEventContentData?.length > 0) {
@@ -156,16 +133,17 @@ console.log(batchWiseEventContentData)
 
             <td className="p-2 leading-normal text-left align-middle bg-transparent border-b text-sm whitespace-nowrap shadow-transparent">
               <p className="mb-0 leading-tight text-xs text-slate-600">
-                <p className="flex flex-col"><span>{Events.location}</span> </p>
+                <p className="flex flex-col">
+                  <span>{Events.location}</span>{" "}
+                </p>
               </p>
             </td>
             <td className="p-2 leading-normal text-left align-middle bg-transparent border-b text-sm whitespace-nowrap shadow-transparent">
               <p className="mb-0 leading-tight text-xs text-slate-600">
-              <span className="text-opacity-10">{Events.date?.slice(0, 10)}</span>
+                <span className="text-opacity-10">{Events.date?.slice(0, 10)}</span>
               </p>
             </td>
-            
-            
+
             <td className="p-2 text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
               <div className="flex gap-2 font-semibold">
                 {Events?.status === true ? (
@@ -177,7 +155,7 @@ console.log(batchWiseEventContentData)
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="w-6 h-6 text-green-600"
+                        className="w-6 h-6 text-green-600"
                       >
                         <path
                           stroke-linecap="round"
@@ -196,7 +174,7 @@ console.log(batchWiseEventContentData)
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="w-6 h-6 text-secondary"
+                        className="w-6 h-6 text-secondary"
                       >
                         <path
                           stroke-linecap="round"
@@ -264,7 +242,7 @@ console.log(batchWiseEventContentData)
     <div className="w-full px-8">
       <div className="relative flex flex-col w-full min-w-0 mb-0 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
         <div className=" p-6 pb-0 mb-0 bg-white rounded-t-2xl">
-        <h6 className="font-sans font-semibold">
+          <h6 className="font-sans font-semibold">
             Batch wise Events information.
             <span className="text-primary text-opacity-80">
               {" "}

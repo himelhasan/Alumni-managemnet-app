@@ -7,16 +7,10 @@ import { toast } from "react-hot-toast";
 
 const DisplayNewSuccessComments = ({ comment, handleCommentsDelete }) => {
   const { user } = useContext(AuthContext);
-
-  // console.log(comment)
-
   const [NewComment, setNewComment] = useState("");
-
-  console.log(NewComment);
   const id = NewComment._id;
 
   const handleGetComment = (id) => {
-    console.log(id);
     if (user?.email && id) {
       axios
         .get(
@@ -32,8 +26,6 @@ const DisplayNewSuccessComments = ({ comment, handleCommentsDelete }) => {
     const form = event.target;
     const newComment = form.comments.value;
     const id = form.id.value;
-
-    // console.log(newComment, id);
     const time = new Date().toLocaleDateString();
 
     const updatedData = {
@@ -52,8 +44,6 @@ const DisplayNewSuccessComments = ({ comment, handleCommentsDelete }) => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-
         toast.success("Edit Successfully.");
       });
   };
@@ -133,8 +123,7 @@ const DisplayNewSuccessComments = ({ comment, handleCommentsDelete }) => {
                         }}
                       >
                         {" "}
-                        <FaEdit className="inline-block mb-1 "></FaEdit>{" "}
-                        <span>Edit</span>
+                        <FaEdit className="inline-block mb-1 "></FaEdit> <span>Edit</span>
                       </div>
                     </>
                   ) : (

@@ -64,13 +64,14 @@ const UpComingEventsCard = () => {
           .filter(filterByDate)
           .slice(previous, next)
           .map((eventData) => (
-            <div  data-aos="fade-up"
-            data-aos-offset="200"
-            data-aos-delay="50"
-            data-aos-duration="1000"
-            data-aos-easing="ease-in-out"
-            data-aos-mirror="true"
-            data-aos-once="false"
+            <div
+              data-aos="fade-up"
+              data-aos-offset="200"
+              data-aos-delay="50"
+              data-aos-duration="1000"
+              data-aos-easing="ease-in-out"
+              data-aos-mirror="true"
+              data-aos-once="false"
               key={eventData._id}
               className="sm:flex shadow-soft-lg drop-shadow-lg	 justify-between items-center sm:w-full max-w-5xl mx-auto bg-primary  gap-4 relative -top-[24px]"
             >
@@ -101,16 +102,10 @@ const UpComingEventsCard = () => {
                   {eventData.event_title}
                 </h1>
 
-                <p className="text-white ">
-                  {eventData.description.slice(0, 200)}...
-                </p>
+                <p className="text-white ">{eventData.description.slice(0, 200)}...</p>
                 <button className=" bg-white hover:bg-secondary p-2 mt-4 mb-8 w-[150px]">
-                  <Link
-                    to={`/events/${eventData._id}`}
-                    className="text-black font-bold"
-                  >
-                    Join Now{" "}
-                    <MdNavigateNext className="inline-block text-black" />
+                  <Link to={`/events/${eventData._id}`} className="text-black font-bold">
+                    Join Now <MdNavigateNext className="inline-block text-black" />
                   </Link>
                 </button>
                 <div className="bg-secondary text-black w-[100px] py-2 flex justify-evenly items-center absolute right-2 bottom-2">
@@ -121,10 +116,7 @@ const UpComingEventsCard = () => {
                       onClick={() => previousHandler()}
                     />{" "}
                   </button>
-                  <button
-                    className="text-right"
-                    disabled={next <= eventData.length}
-                  >
+                  <button className="text-right" disabled={next <= eventData.length}>
                     <MdNavigateNext
                       className=""
                       size={23}
@@ -140,7 +132,6 @@ const UpComingEventsCard = () => {
   }
 
   const filteredEvents = eventData?.filter(filterByDate).length;
-  console.log({ asd: filteredEvents });
 
   return <>{eventDataContent}</>;
 };

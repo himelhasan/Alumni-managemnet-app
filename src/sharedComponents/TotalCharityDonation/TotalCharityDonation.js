@@ -6,7 +6,6 @@ const TotalCharityDonation = () => {
     fetch("https://alumni-managemnet-app-server.vercel.app/charityDonation")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setCharityDonation(data);
       })
       .catch((error) => {
@@ -16,7 +15,6 @@ const TotalCharityDonation = () => {
 
   let totalDonation = 0;
   for (const donation of charityDonation) {
-    console.log(donation);
     const allDonation = parseInt(donation?.cus_donationAmount);
     totalDonation = totalDonation + allDonation;
   }
@@ -50,14 +48,9 @@ const TotalCharityDonation = () => {
           </tbody>
         </table>
         <div className="flex justify-end">
-          <p className="my-5 text-xl mr-10">
-            Total Charity Donation : {totalDonation}
-          </p>
+          <p className="my-5 text-xl mr-10">Total Charity Donation : {totalDonation}</p>
         </div>
-        <div
-          onClick={() => window.print()}
-          className="flex justify-end cursor-pointer"
-        >
+        <div onClick={() => window.print()} className="flex justify-end cursor-pointer">
           <p className="mr-10 bg-primary text-white px-6 py-2">Print</p>
         </div>
       </div>

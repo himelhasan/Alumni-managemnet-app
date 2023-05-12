@@ -25,7 +25,6 @@ const CheckoutForm = () => {
     }
     setInfoDisplay(true);
     reset();
-    console.log(myData);
   };
 
   return (
