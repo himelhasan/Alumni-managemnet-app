@@ -29,12 +29,15 @@ const ShowNewsComments = ({ data }) => {
     if (isDeleteSuccess) {
       toast.success("Comments deleted successfully");
     }
-  }, [isDeleteSuccess]);
+    if (isDeleteError) {
+      toast.error("You don't have permission");
+    }
+  }, [isDeleteError, isDeleteSuccess]);
 
-  const handleCommentsDelete = (_id) => {
-    const agree = window.confirm(`Are You Sure You want To Delete ! ...`);
+  const handleCommentsDelete = (id) => {
+    const agree = window.confirm(`Are You Sure You want To Delete!`);
     if (agree) {
-      deleteNewsComment(_id);
+      deleteNewsComment(id);
     }
   };
 

@@ -6,7 +6,7 @@ import { AuthContext } from "../../../sharedComponents/UseContext/AuthProvider";
 
 const AllGallery = () => {
   const { user } = useContext(AuthContext);
-  console.log(user);
+
   const [gallery, setGallery] = useState([]);
   useEffect(() => {
     fetch(
@@ -14,7 +14,6 @@ const AllGallery = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setGallery(data);
       })
       .catch((error) => {
@@ -24,14 +23,13 @@ const AllGallery = () => {
 
   const handleGalleryDelete = (_id) => {
     const agree = window.confirm(`Are you Sure ! You want To Delete ${_id}`);
-    console.log(_id);
+
     if (agree) {
       fetch(`https://alumni-managemnet-app-server.vercel.app/galleries/${_id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data.deletedCount > 0) {
             toast.success("Successfully Deleted", { autoClose: 500 });
             const remaining = gallery?.filter((gallery) => gallery._id !== _id);
@@ -47,7 +45,14 @@ const AllGallery = () => {
   return (
     <div className="w-9/12 mx-auto my-16">
       <h2 className="my-5 text-2xl text-center ">All Gallery</h2>
-      <p className="text-center mb-10">Explore our gallery to see photos from past events and activities organized by our alumni management system. From alumni reunions and networking events to career fairs and fundraising initiatives, our gallery showcases the impact that strong alumni engagement can have on educational institutions. Click here to view our gallery and see how we're helping institutions build lifelong connections with their graduates.</p>
+      <p className="text-center mb-10">
+        Explore our gallery to see photos from past events and activities organized by our
+        alumni management system. From alumni reunions and networking events to career
+        fairs and fundraising initiatives, our gallery showcases the impact that strong
+        alumni engagement can have on educational institutions. Click here to view our
+        gallery and see how we're helping institutions build lifelong connections with
+        their graduates.
+      </p>
       {user?.email && user?.uid ? (
         <>
           <div className="overflow-x-auto">

@@ -11,7 +11,6 @@ const MyDonation = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setMyDonation(data);
       })
       .catch((error) => {
@@ -55,14 +54,9 @@ const MyDonation = () => {
           </tbody>
         </table>
         <div className="flex justify-end">
-          <p className="my-5 text-xl mr-10">
-            My Total Donation : {myTotalDonation}
-          </p>
+          <p className="my-5 text-xl mr-10">My Total Donation : {myTotalDonation}</p>
         </div>
-        <div
-          onClick={() => window.print()}
-          className="flex justify-end cursor-pointer"
-        >
+        <div onClick={() => window.print()} className="flex justify-end cursor-pointer">
           <p className="mr-10 bg-primary text-white px-6 py-2">Print</p>
         </div>
       </div>

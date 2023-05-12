@@ -14,8 +14,7 @@ import { toast } from "react-hot-toast";
 import { AuthContext } from "../../../sharedComponents/UseContext/AuthProvider";
 
 const AllNewsOfUser = () => {
-
-    const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const tableHeading = [
     { name: "Title", id: 1 },
@@ -32,21 +31,14 @@ const AllNewsOfUser = () => {
     error: newsError,
   } = useGetMyNewsQuery(user?.email);
 
-  console.log(newsOfUserContentData)
-
   const handleApprove = (_id) => {
-    console.log(_id);
     const agree = window.confirm(`Are you Sure . You want to Approve The News`);
     if (agree) {
-      fetch(
-        `https://alumni-managemnet-app-server.vercel.app/approveNews/${_id}`,
-        {
-          method: "PUT",
-        }
-      )
+      fetch(`https://alumni-managemnet-app-server.vercel.app/approveNews/${_id}`, {
+        method: "PUT",
+      })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data.modifiedCount > 0) {
             toast.success("Successfully Approved");
           }
@@ -57,20 +49,13 @@ const AllNewsOfUser = () => {
     }
   };
   const handleUnApprove = (_id) => {
-    console.log(_id);
-    const agree = window.confirm(
-      `Are you Sure . You want to unApprove The News`
-    );
+    const agree = window.confirm(`Are you Sure . You want to unApprove The News`);
     if (agree) {
-      fetch(
-        `https://alumni-managemnet-app-server.vercel.app/unApproveNews/${_id}`,
-        {
-          method: "PUT",
-        }
-      )
+      fetch(`https://alumni-managemnet-app-server.vercel.app/unApproveNews/${_id}`, {
+        method: "PUT",
+      })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data.modifiedCount > 0) {
             toast.success("Successfully unApproved");
           }
@@ -95,7 +80,6 @@ const AllNewsOfUser = () => {
   if (!isNewsLoading && !isNewsError && newsOfUserContentData?.length > 0) {
     newsContent = (
       <>
-        {" "}
         {newsOfUserContentData?.map((news) => (
           <tr>
             <td className="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
@@ -125,12 +109,11 @@ const AllNewsOfUser = () => {
                 <div className="flex flex-col justify-center">
                   <h6 className="mb-0 leading-normal text-sm">
                     {news?.heading ? (
-                     
                       <Link to={`/news/${news?._id}`}>
-                    <p className="mb-0 leading-normal text-sm break-normal">
-                      {news?.heading?.slice(0, 50)}
-                    </p>
-                  </Link>
+                        <p className="mb-0 leading-normal text-sm break-normal">
+                          {news?.heading?.slice(0, 50)}
+                        </p>
+                      </Link>
                     ) : (
                       <>
                         <h2>Title Missing</h2>
@@ -148,7 +131,10 @@ const AllNewsOfUser = () => {
               {/* <p className="mb-0 font-semibold leading-tight text-xs">{event.location}</p> */}
               <p className="mb-0 leading-tight text-xs text-slate-400">
                 {news?.email ? (
-                  <>{news?.author}<br /> {news?.email}</>
+                  <>
+                    {news?.author}
+                    <br /> {news?.email}
+                  </>
                 ) : (
                   <>
                     <h2>Author Information missing.</h2>
@@ -191,7 +177,7 @@ const AllNewsOfUser = () => {
                       viewBox="0 0 24 24"
                       stroke-width="1.5"
                       stroke="currentColor"
-                      class="w-6 h-6 text-green-600"
+                      className="w-6 h-6 text-green-600"
                     >
                       <path
                         stroke-linecap="round"
@@ -210,7 +196,7 @@ const AllNewsOfUser = () => {
                       viewBox="0 0 24 24"
                       stroke-width="1.5"
                       stroke="currentColor"
-                      class="w-6 h-6 text-secondary"
+                      className="w-6 h-6 text-secondary"
                     >
                       <path
                         stroke-linecap="round"
@@ -306,8 +292,9 @@ const AllNewsOfUser = () => {
     <div className="w-full px-8">
       <div className="relative flex flex-col w-full min-w-0 mb-0 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
         <div className="p-6 pb-0 mb-0 bg-white rounded-t-2xl">
-          <h6>All News which is you Posted. 
-          <span className="text-primary text-opacity-80">
+          <h6>
+            All News which is you Posted.
+            <span className="text-primary text-opacity-80">
               {" "}
               Total {newsOfUserContentData?.length} news you posted.
             </span>

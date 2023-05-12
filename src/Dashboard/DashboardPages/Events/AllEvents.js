@@ -69,7 +69,6 @@ const AllEvents = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data.modifiedCount > 0) {
             toast.success("Successfully Approved");
           }
@@ -87,7 +86,6 @@ const AllEvents = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data.modifiedCount > 0) {
             toast.success("Successfully unApproved");
           }
@@ -208,7 +206,7 @@ const AllEvents = () => {
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="w-6 h-6 text-green-600"
+                        className="w-6 h-6 text-green-600"
                       >
                         <path
                           stroke-linecap="round"
@@ -227,7 +225,7 @@ const AllEvents = () => {
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="w-6 h-6 text-secondary"
+                        className="w-6 h-6 text-secondary"
                       >
                         <path
                           stroke-linecap="round"

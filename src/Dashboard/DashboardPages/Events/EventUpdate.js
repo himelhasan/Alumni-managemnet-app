@@ -61,8 +61,6 @@ const EventUpdate = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-
         const eventInfo = {
           authorEmail: authorEmail,
           batch,

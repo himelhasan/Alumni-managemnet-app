@@ -102,7 +102,6 @@ export const DirectoryDetails = () => {
   }
 
   const handlePrevious = () => {
-    console.log("previous clicked");
     if (previous > 0) {
       setPrevious(previous - 9);
       setNext(next - 9);
@@ -110,7 +109,6 @@ export const DirectoryDetails = () => {
   };
 
   const handleNext = () => {
-    console.log("next clicked");
     setPrevious(previous + 9);
     setNext(next + 9);
   };

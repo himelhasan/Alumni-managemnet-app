@@ -12,7 +12,6 @@ const AllNewsForAdmin = () => {
     fetch("https://alumni-managemnet-app-server.vercel.app/news")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setAllNewsForAdmin(data);
       })
       .catch((error) => {
@@ -21,12 +20,9 @@ const AllNewsForAdmin = () => {
   }, []);
 
   useEffect(() => {
-    fetch(
-      `https://alumni-managemnet-app-server.vercel.app/news/${newsDetailsId}`
-    )
+    fetch(`https://alumni-managemnet-app-server.vercel.app/news/${newsDetailsId}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setSingleNewsDetails(data);
       })
       .catch((error) => {
@@ -35,12 +31,9 @@ const AllNewsForAdmin = () => {
   }, [newsDetailsId]);
 
   const handleNewsDetails = (_id) => {
-    console.log(_id);
     setNewsDetailsId(_id);
   };
-  const handleNewsDelete = (_id) => {
-    console.log(_id);
-  };
+  const handleNewsDelete = (_id) => {};
 
   return (
     <div>
@@ -76,11 +69,7 @@ const AllNewsForAdmin = () => {
                       </label>
 
                       {/* Put this part before </body> tag */}
-                      <input
-                        type="checkbox"
-                        id="my-modal-6"
-                        className="modal-toggle"
-                      />
+                      <input type="checkbox" id="my-modal-6" className="modal-toggle" />
                       <div className="modal modal-bottom  sm:modal-middle">
                         <div className="modal-box  ">
                           <div className="flex items-center gap-4 mb-5">
@@ -99,10 +88,7 @@ const AllNewsForAdmin = () => {
                                 <MdEmail></MdEmail>
                                 <p>{singleNewsDetails?.email}</p>
                               </div>
-                              <p>
-                                Profession :{" "}
-                                {singleNewsDetails?.authorProfession}
-                              </p>
+                              <p>Profession : {singleNewsDetails?.authorProfession}</p>
                             </div>
                           </div>
                           <div className="">
@@ -121,8 +107,7 @@ const AllNewsForAdmin = () => {
                             </h1>
                             <div>
                               <p>
-                                {singleNewsDetails?.newsDetails?.length >=
-                                50 ? (
+                                {singleNewsDetails?.newsDetails?.length >= 50 ? (
                                   <>{`${singleNewsDetails?.newsDetails.slice(
                                     0,
                                     50

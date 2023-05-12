@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 
-
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -8,13 +7,11 @@ import { AuthContext } from "../../../sharedComponents/UseContext/AuthProvider";
 
 const AllCharity = () => {
   const { user } = useContext(AuthContext);
-  console.log(user);
   const [showCharity, setShowCharity] = useState([]);
   useEffect(() => {
     fetch(`https://alumni-managemnet-app-server.vercel.app/charity/email/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setShowCharity(data);
       })
       .catch((error) => {
@@ -30,7 +27,6 @@ const AllCharity = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data.deletedCount) {
             toast.success("Successfully Deleted", { autoClose: 500 });
             const remaining = showCharity?.filter((charity) => charity._id !== _id);

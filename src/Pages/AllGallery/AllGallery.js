@@ -6,7 +6,6 @@ import { AuthContext } from "../../../sharedComponents/UseContext/AuthProvider";
 
 const AllGallery = () => {
   const { user } = useContext(AuthContext);
-  console.log(user);
   const [gallery, setGallery] = useState([]);
   useEffect(() => {
     fetch(
@@ -14,7 +13,6 @@ const AllGallery = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setGallery(data);
       })
       .catch((error) => {
@@ -24,14 +22,12 @@ const AllGallery = () => {
 
   const handleGalleryDelete = (_id) => {
     const agree = window.confirm(`Are you Sure ! You want To Delete ${_id}`);
-    console.log(_id);
     if (agree) {
       fetch(`https://alumni-managemnet-app-server.vercel.app/galleries/${_id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data.deletedCount > 0) {
             toast.success("Successfully Deleted", { autoClose: 500 });
             const remaining = gallery?.filter((gallery) => gallery._id !== _id);

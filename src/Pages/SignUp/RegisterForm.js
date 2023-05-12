@@ -19,13 +19,10 @@ import {
   addProfilePhoto,
 } from "../../features/userCreate/userCreate";
 import { toast } from "react-hot-toast";
-import { useAddAImageMutation } from "../../features/Api/imgbbSlice";
 import useToken from "../../customHooksReact/useToken";
 
 const RegisterForm = () => {
   const [checkAlumniEmail, setCheckAlumniEmail] = useState([]);
-  console.log(checkAlumniEmail);
-  const [addAImage, { data }] = useAddAImageMutation();
   const [loginUserEmail, setLoginUserEmail] = useState();
   const [token] = useToken(loginUserEmail);
   const navigate = useNavigate();
@@ -35,13 +32,9 @@ const RegisterForm = () => {
 
   const { createUser, updateUserProfile, signInWithGoogle } = useContext(AuthContext);
   const { user, logout } = useContext(AuthContext);
-  console.log(user);
   const { data: majorSubject } = useGetAllGraduationMajorQuery();
   const { data: graduationYear } = useGetAllBatchesQuery();
-  const [photo, setPhoto] = useState(null);
-  // const [photoURL, setPhotoURL] = useState(null);
   const { email: jwtEmail } = useSelector((state) => state.userCreate);
-
   const [addAlumni, { data: NewUserData, isSuccess, isError, isLoading, error }] =
     useAddAlumniMutation();
 
@@ -89,10 +82,9 @@ const RegisterForm = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:8000/alumni")
+    fetch("https://alumni-managemnet-app-server.vercel.app/alumni")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setCheckAlumniEmail(data);
       })
       .catch((error) => {
@@ -161,7 +153,6 @@ const RegisterForm = () => {
                     navigate("/login");
                   })
                   .catch((error) => {});
-                // navigate(`/dashboard/profile/${email}`);
               })
               .catch((error) => {
                 console.log(error);

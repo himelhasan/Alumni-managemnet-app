@@ -9,12 +9,11 @@ const AllCharityForAdmin = () => {
   const [allCharityForAdmin, setAllCharityForAdmin] = useState([]);
   const [detailsId, setDetailsId] = useState("");
   const [singleCharity, setSingleCharity] = useState({});
-  console.log(singleCharity);
+
   useEffect(() => {
     fetch("https://alumni-managemnet-app-server.vercel.app/charity")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setAllCharityForAdmin(data);
       })
       .catch((error) => {
@@ -22,12 +21,9 @@ const AllCharityForAdmin = () => {
       });
   }, []);
   useEffect(() => {
-    fetch(
-      `https://alumni-managemnet-app-server.vercel.app/charity/${detailsId}`
-    )
+    fetch(`https://alumni-managemnet-app-server.vercel.app/charity/${detailsId}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setSingleCharity(data);
       })
       .catch((error) => {
@@ -37,14 +33,12 @@ const AllCharityForAdmin = () => {
 
   const handleCharityDelete = (_id) => {
     const agree = window.confirm(`Are you Sure ! You want To Delete ${_id}`);
-    console.log(_id);
     if (agree) {
       fetch(`https://alumni-managemnet-app-server.vercel.app/charity/${_id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data.deletedCount > 0) {
             toast.success("Successfully Deleted", { autoClose: 500 });
             const remaining = allCharityForAdmin?.filter(
@@ -101,11 +95,7 @@ const AllCharityForAdmin = () => {
                         Details
                       </label>
                       {/* Put this part before </body> tag */}
-                      <input
-                        type="checkbox"
-                        id="my-modal-7"
-                        className="modal-toggle"
-                      />
+                      <input type="checkbox" id="my-modal-7" className="modal-toggle" />
                       <div className="modal modal-bottom  sm:modal-middle">
                         <div className="modal-box  ">
                           <div className="flex items-center gap-4 mb-5">
@@ -117,9 +107,7 @@ const AllCharityForAdmin = () => {
                               />
                             </div>
                             <div>
-                              <p className="text-xl font-bold">
-                                {singleCharity?.name}
-                              </p>
+                              <p className="text-xl font-bold">{singleCharity?.name}</p>
                               <div className="flex gap-2 items-center">
                                 <MdEmail></MdEmail>
                                 <p>{singleCharity?.email}</p>
@@ -137,16 +125,11 @@ const AllCharityForAdmin = () => {
                                 width: "200px",
                               }}
                             ></div>
-                            <h1 className="text-xl mt-3">
-                              {singleCharity?.title}
-                            </h1>
+                            <h1 className="text-xl mt-3">{singleCharity?.title}</h1>
                             <div>
                               <p>
                                 {singleCharity?.details?.length >= 50 ? (
-                                  <>{`${singleCharity?.details.slice(
-                                    0,
-                                    50
-                                  )}...`}</>
+                                  <>{`${singleCharity?.details.slice(0, 50)}...`}</>
                                 ) : (
                                   <>{`${singleCharity?.details}`}</>
                                 )}

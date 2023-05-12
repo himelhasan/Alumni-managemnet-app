@@ -10,7 +10,6 @@ const PaymentForEvents = () => {
       .then((res) => res.json())
       .then((data) => {
         setBatchYear(data);
-        console.log(data);
       })
       .catch((error) => {
         console.log(error);
@@ -34,7 +33,6 @@ const PaymentForEvents = () => {
       details,
       donationAmount,
     };
-    console.log(paymentCharityInfo);
   };
 
   return (

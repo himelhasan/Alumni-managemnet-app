@@ -4,17 +4,14 @@ import Loading from "../../../sharedComponents/Loading/Loading";
 import ErrorAlert from "../../../sharedComponents/Skeletion/ErrorAlert";
 import {
   useDeleteCharityMutation,
-  useGetAllCharityQuery,
   useGetBatchWiseCharityQuery,
-  useGetIndividualAllCharityQuery,
 } from "../../../features/Api/apiSlice";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../../../sharedComponents/UseContext/AuthProvider";
 import { FaEye } from "react-icons/fa";
 
 const AllCharity = () => {
-
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const tableHeading = [
     { name: "Title", id: 1 },
@@ -27,7 +24,7 @@ const AllCharity = () => {
     { name: "Action ", id: 7 },
   ];
 
- const batch = 2013;
+  const batch = 2013;
 
   const {
     data: batchWiseCharityContentData,
@@ -35,10 +32,6 @@ const AllCharity = () => {
     isError: isCharityError,
     error: charityError,
   } = useGetBatchWiseCharityQuery(batch);
-
-
-// console.log(batchWiseCharityContentData)
-  //
 
   // mutation for deleting data
   const [
@@ -70,20 +63,13 @@ const AllCharity = () => {
   }, [errorDelete, isDeleteError, isDeleteSuccess]);
 
   const handleApprove = (_id) => {
-    console.log(_id);
-    const agree = window.confirm(
-      `Are you Sure . You want to Approve The Charity`
-    );
+    const agree = window.confirm(`Are you Sure . You want to Approve The Charity`);
     if (agree) {
-      fetch(
-        `https://alumni-managemnet-app-server.vercel.app/approveCharity/${_id}`,
-        {
-          method: "PUT",
-        }
-      )
+      fetch(`https://alumni-managemnet-app-server.vercel.app/approveCharity/${_id}`, {
+        method: "PUT",
+      })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data.modifiedCount > 0) {
             toast.success("Successfully Approved");
           }
@@ -95,19 +81,13 @@ const AllCharity = () => {
   };
 
   const handleUnApprove = (_id) => {
-    const agree = window.confirm(
-      `Are you Sure . You want to unApprove The Charity`
-    );
+    const agree = window.confirm(`Are you Sure . You want to unApprove The Charity`);
     if (agree) {
-      fetch(
-        `https://alumni-managemnet-app-server.vercel.app/unApproveCharity/${_id}`,
-        {
-          method: "PUT",
-        }
-      )
+      fetch(`https://alumni-managemnet-app-server.vercel.app/unApproveCharity/${_id}`, {
+        method: "PUT",
+      })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data.modifiedCount > 0) {
             toast.success("Successfully unApproved");
           }
@@ -118,36 +98,30 @@ const AllCharity = () => {
     }
   };
 
- // get donated amount
-const [amounts, setAmounts ] = useState([]); 
-const [id, setId] = useState("")
-const [eye, setEye] = useState(false);
- 
+  // get donated amount
+  const [amounts, setAmounts] = useState([]);
+  const [id, setId] = useState("");
+  const [eye, setEye] = useState(false);
 
-  const handleViewAmount = (id) =>{
+  const handleViewAmount = (id) => {
     setId(id);
     setEye(true);
-  }
+  };
 
-  useEffect(()=>{
-    if(user?.email && id){
-      fetch(`http://localhost:8000/charityDonations/${id}`)
-      .then(res => res.json())
-      .then(data=> setAmounts(data))
+  useEffect(() => {
+    if (user?.email && id) {
+      fetch(`https://alumni-managemnet-app-server.vercel.app/charityDonations/${id}`)
+        .then((res) => res.json())
+        .then((data) => setAmounts(data));
     }
-    
-  },[user?.email, id])
+  }, [user?.email, id]);
 
   let totalDonation = 0;
   for (const donation of amounts) {
-    console.log(donation);
     const allDonation = parseInt(donation?.cus_donationAmount);
     totalDonation = totalDonation + allDonation;
   }
- 
-  // console.log(totalDonation)
 
-  
   let charityContent;
 
   if (isCharityLoading && !isCharityError) {
@@ -156,11 +130,7 @@ const [eye, setEye] = useState(false);
   if (!isCharityLoading && isCharityError) {
     charityContent = <ErrorAlert text={charityError} />;
   }
-  if (
-    !isCharityLoading &&
-    !isCharityError &&
-    batchWiseCharityContentData?.length === 0
-  ) {
+  if (!isCharityLoading && !isCharityError && batchWiseCharityContentData?.length === 0) {
     charityContent = <ErrorAlert text="No Category Find" />;
   }
   if (!isCharityLoading && !isCharityError && batchWiseCharityContentData?.length > 0) {
@@ -193,15 +163,15 @@ const [eye, setEye] = useState(false);
 
             <td className="p-2 leading-normal text-left align-middle bg-transparent border-b text-sm whitespace-nowrap shadow-transparent">
               <p className="mb-0 leading-tight text-xs text-slate-600">
-                <p className="flex flex-col"><span>{charity.name}</span> <span className="text-opacity-10">{charity.email}</span></p>
+                <p className="flex flex-col">
+                  <span>{charity.name}</span>{" "}
+                  <span className="text-opacity-10">{charity.email}</span>
+                </p>
               </p>
             </td>
             <td className="p-2 leading-normal text-left align-middle bg-transparent border-b text-sm whitespace-nowrap shadow-transparent">
               <p className="mb-0 leading-tight text-xs text-slate-600">
-                {` ${charity.state}, ${charity.city}, ${charity.country}  `?.slice(
-                  0,
-                  30
-                )}
+                {` ${charity.state}, ${charity.city}, ${charity.country}  `?.slice(0, 30)}
               </p>
             </td>
             <td className="p-2 leading-normal text-left align-middle bg-transparent border-b text-sm whitespace-nowrap shadow-transparent">
@@ -215,24 +185,17 @@ const [eye, setEye] = useState(false);
               </p>
             </td>
             <td className="p-2 align-middle text-left bg-transparent border-b whitespace-nowrap shadow-transparent">
-              
-              <p onClick={()=>handleViewAmount(charity?._id)} className="mb-0 cursor-pointer leading-tight text-xs text-slate-600">
-                {
-                  eye  ?             
-                    <p>{totalDonation}</p>
-                  :
-
-                  <FaEye className="text-xl"></FaEye>
-                }
+              <p
+                onClick={() => handleViewAmount(charity?._id)}
+                className="mb-0 cursor-pointer leading-tight text-xs text-slate-600"
+              >
+                {eye ? <p>{totalDonation}</p> : <FaEye className="text-xl"></FaEye>}
               </p>
             </td>
             <td className="p-2 align-middle text-left bg-transparent border-b whitespace-nowrap shadow-transparent">
-              
-              <p className="mb-0 leading-tight text-xs text-slate-600">
-                {charity.time}
-              </p>
+              <p className="mb-0 leading-tight text-xs text-slate-600">{charity.time}</p>
             </td>
-            
+
             <td className="p-2 text-center align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
               <div className="flex gap-2 font-semibold">
                 {charity?.status === true ? (
@@ -244,7 +207,7 @@ const [eye, setEye] = useState(false);
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="w-6 h-6 text-green-600"
+                        className="w-6 h-6 text-green-600"
                       >
                         <path
                           stroke-linecap="round"
@@ -263,7 +226,7 @@ const [eye, setEye] = useState(false);
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="w-6 h-6 text-secondary"
+                        className="w-6 h-6 text-secondary"
                       >
                         <path
                           stroke-linecap="round"
@@ -331,7 +294,7 @@ const [eye, setEye] = useState(false);
     <div className="w-full px-8">
       <div className="relative flex flex-col w-full min-w-0 mb-0 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
         <div className=" p-6 pb-0 mb-0 bg-white rounded-t-2xl">
-        <h6 className="font-sans font-semibold">
+          <h6 className="font-sans font-semibold">
             Batch wise charities information.
             <span className="text-primary text-opacity-80">
               {" "}

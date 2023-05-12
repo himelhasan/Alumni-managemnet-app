@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 
 const Contact = () => {
   const {
-    register,    
+    register,
     reset,
     // formState: { errors },
   } = useForm();
@@ -14,15 +14,9 @@ const Contact = () => {
     data.preventDefault();
 
     emailjs
-      .sendForm(
-        "service_yyonvfo",
-        "template_iiq69cw",
-        data.target,
-        "gGLUdmrxjvm2YSRQD"
-      )
+      .sendForm("service_yyonvfo", "template_iiq69cw", data.target, "gGLUdmrxjvm2YSRQD")
       .then(
         (result) => {
-          console.log("Message Sent Successfully");
           toast.success("Message Sent Successfully");
           reset();
         },

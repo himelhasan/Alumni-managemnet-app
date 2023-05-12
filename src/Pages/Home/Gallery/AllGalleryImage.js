@@ -48,14 +48,12 @@ const AllGalleryImage = () => {
   }
 
   const handlePrevious = () => {
-    console.log("previous");
     if (previous > 0) {
       setNext(next - 18);
       setPrevious(previous - 18);
     }
   };
   const handleNext = () => {
-    console.log("next");
     setNext(next + 18);
     setPrevious(previous + 18);
   };

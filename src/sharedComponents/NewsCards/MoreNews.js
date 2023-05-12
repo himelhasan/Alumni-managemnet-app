@@ -10,23 +10,20 @@ const MoreNews = ({ _id }) => {
     fetch("https://alumni-managemnet-app-server.vercel.app/news")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setNews(data);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
-  console.log(news);
+
   const handlePrevious = () => {
-    console.log("previous");
     if (previous > 0) {
       setNext(next - 6);
       setPrevious(previous - 6);
     }
   };
   const handleNext = () => {
-    console.log("next");
     setNext(next + 6);
     setPrevious(previous + 6);
   };
@@ -42,10 +39,7 @@ const MoreNews = ({ _id }) => {
               .map((story) => {
                 return (
                   <>
-                    <div
-                      key={story._id}
-                      className="flex items-center gap-3  mb-5"
-                    >
+                    <div key={story._id} className="flex items-center gap-3  mb-5">
                       <div
                         style={{
                           backgroundImage: `url(${story?.image})`,
@@ -89,10 +83,7 @@ const MoreNews = ({ _id }) => {
                 <button onClick={() => handlePrevious()}>
                   <FaArrowLeft></FaArrowLeft>
                 </button>
-                <button
-                  disabled={next > news?.length}
-                  onClick={() => handleNext()}
-                >
+                <button disabled={next > news?.length} onClick={() => handleNext()}>
                   <FaArrowRight></FaArrowRight>
                 </button>
               </div>

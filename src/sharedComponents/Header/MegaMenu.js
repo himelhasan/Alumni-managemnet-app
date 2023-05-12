@@ -21,7 +21,6 @@ const MegaMenu = () => {
     );
     const responseData = await reqBatch.json();
     setBatchData(responseData);
-    // console.log(responseData);
   };
 
   useEffect(() => {
@@ -58,9 +57,7 @@ const MegaMenu = () => {
                       batchData.map((batch) => (
                         <div className="border-2 border-accent px-6 py-2 ">
                           <li key={batch._id}>
-                            <Link to={`alumni${batch.url}`}>
-                              {batch.batchNumber}
-                            </Link>
+                            <Link to={`alumni${batch.url}`}>{batch.batchNumber}</Link>
                           </li>
                         </div>
                       ))}

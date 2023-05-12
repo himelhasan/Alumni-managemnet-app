@@ -17,12 +17,12 @@ const SingleSuccessFullStory = () => {
   const location = useLocation();
   // get the current path
   const currentPath = location.pathname.split("/successFullStory/")[1];
-  console.log({ currentPath });
+
   //load data using redux
 
   const { data, isLoading, isError, error } =
     useGetSingleSuccessfulStoriesQuery(currentPath);
-  console.log(data);
+
   const {
     batchNumber,
     comments,
@@ -50,10 +50,7 @@ const SingleSuccessFullStory = () => {
       <>
         {" "}
         <div>
-          <InnerPageHeader
-            img={`${image_url}`}
-            title={`${title}`}
-          ></InnerPageHeader>
+          <InnerPageHeader img={`${image_url}`} title={`${title}`}></InnerPageHeader>
           <div className="w-9/12 mx-auto my-16">
             <div className="flex lg:flex-row flex-col-reverse gap-10 ">
               <div className="basis-9/12">

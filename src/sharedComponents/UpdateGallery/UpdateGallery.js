@@ -9,32 +9,28 @@ const UpdateGallery = () => {
   const galleryInfo = useLoaderData();
 
   const { user } = useContext(AuthContext);
-  console.log(user);
+
   useEffect(() => {
     fetch("https://alumni-managemnet-app-server.vercel.app/galleryCategories")
       .then((res) => res.json())
       .then((data) => {
         setGalleryCategory(data);
-        console.log(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-  console.log(galleryInfo);
-  useEffect(() => {
-    fetch("https://alumni-managemnet-app-server.vercel.app/all-batches")
-      .then((res) => res.json())
-      .then((data) => {
-        setBatchYear(data);
-        console.log(data);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
 
-  console.log(batchYear);
+  useEffect(() => {
+    fetch("https://alumni-managemnet-app-server.vercel.app/all-batches")
+      .then((res) => res.json())
+      .then((data) => {
+        setBatchYear(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   const handleUpdateGallery = (event) => {
     event.preventDefault();
@@ -44,20 +40,15 @@ const UpdateGallery = () => {
     const gallery_category = form.gallery_category.value;
     const details = form.details.value;
     const time = new Date().toLocaleDateString();
-    console.log(time);
     const image_url = form.image.files[0];
     const formData = new FormData();
     formData.append("image", image_url);
-    fetch(
-      "https://api.imgbb.com/1/upload?key=86fe1764d78f51c15b1a9dfe4b9175cf",
-      {
-        method: "POST",
-        body: formData,
-      }
-    )
+    fetch("https://api.imgbb.com/1/upload?key=86fe1764d78f51c15b1a9dfe4b9175cf", {
+      method: "POST",
+      body: formData,
+    })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         const updateGalleryInfo = {
           title,
           batchNumber,
@@ -79,7 +70,6 @@ const UpdateGallery = () => {
         )
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
             if (data.modifiedCount > 0) {
               toast.success("SuccessFully Updated");
             }
@@ -92,8 +82,6 @@ const UpdateGallery = () => {
       .catch((error) => {
         console.log(error);
       });
-
-    console.log("Submit");
   };
   return (
     <div className="w-9/12 mx-auto my-16">
@@ -124,9 +112,7 @@ const UpdateGallery = () => {
               name="gallery_category"
             >
               {galleryCategory?.map((gCaterogy) => (
-                <option key={gCaterogy.gallery_category_id}>
-                  {gCaterogy.name}
-                </option>
+                <option key={gCaterogy.gallery_category_id}>{gCaterogy.name}</option>
               ))}
             </select>
           </div>

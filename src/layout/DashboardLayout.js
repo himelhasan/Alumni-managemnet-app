@@ -15,7 +15,7 @@ const DashboardLayout = () => {
   const elementRef = useRef(null);
   const pathname = location.pathname;
 
-  // const [isAdmin] = useAdmin(user?.email);
+  const [isAdmin] = useAdmin(user?.email);
 
   useEffect(() => {
     const resizeObserver = new ResizeObserver(
@@ -69,15 +69,25 @@ const DashboardLayout = () => {
               url="/dashboard"
             />
 
+            {isAdmin && (
+              <DashBoardNavItem
+                name="Alumni"
+                fontAwesome="fa-solid fa-graduation-cap"
+                url="/dashboard/alumni"
+              />
+            )}
+            {isAdmin && (
+              <DashBoardNavItem
+                name="All News"
+                fontAwesome="fa-regular fa-file-lines"
+                url="/dashboard/news"
+              />
+            )}
+
             <DashBoardNavItem
-              name="Alumni"
-              fontAwesome="fa-solid fa-graduation-cap"
-              url="/dashboard/alumni"
-            />
-            <DashBoardNavItem
-              name="All News"
-              fontAwesome="fa-regular fa-file-lines"
-              url="/dashboard/news"
+              name="My News"
+              fontAwesome="fa-solid fa-user"
+              url={`/dashboard/news/myNews`}
             />
             {(pathname === "/dashboard/news" ||
               pathname === "/dashboard/news/add-a-news") && (
@@ -87,11 +97,18 @@ const DashboardLayout = () => {
                 url="/dashboard/news/add-a-news"
               />
             )}
+            {isAdmin && (
+              <DashBoardNavItem
+                name="All Events"
+                fontAwesome="fa-regular fa-file-lines"
+                url="/dashboard/events"
+              />
+            )}
 
             <DashBoardNavItem
-              name="All Events"
-              fontAwesome="fa-regular fa-file-lines"
-              url="/dashboard/events"
+              name="My Events"
+              fontAwesome="fa-solid fa-user"
+              url={`/dashboard/events/myEvents`}
             />
 
             {(pathname === "/dashboard/events" ||
@@ -103,10 +120,18 @@ const DashboardLayout = () => {
               />
             )}
 
+            {isAdmin && (
+              <DashBoardNavItem
+                name="All Charity"
+                fontAwesome="fa-regular fa-file-lines"
+                url="/dashboard/charity"
+              />
+            )}
+
             <DashBoardNavItem
-              name="All Charity"
-              fontAwesome="fa-regular fa-file-lines"
-              url="/dashboard/charity"
+              name="Batch Charity"
+              fontAwesome="fa-solid fa-user"
+              url={`/dashboard/charity/batchWiseCharity`}
             />
 
             {(pathname === "/dashboard/charity" ||
@@ -124,16 +149,28 @@ const DashboardLayout = () => {
               url="/dashboard/gallery"
             />
 
+            {isAdmin && (
+              <DashBoardNavItem
+                name="All Donation"
+                fontAwesome="fa-solid fa-photo-film"
+                url="/dashboard/charity/allDonation"
+              />
+            )}
+
+            {isAdmin && (
+              <DashBoardNavItem
+                name="Successful Story"
+                fontAwesome="fa-solid fa-photo-film"
+                url="/dashboard/successfulStory"
+              />
+            )}
+
             <DashBoardNavItem
-              name="All Donation"
-              fontAwesome="fa-solid fa-photo-film"
-              url="/dashboard/charity/allDonation"
+              name="My Success Story"
+              fontAwesome="fa-regular fa-file-lines"
+              url="/dashboard/successfulStory/mySuccessStory"
             />
-            <DashBoardNavItem
-              name="Successful Story"
-              fontAwesome="fa-solid fa-photo-film"
-              url="/dashboard/successfulStory"
-            />
+
             {(pathname === "/dashboard/successfulStory" ||
               pathname === "/dashboard/successfulStory/add-a-successfulStory") && (
               <DashBoardNavItem
@@ -142,28 +179,9 @@ const DashboardLayout = () => {
                 url="/dashboard/successfulStory/add-a-successfulStory"
               />
             )}
+
             <DashBoardNavItem
-              name="My Success Story"
-              fontAwesome="fa-regular fa-file-lines"
-              url="/dashboard/successfulStory/mySuccessStory"
-            />
-            <DashBoardNavItem
-              name="My Events"
-              fontAwesome="fa-solid fa-user"
-              url={`/dashboard/events/myEvents`}
-            />
-            <DashBoardNavItem
-              name="My News"
-              fontAwesome="fa-solid fa-user"
-              url={`/dashboard/news/myNews`}
-            />
-            <DashBoardNavItem
-              name="BatchWise Charity"
-              fontAwesome="fa-solid fa-user"
-              url={`/dashboard/charity/batchWiseCharity`}
-            />
-            <DashBoardNavItem
-              name="BatchWise  Story"
+              name="BatchWise Story"
               fontAwesome="fa-solid fa-user"
               url={`/dashboard/successfulStory/batchWiseSuccessfullStory`}
             />
