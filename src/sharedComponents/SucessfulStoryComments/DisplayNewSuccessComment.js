@@ -91,7 +91,7 @@ const DisplayNewSuccessComments = ({ comment, handleCommentsDelete }) => {
               )}
             </p>
           </div>
-
+{/* edit */} 
           {NewComment?._id && drawer === true? (
             <div>
               <form onSubmit={(event) => handleCommentUpdate(event)}>
