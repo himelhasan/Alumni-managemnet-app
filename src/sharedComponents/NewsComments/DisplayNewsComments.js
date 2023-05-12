@@ -77,10 +77,19 @@ const DisplayNewsComments = ({ comment, handleCommentsDelete }) => {
             </p>
           </div>
         </footer>
-        <p class="text-gray-500 dark:text-gray-400">{comment?.comments}</p>
+        <p class="text-gray-500 dark:text-gray-400">{comment?.comments} 
+        
+        {comment?.edit === true ? (
+          <>
+            <p className="text-xs opacity-60">Edited</p>
+          </>
+        ) : (
+          <></>
+        )}
+        </p>
         <div class="flex items-center mt-1 space-x-4">
-          {NewComment?._id ? (
-            <></>
+          {NewComment?._id && editMode? (
+            <>rr</>
           ) : (
             <>
               <div className="flex gap-5 items-center cursor-pointer">
@@ -120,13 +129,7 @@ const DisplayNewsComments = ({ comment, handleCommentsDelete }) => {
             </>
           )}
         </div>
-        {comment?.edit === true ? (
-          <>
-            <p className="text-xs opacity-60">Edited</p>
-          </>
-        ) : (
-          <></>
-        )}
+        
       </article>
       <div className="flex gap-5 items-center">
         <div>

@@ -16,6 +16,8 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 
 const SingleEvent = () => {
   const { user } = useContext(AuthContext);
+  const [drawerJoin, setDrawerJoin] = useState(false);
+  const [drawerEdit, setDrawerEdit] = useState(false);
 
   //  get location using react-router-dom
   const location = useLocation();
@@ -51,6 +53,7 @@ const SingleEvent = () => {
 
   const handleEventEdit = (event) => {
     event.preventDefault();
+    setDrawerEdit(false);
     const f = event.target;
     const userInfo = {
       first_name: f.first_name.value,
@@ -115,6 +118,7 @@ const SingleEvent = () => {
   const form = useRef();
   const handleEvent = (event) => {
     event.preventDefault();
+    setDrawerJoin(false);
     const f = event.target;
     const userInfo = {
       first_name: f.first_name.value,
@@ -126,7 +130,7 @@ const SingleEvent = () => {
       event_title: event_title,
     };
 
-    console.log(userInfo);
+    // console.log(userInfo);
 
     fetch("https://alumni-managemnet-app-server.vercel.app/join-event", {
       method: "POST",
@@ -217,13 +221,13 @@ const SingleEvent = () => {
                     Already Joined
                   </button>
 
-                  <label
-                    htmlFor="event-modal-edit"
+                  <button
+                    onClick={() => setDrawerEdit(true)}
                     className="text-center lg:mx-4 cursor-pointer bg-primary p-2  my-2 text-white"
                   >
                     <span className="text-lg"> Edit</span>{" "}
                     <FaEdit className=" inline-block mb-1 mx-2"></FaEdit>{" "}
-                  </label>
+                  </button>
 
                   <button
                     onClick={handleDelete}
@@ -238,132 +242,116 @@ const SingleEvent = () => {
                   </button>
                 </div>
               ) : (
-                <label htmlFor="event-modal">
+                <div>
                   {today > eventDate ? (
                     <></>
                   ) : (
                     <>
-                      <label
-                        htmlFor="event-modal"
-                        className="text-center  cursor-pointer bg-primary px-4 py-2 mt-10   text-white"
+                      <button
+                        onClick={() => setDrawerJoin(true)}
+                        className="text-center  cursor-pointer bg-primary px-4 py-2    text-white"
                       >
                         Join Event
-                      </label>
+                      </button>
                     </>
                   )}
-                </label>
+                </div>
               )}
 
-              {/* modal for post joining data */}
-              <input
-                type="checkbox"
-                id="event-modal"
-                className="modal-toggle"
-              />
+              
+              {/* From for Event joining information collection */}
+              {drawerJoin === true ? (
+                <>
+                  <div className="my-8 border-2 p-3">
+                    <h3 className="font-bold text-xl">Join {event_title}</h3>
 
-              <div className="modal">
-                <div className="modal-box">
-                  <label
-                    htmlFor="event-modal"
-                    className="btn btn-sm btn-circle absolute right-2 top-2"
-                  >
-                    ✕
-                  </label>
-                  <h3 className="font-bold text-xl">Join {event_title}</h3>
+                    <form ref={form} onSubmit={(event) => handleEvent(event)}>
+                      <div className="hidden">
+                        <input name="event_title" defaultValue={event_title} />
+                        <input name="date" defaultValue={date} />
+                      </div>
+                      <div className="form-control mx-auto">
+                        <label className="label">
+                          {" "}
+                          <span className="label-text text-lg text-primary font-semibold">
+                            First Name
+                          </span>
+                        </label>
+                        <input
+                          type="text"
+                          name="first_name"
+                          required
+                          className="input input-bordered rounded-none bg-accent py-2 pl-3 text-lg  w-full"
+                          placeholder="Please enter your first name."
+                        />
+                      </div>
 
-                  <form ref={form} onSubmit={(event) => handleEvent(event)}>
-                    <div className="hidden">
-                      <input name="event_title" defaultValue={event_title} />
-                      <input name="date" defaultValue={date} />
-                    </div>
-                    <div className="form-control mx-auto">
-                      <label className="label">
-                        {" "}
-                        <span className="label-text text-lg text-primary font-semibold">
-                          First Name
-                        </span>
-                      </label>
-                      <input
-                        type="text"
-                        name="first_name"
-                        required
-                        className="input input-bordered rounded-none bg-accent py-2 pl-3 text-lg  w-full"
-                        placeholder="Please enter your first name."
-                      />
-                    </div>
+                      <div className="form-control mx-auto">
+                        <label className="label">
+                          {" "}
+                          <span className="label-text text-lg text-primary font-semibold">
+                            Last Name
+                          </span>
+                        </label>
+                        <input
+                          type="text"
+                          name="last_name"
+                          required
+                          className="input input-bordered rounded-none bg-accent py-2 pl-3 text-lg  w-full"
+                          placeholder="Please enter your last name."
+                        />
+                      </div>
 
-                    <div className="form-control mx-auto">
-                      <label className="label">
-                        {" "}
-                        <span className="label-text text-lg text-primary font-semibold">
-                          Last Name
-                        </span>
-                      </label>
-                      <input
-                        type="text"
-                        name="last_name"
-                        required
-                        className="input input-bordered rounded-none bg-accent py-2 pl-3 text-lg  w-full"
-                        placeholder="Please enter your last name."
-                      />
-                    </div>
+                      <div className="form-control mx-auto">
+                        <label className="label">
+                          {" "}
+                          <span className="label-text text-lg text-primary font-semibold">
+                            Email
+                          </span>
+                        </label>
+                        <input
+                          type="email"
+                          name="email"
+                          required
+                          className="input input-bordered rounded-none bg-accent py-2 pl-3 text-lg  w-full"
+                          defaultValue={user?.email}
+                          readOnly
+                        />
+                      </div>
 
-                    <div className="form-control mx-auto">
-                      <label className="label">
-                        {" "}
-                        <span className="label-text text-lg text-primary font-semibold">
-                          Email
-                        </span>
-                      </label>
-                      <input
-                        type="email"
-                        name="email"
-                        required
-                        className="input input-bordered rounded-none bg-accent py-2 pl-3 text-lg  w-full"
-                        defaultValue={user?.email}
-                        readOnly
-                      />
-                    </div>
+                      <div className="form-control mx-auto">
+                        <label className="label">
+                          {" "}
+                          <span className="label-text text-lg text-primary font-semibold">
+                            Phone Number
+                          </span>
+                        </label>
+                        <input
+                          type="text"
+                          name="phone_number"
+                          required
+                          className="input input-bordered rounded-none bg-accent py-2 pl-3 text-lg  w-full"
+                          placeholder="Please enter your Phone number"
+                        />
+                      </div>
 
-                    <div className="form-control mx-auto">
-                      <label className="label">
-                        {" "}
-                        <span className="label-text text-lg text-primary font-semibold">
-                          Phone Number
-                        </span>
-                      </label>
-                      <input
-                        type="text"
-                        name="phone_number"
-                        required
-                        className="input input-bordered rounded-none bg-accent py-2 pl-3 text-lg  w-full"
-                        placeholder="Please enter your Phone number"
-                      />
-                    </div>
+                      <div className=" mx-auto">
+                        <button
+                          className="btn btn-primary w-full bg-primary text-lg mt-5 text-white border-none rounded-none"
+                        >
+                          Join Event
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </>
+              ) : (
+                <></>
+              )}
 
-                    <div className=" mx-auto">
-                      <button className="btn btn-primary w-full bg-primary text-lg mt-5 text-white border-none rounded-none">
-                        Join Event
-                      </button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-
-              {/* modal for edit joining data */}
-              <input
-                type="checkbox"
-                id="event-modal-edit"
-                className="modal-toggle"
-              />
-              <div className="modal">
-                <div className="modal-box">
-                  <label
-                    htmlFor="event-modal-edit"
-                    className="btn btn-sm btn-circle absolute right-2 top-2"
-                  >
-                    ✕
-                  </label>
+              {/* From for Event edit information collection */}
+              {drawerEdit === true ? (
+                <div className="my-8 border-2 p-3">
                   <h3 className="font-bold text-xl">Join {event_title}</h3>
 
                   <form ref={form} onSubmit={(event) => handleEventEdit(event)}>
@@ -434,17 +422,20 @@ const SingleEvent = () => {
                     </div>
 
                     <div className=" mx-auto">
-                      <button className="btn btn-primary w-full bg-primary text-lg mt-5 text-white border-none rounded-none">
+                      <button
+                        className="btn btn-primary w-full bg-primary text-lg mt-5 text-white border-none rounded-none"
+                      >
                         Edit Joining Information
                       </button>
                     </div>
                   </form>
                 </div>
-              </div>
-
-              {/* </button> */}
+              ) : (
+                <></>
+              )}
             </div>
           </div>
+
           <div className="w-full md:w-2/5 px-10 mt-10 md:mt-0">
             <h1 className="text-2xl font-semibold">
               <span className="text-primary">Explore</span> More Events

@@ -11,12 +11,14 @@ const DisplayNewSuccessComments = ({ comment, handleCommentsDelete }) => {
   // console.log(comment)
 
   const [NewComment, setNewComment] = useState("");
+  const [drawer, setDrawer] = useState(false);
 
-  console.log(NewComment);
+  // console.log(NewComment);
   const id = NewComment._id;
 
   const handleGetComment = (id) => {
     console.log(id);
+    setDrawer(true);
     if (user?.email && id) {
       axios
         .get(
@@ -29,6 +31,7 @@ const DisplayNewSuccessComments = ({ comment, handleCommentsDelete }) => {
 
   const handleCommentUpdate = (event) => {
     event.preventDefault();
+    setDrawer(false);
     const form = event.target;
     const newComment = form.comments.value;
     const id = form.id.value;
@@ -89,7 +92,7 @@ const DisplayNewSuccessComments = ({ comment, handleCommentsDelete }) => {
             </p>
           </div>
 
-          {NewComment?._id ? (
+          {NewComment?._id && drawer === true? (
             <div>
               <form onSubmit={(event) => handleCommentUpdate(event)}>
                 <textarea
