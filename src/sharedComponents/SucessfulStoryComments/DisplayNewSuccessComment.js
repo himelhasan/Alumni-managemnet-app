@@ -37,6 +37,7 @@ const DisplayNewSuccessComments = ({ comment, handleCommentsDelete }) => {
     const id = form.id.value;
 
     // console.log(newComment, id);
+    // comment
     const time = new Date().toLocaleDateString();
 
     const updatedData = {
