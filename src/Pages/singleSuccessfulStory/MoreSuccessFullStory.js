@@ -41,7 +41,6 @@ const MoreSuccessFullStory = ({ _id }) => {
         .map((story) => {
           return (
             <>
-              <h2 className="mb-5 text-xl">Explore More SuccessFull Story</h2>
               <div
                 key={story?._id}
                 className="flex items-center gap-3 justify-between mb-5"

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import DashBoardNavbar from "../Dashboard/DashboardComponents/DashBoardNavbar";
 import { Link, NavLink, Outlet, useLocation, useParams } from "react-router-dom";
 import logo from "../../src/assets/logo/logo-black.png";
@@ -9,14 +9,14 @@ import { AuthContext } from "../sharedComponents/UseContext/AuthProvider";
 import { FaStream } from "react-icons/fa";
 import useAdmin from "../customHooksReact/useAdmin";
 const DashboardLayout = () => {
-  const { user, logout } = useContext(AuthContext);
+  const { user, logout, loading } = useContext(AuthContext);
   const location = useLocation();
   const isActive = location.pathname === "/dashboard";
   const elementRef = useRef(null);
   const pathname = location.pathname;
 
-  const [isAdmin] = useAdmin(user?.email);
-  console.log(isAdmin);
+  // const [isAdmin] = useAdmin(user?.email);
+
   useEffect(() => {
     const resizeObserver = new ResizeObserver(
       _.debounce((entries) => {
@@ -45,7 +45,7 @@ const DashboardLayout = () => {
 
           <label
             htmlFor="my-drawer-2"
-            className="btn btn-primary drawer-button lg:hidden sticky top-1 z-10"
+            className="btn btn-primary drawer-button ml-5 mt-3 bg-primary lg:hidden sticky top-1 z-10"
           >
             <FaStream></FaStream>
           </label>
@@ -123,6 +123,12 @@ const DashboardLayout = () => {
               fontAwesome="fa-solid fa-photo-film"
               url="/dashboard/gallery"
             />
+
+            <DashBoardNavItem
+              name="All Donation"
+              fontAwesome="fa-solid fa-photo-film"
+              url="/dashboard/charity/allDonation"
+            />
             <DashBoardNavItem
               name="Successful Story"
               fontAwesome="fa-solid fa-photo-film"
@@ -136,7 +142,31 @@ const DashboardLayout = () => {
                 url="/dashboard/successfulStory/add-a-successfulStory"
               />
             )}
-
+            <DashBoardNavItem
+              name="My Success Story"
+              fontAwesome="fa-regular fa-file-lines"
+              url="/dashboard/successfulStory/mySuccessStory"
+            />
+            <DashBoardNavItem
+              name="My Events"
+              fontAwesome="fa-solid fa-user"
+              url={`/dashboard/events/myEvents`}
+            />
+            <DashBoardNavItem
+              name="My News"
+              fontAwesome="fa-solid fa-user"
+              url={`/dashboard/news/myNews`}
+            />
+            <DashBoardNavItem
+              name="BatchWise Charity"
+              fontAwesome="fa-solid fa-user"
+              url={`/dashboard/charity/batchWiseCharity`}
+            />
+            <DashBoardNavItem
+              name="BatchWise  Story"
+              fontAwesome="fa-solid fa-user"
+              url={`/dashboard/successfulStory/batchWiseSuccessfullStory`}
+            />
             <DashBoardNavItem
               name="Profile"
               fontAwesome="fa-solid fa-user"

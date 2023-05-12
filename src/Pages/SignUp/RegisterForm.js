@@ -33,9 +33,8 @@ const RegisterForm = () => {
     navigate("/");
   }
 
-  const { createUser, updateUserProfile, signInWithGoogle } =
-    useContext(AuthContext);
-  const { user } = useContext(AuthContext);
+  const { createUser, updateUserProfile, signInWithGoogle } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   console.log(user);
   const { data: majorSubject } = useGetAllGraduationMajorQuery();
   const { data: graduationYear } = useGetAllBatchesQuery();
@@ -43,10 +42,8 @@ const RegisterForm = () => {
   // const [photoURL, setPhotoURL] = useState(null);
   const { email: jwtEmail } = useSelector((state) => state.userCreate);
 
-  const [
-    addAlumni,
-    { data: NewUserData, isSuccess, isError, isLoading, error },
-  ] = useAddAlumniMutation();
+  const [addAlumni, { data: NewUserData, isSuccess, isError, isLoading, error }] =
+    useAddAlumniMutation();
 
   const [emailAddress, setEmailAddress] = useState();
 
@@ -70,9 +67,7 @@ const RegisterForm = () => {
     fileReader.readAsDataURL(data);
 
     fileReader.onload = () => {
-      const base64String = fileReader.result
-        .replace("data:", "")
-        .replace(/^.+,/, "");
+      const base64String = fileReader.result.replace("data:", "").replace(/^.+,/, "");
       // base64String can now be stored in the Redux store
       dispatch(addProfilePhoto(`data:image/jpeg;base64,${base64String}`));
     };
@@ -121,13 +116,10 @@ const RegisterForm = () => {
     const formData = new FormData();
     formData.append("image", image_url);
 
-    fetch(
-      "https://api.imgbb.com/1/upload?key=dd1a5cd35aa9d832298beb50053079da",
-      {
-        method: "POST",
-        body: formData,
-      }
-    )
+    fetch("https://api.imgbb.com/1/upload?key=dd1a5cd35aa9d832298beb50053079da", {
+      method: "POST",
+      body: formData,
+    })
       .then((res) => res.json())
       .then((data) => {
         const photoURL = data.data.display_url;
@@ -142,7 +134,7 @@ const RegisterForm = () => {
               profile_picture: photoURL,
               graduation_year: graduation_year,
               major: major,
-              email: email,
+              email: email.toLowerCase(),
               phone: phone,
               education: {
                 major: major,
@@ -164,7 +156,12 @@ const RegisterForm = () => {
                 addAlumni(user);
                 toast.success("SuccessFully Signup");
                 reset();
-                navigate(`/dashboard/profile/${email}`);
+                logout()
+                  .then(() => {
+                    navigate("/login");
+                  })
+                  .catch((error) => {});
+                // navigate(`/dashboard/profile/${email}`);
               })
               .catch((error) => {
                 console.log(error);
@@ -198,7 +195,7 @@ const RegisterForm = () => {
         }
         const googleUser = {
           name: user?.displayName,
-          email: user?.email,
+          email: user?.email.toLowerCase(),
           profile_picture: user?.photoURL,
         };
         addAlumni(googleUser);
@@ -280,9 +277,7 @@ const RegisterForm = () => {
                   placeholder="your@email.com"
                   required
                 />
-                {errors.email && (
-                  <p className="text-red-600">{errors.email?.message}</p>
-                )}
+                {errors.email && <p className="text-red-600">{errors.email?.message}</p>}
               </div>
               <div>
                 <label
@@ -302,9 +297,7 @@ const RegisterForm = () => {
                   placeholder="123-4567-8910"
                   required
                 />
-                {errors.phone && (
-                  <p className="text-red-600">{errors.phone?.message}</p>
-                )}
+                {errors.phone && <p className="text-red-600">{errors.phone?.message}</p>}
               </div>
               <div>
                 <label
@@ -377,9 +370,7 @@ const RegisterForm = () => {
                     ))}
                 </select>
                 {errors.GraduationYear && (
-                  <p className="text-red-600">
-                    {errors.GraduationYear?.message}
-                  </p>
+                  <p className="text-red-600">{errors.GraduationYear?.message}</p>
                 )}
               </div>
 
@@ -435,9 +426,7 @@ const RegisterForm = () => {
                 SVG, PNG, JPG or GIF (MAX. 800x400px).
               </p>
 
-              {errors.file && (
-                <p className="text-red-600">{errors.file?.message}</p>
-              )}
+              {errors.file && <p className="text-red-600">{errors.file?.message}</p>}
             </div>
 
             <div className="mb-6">

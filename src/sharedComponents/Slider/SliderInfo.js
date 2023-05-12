@@ -7,27 +7,27 @@ export const SliderInfo = [
   {
     id: 1,
     img: image1,
-    Tittle: "We Proude To Be Student Of Oxford",
+    Tittle: "We Proud To Be Student Of A.k High School",
     description: "",
   },
   {
     id: 2,
     img: image2,
-    Tittle: "We Proude To Be Student Of Oxford",
+    Tittle: "We Proud To Be Student Of A.k High School",
     description:
       "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words ",
   },
   {
     id: 3,
     img: image3,
-    Tittle: "We Proude To Be Student Of Oxford",
+    Tittle: "We Proud To Be Student Of A.k High School",
     description:
       "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words ",
   },
   {
     id: 4,
     img: image4,
-    Tittle: "We Proude To Be Student Of Oxford",
+    Tittle: "We Proud To Be Student Of A.k High School",
     description:
       "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words ",
   },

@@ -7,6 +7,7 @@ export const apiSlice = createApi({
     // baseUrl: "http://localhost:8000/",
   }),
   tagTypes: [
+    "userRoles",
     "userRole",
     "alumni",
     "person",
@@ -79,7 +80,7 @@ export const apiSlice = createApi({
 
     //  single event
     getSingleEvent: builder.query({
-      query: (id) => `/events/${id}`,
+      query: (id) => `/event/${id}`,
       providesTags: (result, error, arg) => [{ type: "event", id: arg }],
     }),
 
@@ -114,6 +115,9 @@ export const apiSlice = createApi({
       query: (id) => ({
         url: `/event/delete/${id}`,
         method: "DELETE",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("access_token")}`,
+        },
       }),
       invalidatesTags: ["events"],
     }),
@@ -171,6 +175,9 @@ export const apiSlice = createApi({
       query: (id) => ({
         url: `/news/delete/${id}`,
         method: "DELETE",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("access_token")}`,
+        },
       }),
       invalidatesTags: ["allNews"],
     }),
@@ -181,6 +188,12 @@ export const apiSlice = createApi({
     getAllNewsComments: builder.query({
       query: (id) => `/newsComment/${id}`,
       providesTags: ["newsComments"],
+    }),
+
+    //  Get user based comments
+    getAllNewsCommentsOfaUser: builder.query({
+      query: ({ email, id }) => `/single-comment?email=${email}&id=${id}`,
+      providesTags: (result, error, arg) => [{ type: "newsComments", id: arg.id }],
     }),
 
     // add a new News comment
@@ -198,8 +211,25 @@ export const apiSlice = createApi({
       query: (id) => ({
         url: `/newsComments/${id}`,
         method: "DELETE",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("access_token")}`,
+        },
       }),
       invalidatesTags: ["newsComments"],
+    }),
+
+    //   Edit a  News comment
+    editNewsComment: builder.mutation({
+      query: ({ id, updatedData }) => ({
+        url: `/update-comment/${id}`,
+        method: "PUT",
+        body: updatedData,
+      }),
+
+      invalidatesTags: (result, error, arg) => [
+        "newsComments",
+        { type: "newsComment", id: arg.id },
+      ],
     }),
 
     // * Alumni * //
@@ -252,6 +282,9 @@ export const apiSlice = createApi({
       query: (email) => ({
         url: `/alumni/${email}`,
         method: "DELETE",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("access_token")}`,
+        },
       }),
       invalidatesTags: ["alumni"],
     }),
@@ -306,9 +339,66 @@ export const apiSlice = createApi({
       query: (id) => ({
         url: `/successFullStory/${id}`,
         method: "DELETE",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("access_token")}`,
+        },
       }),
       invalidatesTags: ["stories"],
     }),
+
+    /////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////
+
+    //   // * NEWS COMMENTS * //
+
+    // // All News Comments Data
+    // getAllNewsComments: builder.query({
+    //   query: (id) => `/newsComment/${id}`,
+    //   providesTags: ["newsComments"],
+    // }),
+
+    // //  Get user based comments
+    // getAllNewsCommentsOfaUser: builder.query({
+    //   query: ({ email, id }) => `/single-comment?email=${email}&id=${id}`,
+    //   providesTags: (result, error, arg) => [{ type: "newsComments", id: arg.id }],
+    // }),
+
+    // // add a new News comment
+    // addNewsComment: builder.mutation({
+    //   query: (data) => ({
+    //     url: "/newsComments",
+    //     method: "POST",
+    //     body: data,
+    //   }),
+    //   invalidatesTags: ["newsComments"],
+    // }),
+
+    // // delete a News comment
+    // deleteNewsComment: builder.mutation({
+    //   query: (id) => ({
+    //     url: `/newsComments/${id}`,
+    //     method: "DELETE",
+    //   }),
+    //   invalidatesTags: ["newsComments"],
+    // }),
+
+    // //   Edit a  News comment
+    // editNewsComment: builder.mutation({
+    //   query: ({ id, updatedData }) => ({
+    //     url: `/update-comment/${id}`,
+    //     method: "PUT",
+    //     body: updatedData,
+    //   }),
+
+    //   invalidatesTags: (result, error, arg) => [
+    //     "newsComments",
+    //     { type: "newsComment", id: arg.id },
+    //   ],
+    // }),
+
+    /////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////
 
     // *  CHARITY * //
 
@@ -368,6 +458,9 @@ export const apiSlice = createApi({
       query: (id) => ({
         url: `/charity/${id}`,
         method: "DELETE",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("access_token")}`,
+        },
       }),
       invalidatesTags: ["charities"],
     }),
@@ -421,8 +514,29 @@ export const apiSlice = createApi({
       providesTags: (result, error, arg) => [{ type: "userRole", id: arg }],
     }),
 
-    // /events/category/:id GET endpoint that returns event data based on category ID
-    // /events/:id GET endpoint that returns a single event data based on the id parameter
+    // make user Admin
+    makeAdmin: builder.mutation({
+      query: (id) => ({
+        url: `/alumni/admin/${id}`,
+        method: "PUT",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("access_token")}`,
+        },
+      }),
+      invalidatesTags: (result, error, arg) => [{ type: "alumni", id: arg.id }],
+    }),
+
+    // make user Admin
+    makeBatchAdmin: builder.mutation({
+      query: (id) => ({
+        url: `/alumni/BatchAdmin/${id}`,
+        method: "PUT",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("access_token")}`,
+        },
+      }),
+      invalidatesTags: (result, error, arg) => [{ type: "alumni", id: arg.id }],
+    }),
   }),
 });
 
@@ -462,6 +576,8 @@ export const {
   useGetAllNewsCommentsQuery,
   useAddNewsCommentMutation,
   useDeleteNewsCommentMutation,
+  useGetAllNewsCommentsOfaUserQuery,
+  useEditNewsCommentMutation,
   // GALLERY
   useGetGalleriesQuery,
   useGetGalleryCategoriesQuery,
@@ -496,6 +612,10 @@ export const {
   useGetAllUniversityNameQuery,
   useGetAllGraduationMajorQuery,
   useGetAllDegreeProgramsQuery,
+
+  // admin related
   useGetIsAdminQuery,
   useGetIsBatchAdminQuery,
+  useMakeAdminMutation,
+  useMakeBatchAdminMutation,
 } = apiSlice;

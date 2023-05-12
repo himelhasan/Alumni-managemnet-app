@@ -5,15 +5,13 @@ import { useGetSingleSuccessfulStoriesQuery } from "../../features/Api/apiSlice"
 import Loading from "../../sharedComponents/Loading/Loading";
 import ErrorAlert from "../../sharedComponents/Skeletion/ErrorAlert";
 import InnerPageHeader from "../../sharedComponents/InnerPageHeader/InnerPageHeader";
-import Comments from "../../sharedComponents/Comments/Comments";
-import ShowComments from "../../sharedComponents/Comments/ShowComments";
 import { AuthContext } from "../../sharedComponents/UseContext/AuthProvider";
 import { FaRegComment } from "react-icons/fa";
+import Comments from "../../sharedComponents/SucessfulStoryComments/Comments";
+import ShowComments from "../../sharedComponents/SucessfulStoryComments/ShowComments";
 
 const SingleSuccessFullStory = () => {
   const { user } = useContext(AuthContext);
-  const [newsComments, setNewsComments] = useState([]);
-  console.log(newsComments);
 
   //  get location using react-router-dom
   const location = useLocation();
@@ -39,18 +37,6 @@ const SingleSuccessFullStory = () => {
     _id,
   } = data || {};
 
-  useEffect(() => {
-    fetch(`http://localhost:8000/newsComment/${data?._id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setNewsComments(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [data?._id]);
-
   let content;
 
   if (isLoading && !isError) {
@@ -69,7 +55,7 @@ const SingleSuccessFullStory = () => {
             title={`${title}`}
           ></InnerPageHeader>
           <div className="w-9/12 mx-auto my-16">
-            <div className="flex md:flex-row flex-col-reverse gap-10 ">
+            <div className="flex lg:flex-row flex-col-reverse gap-10 ">
               <div className="basis-9/12">
                 <div>
                   {image_url ? (
@@ -176,16 +162,7 @@ const SingleSuccessFullStory = () => {
                       </div>
                     </div>
                   </div>
-                  <div>
-                    <button>
-                      <FaRegComment className="inline-block" />{" "}
-                      {newsComments?.length ? (
-                        <>{newsComments?.length}</>
-                      ) : (
-                        <></>
-                      )}
-                    </button>
-                  </div>
+                  <div></div>
                 </div>
                 {user?.email && user?.uid ? (
                   <>
@@ -205,6 +182,7 @@ const SingleSuccessFullStory = () => {
                 )}
               </div>
               <div className="basis-3/12">
+                <h2 className="mb-5 text-xl">Explore More SuccessFull Story</h2>
                 <MoreSuccessFullStory _id={_id}></MoreSuccessFullStory>
               </div>
             </div>

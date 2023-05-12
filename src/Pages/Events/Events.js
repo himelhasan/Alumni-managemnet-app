@@ -114,7 +114,7 @@ const Events = () => {
       <InnerPageHeader
         title="Event"
         img={student}
-        description="Stay engaged with your alma mater by attending our exclusive alumni events. From networking receptions and industry conferences to guest lectures and social gatherings, our events offer a range of opportunities to connect with fellow graduates and expand your professional and personal horizons. Scroll here to view our upcoming events and register today."
+        description="Stay Connected: Join Our Exclusive Alumni Events for Networking and Growth"
       />
       <div className="w-9/12 mx-auto my-20 sm:flex gap-3">
         {/* for mobile */}

@@ -11,7 +11,6 @@ const DashboardMain = () => {
     fetch("https://alumni-managemnet-app-server.vercel.app/charityDonation")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setCharityDonation(data);
       })
       .catch((error) => {
@@ -22,7 +21,6 @@ const DashboardMain = () => {
   let totalDonation = 0;
 
   for (const donation of charityDonation) {
-    console.log(donation);
     const allDonation = parseInt(donation?.cus_donationAmount);
     totalDonation = totalDonation + allDonation;
   }

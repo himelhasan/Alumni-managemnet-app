@@ -1,32 +1,28 @@
 import React, { useContext, useEffect, useState } from "react";
 import { FaRegComment } from "react-icons/fa";
-import { MdFavoriteBorder } from "react-icons/md";
 import MoreNews from "./MoreNews";
 import { Link, useLocation } from "react-router-dom";
-import Comments from "../Comments/Comments";
 import InnerPageHeader from "../InnerPageHeader/InnerPageHeader";
-import { useGetSingleNewsQuery } from "../../features/Api/apiSlice";
+import {
+  useGetAllNewsCommentsQuery,
+  useGetSingleNewsQuery,
+} from "../../features/Api/apiSlice";
 import Loading from "../Loading/Loading";
 import ErrorAlert from "../Skeletion/ErrorAlert";
-import ShowComments from "../Comments/ShowComments";
 import { AuthContext } from "../UseContext/AuthProvider";
 import NewsComments from "../NewsComments/NewsComments";
 import ShowNewsComments from "../NewsComments/ShowNewsComments";
 
 const SingleNewsSection = () => {
   const { user } = useContext(AuthContext);
-  const [newsComments, setNewsComments] = useState([]);
-  console.log(user?.email);
+  // const [newsComments, setNewsComments] = useState([]);
   //  get location using react-router-dom
   const location = useLocation();
   // get the current path
   const currentPath = location.pathname.split("/news/")[1];
-  console.log({ currentPath });
-  //load data using redux
 
-  const { data, isLoading, isError, error } =
-    useGetSingleNewsQuery(currentPath);
-  console.log(data);
+  //load data using redux
+  const { data, isLoading, isError, error } = useGetSingleNewsQuery(currentPath);
 
   const {
     NewsCategory,
@@ -43,19 +39,12 @@ const SingleNewsSection = () => {
     _id,
   } = data || {};
 
-  useEffect(() => {
-    fetch(
-      `https://alumni-managemnet-app-server.vercel.app/newsComment/${data?._id}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setNewsComments(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [data?._id]);
+  const {
+    data: commentsData,
+    isLoading: isCommentsDataLoading,
+    isError: isCommentsDataError,
+    error: CommentsDataerror,
+  } = useGetAllNewsCommentsQuery(_id);
 
   let content;
 
@@ -70,10 +59,7 @@ const SingleNewsSection = () => {
       <>
         {" "}
         <div>
-          <InnerPageHeader
-            img={`${image}`}
-            title={`${heading}`}
-          ></InnerPageHeader>
+          <InnerPageHeader img={`${image}`} title={`${heading}`}></InnerPageHeader>
           <div className="w-9/12 mx-auto my-16">
             <div>
               <div className="grid lg:grid-cols-3 gap-10">
@@ -169,11 +155,7 @@ const SingleNewsSection = () => {
                       <div className="flex items-center gap-2">
                         <FaRegComment className="inline-block cursor-pointer" />
                         <span>
-                          {newsComments?.length ? (
-                            <>{newsComments?.length}</>
-                          ) : (
-                            <></>
-                          )}
+                          {commentsData?.length ? <>{commentsData?.length}</> : <></>}
                         </span>
                       </div>
                     </div>
@@ -209,7 +191,7 @@ const SingleNewsSection = () => {
       </>
     );
   }
-  console.log(data);
+
   return <>{content}</>;
 };
 

@@ -1,27 +1,38 @@
 import React, { useContext, useEffect, useState } from "react";
-import { AiFillDislike, AiFillLike } from "react-icons/ai";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { AuthContext } from "../UseContext/AuthProvider";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import {
+  useEditNewsCommentMutation,
+  useGetAllNewsCommentsOfaUserQuery,
+} from "../../features/Api/apiSlice";
 
 const DisplayNewsComments = ({ comment, handleCommentsDelete }) => {
   const { user } = useContext(AuthContext);
+  const [editMode, setEditMode] = useState(false);
+  const [commentID, setCommentID] = useState("");
 
-  const [NewComment, setNewComment] = useState("");
+  const { data: myNewsComments } = useGetAllNewsCommentsOfaUserQuery({
+    email: user?.email,
+    id: commentID,
+  });
 
-  const id = NewComment._id;
+  const [NewComment, setNewComment] = useState(myNewsComments);
+  const id = NewComment?._id;
 
-  const handleGetComment = (id) => {
-    if (user?.email && id) {
-      axios
-        .get(
-          `https://alumni-managemnet-app-server.vercel.app/single-comment?email=${user?.email}&id=${id}`
-        )
-        .then((data) => setNewComment(data.data))
-        .catch((error) => console.error(error));
+  const handleGetComment = (data) => {
+    if (user?.email && data._id) {
+      setCommentID(id);
+      setNewComment(data);
+      setEditMode(true);
     }
   };
+
+  const [
+    editNewsComment,
+    { isError: isEditError, isLoading: isEditLoading, isSuccess: isEditSuccess },
+  ] = useEditNewsCommentMutation();
 
   const handleCommentUpdate = (event) => {
     event.preventDefault();
@@ -36,53 +47,90 @@ const DisplayNewsComments = ({ comment, handleCommentsDelete }) => {
       comments: newComment,
       time,
     };
-    fetch(`https://alumni-managemnet-app-server.vercel.app/update-comment/${id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(updatedData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-
-        toast.success("Edit Successfully.");
-      });
+    editNewsComment({ id, updatedData });
   };
 
+  useEffect(() => {
+    if (isEditSuccess) {
+      toast.success("Edit Successfully.");
+      setEditMode(false);
+    }
+  }, [isEditSuccess]);
+
   return (
-    <div className="mt-5">
-      <div className="flex gap-5 items-center">
-        <div
-          style={{
-            backgroundImage: `url(${comment.img})`,
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-            height: "60px",
-            width: "60px",
-          }}
-          className="rounded-full"
-        ></div>
-        <div>
-          <div className="flex gap-2 items-center">
-            <h2>{comment?.name ? <>{comment?.name}</> : <></>}</h2>
-
-            <p className="opacity-50 flex">
-              {comment?.time ? <>{comment?.time}</> : <></>}
-
-              {comment?.edit === true ? (
-                <>
-                  <p className="ml-2 opacity-60">Edited</p>
-                </>
-              ) : (
-                <></>
-              )}
+    <div className="">
+      <article class="p-6 text-base bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-gray-900">
+        <footer class="flex justify-between items-center mb-2">
+          <div class="flex items-center">
+            <p class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
+              <img
+                class="mr-2 w-6 h-6 rounded-full"
+                src={comment?.img}
+                alt="Helene Engels"
+              />
+              {comment?.name ? <>{comment?.name}</> : <></>}
+            </p>
+            <p class="text-xs text-gray-600 dark:text-gray-400">
+              <time pubdate datetime="2022-06-23" title="June 23rd, 2022">
+                {comment?.time ? <>{comment?.time}</> : <></>}
+              </time>
             </p>
           </div>
-
+        </footer>
+        <p class="text-gray-500 dark:text-gray-400">{comment?.comments}</p>
+        <div class="flex items-center mt-1 space-x-4">
           {NewComment?._id ? (
+            <></>
+          ) : (
+            <>
+              <div className="flex gap-5 items-center cursor-pointer">
+                <div>
+                  {/* The button to open modal */}
+                  {user?.email === comment?.email ? (
+                    <>
+                      <div
+                        className="cursor-pointer text-sm text-gray-500"
+                        onClick={() => {
+                          handleGetComment(comment);
+                        }}
+                      >
+                        <FaEdit className="inline-block mb-1 "></FaEdit> <span>Edit</span>
+                      </div>
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                </div>
+                {user?.email === comment?.email ? (
+                  <>
+                    <div
+                      onClick={() => {
+                        handleCommentsDelete(comment?._id);
+                      }}
+                      className="flex gap-1 items-center cursor-pointer text-sm text-gray-500"
+                    >
+                      <FaTrash className="text-[14px]"></FaTrash>
+                      <button>Delete</button>
+                    </div>
+                  </>
+                ) : (
+                  <></>
+                )}
+              </div>
+            </>
+          )}
+        </div>
+        {comment?.edit === true ? (
+          <>
+            <p className="text-xs opacity-60">Edited</p>
+          </>
+        ) : (
+          <></>
+        )}
+      </article>
+      <div className="flex gap-5 items-center">
+        <div>
+          {editMode && NewComment?._id ? (
             <div>
               <form onSubmit={(event) => handleCommentUpdate(event)}>
                 <textarea
@@ -105,52 +153,7 @@ const DisplayNewsComments = ({ comment, handleCommentsDelete }) => {
               </form>
             </div>
           ) : (
-            <>
-              <p> {comment.comments} </p>
-            </>
-          )}
-
-          {NewComment?._id ? (
-            <></>
-          ) : (
-            <>
-              <div className="flex gap-5 items-center cursor-pointer">
-                <AiFillLike className="text-primary"></AiFillLike>
-                <AiFillDislike className="text-primary"></AiFillDislike>
-                <div>
-                  {/* The button to open modal */}
-                  {user?.email === comment?.email ? (
-                    <>
-                      <div
-                        className="cursor-pointer"
-                        onClick={() => {
-                          handleGetComment(comment?._id);
-                        }}
-                      >
-                        <FaEdit className="inline-block mb-1 "></FaEdit> <span>Edit</span>
-                      </div>
-                    </>
-                  ) : (
-                    <></>
-                  )}
-                </div>
-                {user?.email === comment?.email ? (
-                  <>
-                    <div
-                      onClick={() => {
-                        handleCommentsDelete(comment?._id);
-                      }}
-                      className="flex gap-1 items-center"
-                    >
-                      <FaTrash className="text-[14px]"></FaTrash>
-                      <button>Delete</button>
-                    </div>
-                  </>
-                ) : (
-                  <></>
-                )}
-              </div>
-            </>
+            <>{/* <p className="bg-red-500"> {comment.comments} </p> */}</>
           )}
         </div>
       </div>

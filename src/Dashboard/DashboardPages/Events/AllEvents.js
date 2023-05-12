@@ -62,16 +62,11 @@ const AllEvents = () => {
   };
 
   const handleApprove = (_id) => {
-    const agree = window.confirm(
-      `Are you Sure . You want to Approve The Charity`
-    );
+    const agree = window.confirm(`Are you Sure . You want to Approve The Charity`);
     if (agree) {
-      fetch(
-        `https://alumni-managemnet-app-server.vercel.app/approveEvents/${_id}`,
-        {
-          method: "PUT",
-        }
-      )
+      fetch(`https://alumni-managemnet-app-server.vercel.app/approveEvents/${_id}`, {
+        method: "PUT",
+      })
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
@@ -85,16 +80,11 @@ const AllEvents = () => {
     }
   };
   const handleUnApprove = (_id) => {
-    const agree = window.confirm(
-      `Are you Sure . You want to unApprove The Charity`
-    );
+    const agree = window.confirm(`Are you Sure . You want to unApprove The Charity`);
     if (agree) {
-      fetch(
-        `https://alumni-managemnet-app-server.vercel.app/unApproveEvents/${_id}`,
-        {
-          method: "PUT",
-        }
-      )
+      fetch(`https://alumni-managemnet-app-server.vercel.app/unApproveEvents/${_id}`, {
+        method: "PUT",
+      })
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
@@ -110,10 +100,10 @@ const AllEvents = () => {
   // re render components on status change
   useEffect(() => {
     if (isDeleteSuccess) {
-      toast.success("Successfully toasted!");
+      toast.success("Successfully Deleted!");
     }
     if (isDeleteError) {
-      toast.error(errorDelete.message);
+      toast.error("Unsuccessfully Deleted!");
     }
   }, [errorDelete, isDeleteError, isDeleteSuccess]);
 

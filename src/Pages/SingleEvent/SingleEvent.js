@@ -29,7 +29,7 @@ const SingleEvent = () => {
   // console.log(data);
   const { _id, description, image_url, event_title, category, batch, date } =
     data || {};
-
+  console.log(data);
   const [eventData, setEventData] = useState("");
   console.log(eventData);
   console.log(data);
@@ -94,12 +94,9 @@ const SingleEvent = () => {
   };
 
   const handleDelete = () => {
+    const agree = window.confirm(`Are you want to Delete ?`);
 
-    const agree = window.confirm(
-      `Are you want to Delete ?`
-    );
-
-    if(agree){
+    if (agree) {
       fetch(
         `https://alumni-managemnet-app-server.vercel.app/join-event/delete/${eventData._id}`,
         {
@@ -232,9 +229,11 @@ const SingleEvent = () => {
                     onClick={handleDelete}
                     className="flex items-center bg-primary p-2  text-white my-2"
                   >
-                    <div >
-                      <span className="flex items-center ml-24 md:m-0 gap-2"> Delete <FaTrash></FaTrash></span>
-                      
+                    <div>
+                      <span className="flex items-center ml-24 md:m-0 gap-2">
+                        {" "}
+                        Delete <FaTrash></FaTrash>
+                      </span>
                     </div>
                   </button>
                 </div>

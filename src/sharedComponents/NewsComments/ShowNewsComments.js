@@ -7,9 +7,9 @@ import {
 } from "../../features/Api/apiSlice";
 import Loading from "../Loading/Loading";
 import ErrorAlert from "../Skeletion/ErrorAlert";
+import { toast } from "react-hot-toast";
 
 const ShowNewsComments = ({ data }) => {
-  const [newsComments, setNewsComments] = useState([]);
   const [previous, setPrevious] = useState(0);
   const [next, setNext] = useState(10);
 
@@ -24,6 +24,12 @@ const ShowNewsComments = ({ data }) => {
     deleteNewsComment,
     { isSuccess: isDeleteSuccess, isLoading: isDeleteLoading, isError: isDeleteError },
   ] = useDeleteNewsCommentMutation();
+
+  useEffect(() => {
+    if (isDeleteSuccess) {
+      toast.success("Comments deleted successfully");
+    }
+  }, [isDeleteSuccess]);
 
   const handleCommentsDelete = (_id) => {
     const agree = window.confirm(`Are You Sure You want To Delete ! ...`);

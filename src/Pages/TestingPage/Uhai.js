@@ -28,16 +28,16 @@ const Uhai = () => {
       {/* <NewsUpdatePage></NewsUpdatePage> */}
       {/* <EventUpdatePages></EventUpdatePages> */}
 
-      {/* <AllDonation></AllDonation> */}
-      <BatchWiseCharity></BatchWiseCharity>
-      {/* <BatchWiseSuccessfulStory></BatchWiseSuccessfulStory> */}
-      {/* <BatchWiseEvents></BatchWiseEvents> */}
+      <AllDonation></AllDonation>
+      {/* <BatchWiseCharity></BatchWiseCharity> */}
+      <BatchWiseSuccessfulStory></BatchWiseSuccessfulStory>
+      <BatchWiseEvents></BatchWiseEvents>
 
       {/* <JoinedEventUpdatePage></JoinedEventUpdatePage> */}
-      {/* <AllSuccessFulStoryOfUser></AllSuccessFulStoryOfUser> */}
-      {/* <AllEventsOfUser></AllEventsOfUser> */}
+      <AllSuccessFulStoryOfUser></AllSuccessFulStoryOfUser>
+      <AllEventsOfUser></AllEventsOfUser>
       <AllCharityOfUser></AllCharityOfUser>
-      {/* <AllNewsOfUser></AllNewsOfUser> */}
+      <AllNewsOfUser></AllNewsOfUser>
 
       {/* <AddAEvent></AddAEvent> */}
       {/* <NewsSection /> */}

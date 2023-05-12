@@ -5,6 +5,8 @@ import ErrorAlert from "../../../sharedComponents/Skeletion/ErrorAlert";
 import {
   useDeleteAlumniMutation,
   useGetAllAlumniQuery,
+  useMakeAdminMutation,
+  useMakeBatchAdminMutation,
 } from "../../../features/Api/apiSlice";
 import { toast } from "react-hot-toast";
 
@@ -23,7 +25,6 @@ const AllAlumni = () => {
     isError: isAlumniError,
     error: alumniError,
   } = useGetAllAlumniQuery();
-  console.log(allAlumni);
 
   // mutation for deleting data
   const [
@@ -36,29 +37,65 @@ const AllAlumni = () => {
       error: errorDelete,
     },
   ] = useDeleteAlumniMutation();
-  // make batch Admin
 
-  const handleBatchAdmin = (_id) => {
-    const agree = window.confirm(`Are you Sure . You want to Make BatchAdmin`);
+  // make Admin
+  const [
+    makeAdmin,
+    {
+      isSuccess: isAdminSuccess,
+      isError: isAdminError,
+      isLoading: isAdminLoading,
+      error: AdminError,
+    },
+  ] = useMakeAdminMutation();
+
+  const handleMakeAdmin = (_id) => {
+    const agree = window.confirm(`Are you Sure You want to Make this person Admin?`);
     if (agree) {
-      fetch(`http://localhost:8000/alumni/admin/${_id}`, {
-        method: "PUT",
-        headers: {
-          authorization: `bearer ${localStorage.getItem("access_token")}`,
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          if (data.modifiedCount > 0) {
-            toast.success("Successfully Done");
-          }
-        })
-        .catch((error) => {
-          toast.error(error.message);
-        });
+      makeAdmin(_id);
     }
   };
+
+  useEffect(() => {
+    if (isAdminSuccess) {
+      toast.success("successfully made admin");
+    }
+    if (isAdminError) {
+      toast.error("error making admin");
+    }
+  }, [isAdminError, isAdminSuccess]);
+
+  // make batch admin starts here
+  // make Admin
+  const [
+    makeBatchAdmin,
+    {
+      isSuccess: isBatchAdminSuccess,
+      isError: isBatchAdminError,
+      isLoading: isBatchAdminLoading,
+      error: BatchAdminError,
+    },
+  ] = useMakeBatchAdminMutation();
+
+  const handleMakeBatchAdmin = (_id) => {
+    const agree = window.confirm(
+      `Are you Sure You want to Make this person Batch Admin?`
+    );
+    if (agree) {
+      makeBatchAdmin(_id);
+    }
+  };
+
+  useEffect(() => {
+    if (isBatchAdminSuccess) {
+      toast.success("successfully made Batch admin");
+    }
+    if (isBatchAdminError) {
+      toast.error("error making Batch admin");
+    }
+  }, [isBatchAdminError, isBatchAdminSuccess]);
+
+  // make batch admin ends here
 
   // delete function handler
   const handleDeleteAlumni = (_id) => {
@@ -70,10 +107,10 @@ const AllAlumni = () => {
   // re render components on status change
   useEffect(() => {
     if (isDeleteSuccess) {
-      toast.success("Successfully toasted!");
+      toast.success("Successfully Deleted!");
     }
     if (isDeleteError) {
-      toast.error(errorDelete.message);
+      toast.error("You don't  have permission");
     }
   }, [errorDelete, isDeleteError, isDeleteSuccess]);
 
@@ -174,7 +211,7 @@ const AllAlumni = () => {
                     Remove Batch Admin
                   </button>
                   <button
-                    onClick={() => handleBatchAdmin(alumni?._id)}
+                    onClick={() => handleMakeAdmin(alumni?._id)}
                     type="button"
                     class="px-3 py-0.5 text-xs font-medium bg-white border border-gray-200 hover:bg-primary hover:text-white focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
                   >
@@ -186,7 +223,7 @@ const AllAlumni = () => {
               {!alumni?.role && (
                 <div class="flex flex-col rounded-md shadow-sm" role="group">
                   <button
-                    onClick={() => handleBatchAdmin(alumni?._id)}
+                    onClick={() => handleMakeAdmin(alumni?._id)}
                     type="button"
                     class="px-3 py-0.5 text-xs font-medium bg-white border border-gray-200 hover:bg-primary hover:text-white focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
                   >
@@ -194,6 +231,7 @@ const AllAlumni = () => {
                   </button>
 
                   <button
+                    onClick={() => handleMakeBatchAdmin(alumni?._id)}
                     type="button"
                     class="px-3 py-0.5 text-xs font-medium bg-white border border-gray-200 hover:bg-primary hover:text-white focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
                   >
