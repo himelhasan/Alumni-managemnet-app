@@ -28,28 +28,22 @@ const Comments = ({ data }) => {
       time,
       commentsId: data._id,
     };
-    console.log(commentsInfo);
-    fetch(
-      "https://alumni-managemnet-app-server.vercel.app/successFullStoryComments",
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(commentsInfo),
-      }
-    )
+
+    fetch("https://alumni-managemnet-app-server.vercel.app/successFullStoryComments", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(commentsInfo),
+    })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.acknowledged) {
         }
       })
       .catch((error) => {
         console.log(error);
       });
-
-    console.log("submit");
   };
 
   return (
@@ -62,9 +56,7 @@ const Comments = ({ data }) => {
           name="comments"
           required
         ></textarea>
-        <button className=" mt-3 mb-8 px-6 py-2  bg-primary text-white">
-          Comment
-        </button>
+        <button className=" mt-3 mb-8 px-6 py-2  bg-primary text-white">Comment</button>
       </form>
       <div></div>
     </div>

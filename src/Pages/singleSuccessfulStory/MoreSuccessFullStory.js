@@ -4,7 +4,6 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const MoreSuccessFullStory = ({ _id }) => {
-  console.log(_id);
   const [stories, setStories] = useState([]);
   const [previous, setPrevious] = useState(0);
   const [next, setNext] = useState(6);
@@ -12,7 +11,6 @@ const MoreSuccessFullStory = ({ _id }) => {
     fetch("https://alumni-managemnet-app-server.vercel.app/successFullStory")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setStories(data);
       })
       .catch((error) => {
@@ -20,16 +18,13 @@ const MoreSuccessFullStory = ({ _id }) => {
       });
   }, []);
 
-  console.log(stories);
   const handlePrevious = () => {
-    console.log("previous");
     if (previous > 0) {
       setNext(next - 6);
       setPrevious(previous - 6);
     }
   };
   const handleNext = () => {
-    console.log("next");
     setNext(next + 6);
     setPrevious(previous + 6);
   };
@@ -72,9 +67,7 @@ const MoreSuccessFullStory = ({ _id }) => {
                   </p>
                   <Link to={`/successFullStory/${story._id}`}>
                     {" "}
-                    <button className="bg-primary px-4 py-2 text-white">
-                      Details
-                    </button>
+                    <button className="bg-primary px-4 py-2 text-white">Details</button>
                   </Link>
                 </div>
               </div>
@@ -87,10 +80,7 @@ const MoreSuccessFullStory = ({ _id }) => {
             <button onClick={() => handlePrevious()}>
               <FaArrowLeft></FaArrowLeft>
             </button>
-            <button
-              disabled={next > stories?.length}
-              onClick={() => handleNext()}
-            >
+            <button disabled={next > stories?.length} onClick={() => handleNext()}>
               <FaArrowRight></FaArrowRight>
             </button>
           </div>

@@ -10,9 +10,9 @@ import InnerPageHeader from "../InnerPageHeader/InnerPageHeader";
 
 const SingleSuccessFullStory = () => {
   const { user } = useContext(AuthContext);
-  console.log(user?.email);
+
   const successFullStoryData = useLoaderData();
-  console.log(successFullStoryData);
+
   const {
     batchNumber,
     comments,
@@ -28,10 +28,7 @@ const SingleSuccessFullStory = () => {
   } = successFullStoryData;
   return (
     <div>
-      <InnerPageHeader
-        img={`${image_url}`}
-        title={`${title}`}
-      ></InnerPageHeader>
+      <InnerPageHeader img={`${image_url}`} title={`${title}`}></InnerPageHeader>
       <div className="w-9/12 mx-auto my-16">
         <div className="grid lg:grid-cols-3 gap-10">
           <div className="lg:col-span-2">

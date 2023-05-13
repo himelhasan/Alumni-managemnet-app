@@ -15,7 +15,7 @@ const AllEventsCard = ({ item }) => {
     if (month.length < 2) {
       month = "0" + month;
     }
-    // console.log(day, month, year);
+
     setNewDate([year, month, day].join("-"));
   }, []);
   return (

@@ -24,18 +24,10 @@ const SuccessStoriesSection = () => {
   if (!successStoryIsLoading && successStoryIsError) {
     successStoryContent = <ErrorAlert text={successStoryError} />;
   }
-  if (
-    !successStoryIsLoading &&
-    !successStoryIsError &&
-    successStory?.length === 0
-  ) {
+  if (!successStoryIsLoading && !successStoryIsError && successStory?.length === 0) {
     successStoryContent = <ErrorAlert text="No News Find" />;
   }
-  if (
-    !successStoryIsLoading &&
-    !successStoryIsError &&
-    successStory?.length > 0
-  ) {
+  if (!successStoryIsLoading && !successStoryIsError && successStory?.length > 0) {
     successStoryContent = (
       <>
         <div
@@ -47,10 +39,7 @@ const SuccessStoriesSection = () => {
             ?.filter((story) => story?.status === true)
             .slice(previous, next)
             .map((data) => (
-              <SuccessStoriesCard
-                key={data._id}
-                data={data}
-              ></SuccessStoriesCard>
+              <SuccessStoriesCard key={data._id} data={data}></SuccessStoriesCard>
             ))}
         </div>
       </>
@@ -58,32 +47,25 @@ const SuccessStoriesSection = () => {
   }
 
   const handlePrevious = () => {
-    console.log("previous");
     if (previous > 0) {
       setNext(next - 3);
       setPrevious(previous - 3);
     }
   };
   const handleNext = () => {
-    console.log("next");
     setNext(next + 3);
     setPrevious(previous + 3);
   };
   return (
     <div className="my-3  mx-auto relative">
-      <h1 className="my-7 text-3xl font-semibold text-center">
-        Successful Stories
-      </h1>
+      <h1 className="my-7 text-3xl font-semibold text-center">Successful Stories</h1>
       <>{successStoryContent}</>
       {successStory?.filter((story) => story?.status === true).length > 3 && (
         <div className="flex gap-2 justify-end">
           <button onClick={() => handlePrevious()}>
             <FaArrowLeft></FaArrowLeft>
           </button>
-          <button
-            disabled={next > successStory?.length}
-            onClick={() => handleNext()}
-          >
+          <button disabled={next > successStory?.length} onClick={() => handleNext()}>
             <FaArrowRight></FaArrowRight>
           </button>
         </div>

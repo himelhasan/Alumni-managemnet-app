@@ -7,18 +7,16 @@ import axios from "axios";
 import DisplayNewSuccessComment from "./DisplayNewSuccessComment";
 
 const ShowComments = ({ _id }) => {
-  console.log(_id);
   const { user } = useContext(AuthContext);
   const [NewComment, setNewComment] = useState("");
   const [comments, setComments] = useState([]);
   const [disable, setDisabled] = useState(true);
   const handleOnChnage = (e) => {
     const hello = e.target.value;
-    console.log(hello);
+
     if (hello.length > 0) {
       setDisabled(false);
     }
-    console.log("clicked");
   };
 
   useEffect(() => {
@@ -27,7 +25,6 @@ const ShowComments = ({ _id }) => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setComments(data);
       })
       .catch((error) => {
@@ -36,7 +33,6 @@ const ShowComments = ({ _id }) => {
   }, [_id]);
 
   const handleCommentsDelete = (_id) => {
-    console.log(_id);
     const agree = window.confirm(`Are You Sure You Want to delete !...`);
     if (agree) {
       fetch(
@@ -47,12 +43,9 @@ const ShowComments = ({ _id }) => {
       )
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data.deletedCount > 0) {
             toast.success("Successfully Deleted");
-            const remaining = comments?.filter(
-              (comment) => comment?._id !== _id
-            );
+            const remaining = comments?.filter((comment) => comment?._id !== _id);
             setComments(remaining);
           }
         })
@@ -61,8 +54,6 @@ const ShowComments = ({ _id }) => {
         });
     }
   };
-
-  console.log(NewComment);
 
   return (
     <div>

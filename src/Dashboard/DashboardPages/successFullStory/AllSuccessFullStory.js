@@ -14,9 +14,7 @@ import { toast } from "react-hot-toast";
 const AllSuccessFullStory = () => {
   const { user } = useContext(AuthContext);
 
-  const handleSuccessStoryEdit = (story) => {
-    console.log(story);
-  };
+  const handleSuccessStoryEdit = (story) => {};
   const tableHeading = [
     { name: "Title", id: 1 },
     { name: "Batch", id: 2 },
@@ -64,10 +62,7 @@ const AllSuccessFullStory = () => {
   //handle approve
 
   const handleApprove = (_id) => {
-    console.log(_id);
-    const agree = window.confirm(
-      `Are you Sure . You want to Approve The SuccessStory`
-    );
+    const agree = window.confirm(`Are you Sure . You want to Approve The SuccessStory`);
     if (agree) {
       fetch(
         `https://alumni-managemnet-app-server.vercel.app/approveSuccessStory/${_id}`,
@@ -77,7 +72,6 @@ const AllSuccessFullStory = () => {
       )
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data.modifiedCount > 0) {
             toast.success("Successfully Approved");
           }
@@ -89,9 +83,7 @@ const AllSuccessFullStory = () => {
   };
 
   const handleUnApprove = (_id) => {
-    const agree = window.confirm(
-      `Are you Sure . You want to unApprove The SuccessStory`
-    );
+    const agree = window.confirm(`Are you Sure . You want to unApprove The SuccessStory`);
     if (agree) {
       fetch(
         `https://alumni-managemnet-app-server.vercel.app/unApproveSuccessStory/${_id}`,
@@ -101,7 +93,6 @@ const AllSuccessFullStory = () => {
       )
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data.modifiedCount > 0) {
             toast.success("Successfully unApproved");
           }
@@ -122,11 +113,7 @@ const AllSuccessFullStory = () => {
   if (!isSuccessLoading && isSuccessError) {
     successContent = <ErrorAlert text={successError} />;
   }
-  if (
-    !isSuccessLoading &&
-    !isSuccessError &&
-    successContentData?.length === 0
-  ) {
+  if (!isSuccessLoading && !isSuccessError && successContentData?.length === 0) {
     successContent = <ErrorAlert text="No Category Find" />;
   }
   if (!isSuccessLoading && !isSuccessError && successContentData?.length > 0) {
@@ -206,7 +193,7 @@ const AllSuccessFullStory = () => {
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="w-6 h-6 text-green-600"
+                        className="w-6 h-6 text-green-600"
                       >
                         <path
                           stroke-linecap="round"
@@ -225,7 +212,7 @@ const AllSuccessFullStory = () => {
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="w-6 h-6 text-secondary"
+                        className="w-6 h-6 text-secondary"
                       >
                         <path
                           stroke-linecap="round"

@@ -3,7 +3,6 @@ import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const SuccessStoriesCard = ({ data }) => {
-  console.log(data);
   return (
     <div key={data._id} className="w-full pb-5 shadow-lg">
       <div

@@ -17,14 +17,12 @@ const DisplaySingleCharity = () => {
   const [next, setNext] = useState(6);
 
   const handlePrevious = () => {
-    console.log("previous");
     if (previous > 0) {
       setNext(next - 6);
       setPrevious(previous - 6);
     }
   };
   const handleNext = () => {
-    console.log("next");
     setNext(next + 6);
     setPrevious(previous + 6);
   };
@@ -33,7 +31,6 @@ const DisplaySingleCharity = () => {
     fetch("https://alumni-managemnet-app-server.vercel.app/charity")
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setShowCharity(data);
       })
       .catch((error) => {
@@ -45,8 +42,7 @@ const DisplaySingleCharity = () => {
   // get the current path
   const currentPath = location.pathname.split("/charity/")[1];
   //load data using redux
-  const { data, isLoading, isError, error } =
-    useGetSingleCharityQuery(currentPath);
+  const { data, isLoading, isError, error } = useGetSingleCharityQuery(currentPath);
 
   const {
     batchNumber,
@@ -63,12 +59,9 @@ const DisplaySingleCharity = () => {
   } = data || {};
 
   useEffect(() => {
-    fetch(
-      `https://alumni-managemnet-app-server.vercel.app/charityDonations/${_id}`
-    )
+    fetch(`https://alumni-managemnet-app-server.vercel.app/charityDonations/${_id}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setSingleDonation(data);
       })
       .catch((error) => {
@@ -76,17 +69,12 @@ const DisplaySingleCharity = () => {
       });
   }, [_id]);
 
-  console.log(singleDonation);
   let goalAmount = parseInt(goal_amount);
   let totalDonation = 0;
   for (const donation of singleDonation) {
-    console.log(donation);
     const allDonation = parseInt(donation?.cus_donationAmount);
     totalDonation = totalDonation + allDonation;
   }
-  console.log(totalDonation);
-  console.log(goalAmount);
-  console.log(showCharity);
 
   let content;
 
@@ -144,14 +132,11 @@ const DisplaySingleCharity = () => {
                   )}
                 </div>
                 <div>
-                  <h2 className="text-2xl font-semibold mb-3">
-                    Thank you All{" "}
-                  </h2>
+                  <h2 className="text-2xl font-semibold mb-3">Thank you All </h2>
                   <p>We reached the Destination</p>
                   <div className="mb-3">
                     <p className="font-semibold ">
-                      Goal Amount :{" "}
-                      <span className="font-normal">{goal_amount} BDT</span>
+                      Goal Amount : <span className="font-normal">{goal_amount} BDT</span>
                     </p>
                     <p className="font-semibold ">
                       Collected Amount :{" "}
@@ -284,15 +269,11 @@ const DisplaySingleCharity = () => {
                 <div className="grid lg:grid-cols-3 gap-5">
                   {showCharity
                     ?.filter(
-                      (charity) =>
-                        charity?._id !== _id && charity?.status === true
+                      (charity) => charity?._id !== _id && charity?.status === true
                     )
                     .slice(previous, next)
                     .map((charity) => (
-                      <MoreCharity
-                        key={charity._id}
-                        charity={charity}
-                      ></MoreCharity>
+                      <MoreCharity key={charity._id} charity={charity}></MoreCharity>
                     ))}
                 </div>
               </>
@@ -305,9 +286,7 @@ const DisplaySingleCharity = () => {
                   <FaArrowLeft></FaArrowLeft>
                 </button>
                 <button
-                  disabled={
-                    next === showCharity?.length || next > showCharity?.length
-                  }
+                  disabled={next === showCharity?.length || next > showCharity?.length}
                   onClick={() => handleNext()}
                 >
                   <FaArrowRight></FaArrowRight>

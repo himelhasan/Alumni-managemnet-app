@@ -37,7 +37,6 @@ const NewsUpdate = () => {
 
   const handleNewsUpdate = (event) => {
     event.preventDefault();
-    // console.log("clicked");
     const form = event.target;
     const heading = form.heading.value;
     const author = form.author.value;

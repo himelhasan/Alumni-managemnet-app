@@ -5,15 +5,11 @@ import { FaArrowLeft, FaArrowRight, FaRegComment } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const NewsCard = ({ data }) => {
-  console.log(data);
   const [newsComments, setNewsComments] = useState([]);
   useEffect(() => {
-    fetch(
-      `https://alumni-managemnet-app-server.vercel.app/newsComment/${data?._id}`
-    )
+    fetch(`https://alumni-managemnet-app-server.vercel.app/newsComment/${data?._id}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setNewsComments(data);
       })
       .catch((error) => {
@@ -61,9 +57,7 @@ const NewsCard = ({ data }) => {
         </p>
 
         <Link to={`/news/${data._id}`}>
-          <button className="mt-3 text-right underline font-medium ">
-            Learn More{" "}
-          </button>
+          <button className="mt-3 text-right underline font-medium ">Learn More </button>
         </Link>
 
         {/* news author */}

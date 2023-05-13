@@ -11,12 +11,10 @@ import { toast } from "react-hot-toast";
 const NewsCreateForm = () => {
   const { user } = useContext(AuthContext);
 
-  const [addNews, { data, isSuccess, isError, error, isLoading }] =
-    useAddNewsMutation();
+  const [addNews, { data, isSuccess, isError, error, isLoading }] = useAddNewsMutation();
 
   const handleNews = (event) => {
     event.preventDefault();
-    console.log("clicked");
     const form = event.target;
     const heading = form.heading.value;
     const author = form.author.value;
@@ -28,13 +26,10 @@ const NewsCreateForm = () => {
     const formData = new FormData();
     formData.append("image", image);
 
-    fetch(
-      "https://api.imgbb.com/1/upload?key=86fe1764d78f51c15b1a9dfe4b9175cf",
-      {
-        method: "POST",
-        body: formData,
-      }
-    )
+    fetch("https://api.imgbb.com/1/upload?key=86fe1764d78f51c15b1a9dfe4b9175cf", {
+      method: "POST",
+      body: formData,
+    })
       .then((res) => res.json())
       .then((data) => {
         const newsInfo = {
@@ -91,11 +86,7 @@ const NewsCreateForm = () => {
   ) {
     newsNameContent = <ErrorAlert text="No Category Find" />;
   }
-  if (
-    !isNewsCategoriesLoading &&
-    !isNewsCategoriesError &&
-    newsCategories?.length > 0
-  ) {
+  if (!isNewsCategoriesLoading && !isNewsCategoriesError && newsCategories?.length > 0) {
     newsNameContent = (
       <>
         {newsCategories.map((newsCategory) => (

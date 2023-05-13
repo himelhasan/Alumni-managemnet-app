@@ -44,7 +44,6 @@ const NewsComments = ({ data }) => {
       time,
       commentsId: data?._id,
     };
-    console.log(commentsInfo);
     addNewsComment(commentsInfo);
   };
   return (
@@ -57,9 +56,7 @@ const NewsComments = ({ data }) => {
           name="comments"
           required
         ></textarea>
-        <button className=" mt-3 mb-8 px-6 py-2  bg-primary text-white">
-          Comment
-        </button>
+        <button className=" mt-3 mb-8 px-6 py-2  bg-primary text-white">Comment</button>
       </form>
       <div></div>
     </div>

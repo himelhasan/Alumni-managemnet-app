@@ -12,7 +12,7 @@ import { toast } from "react-hot-toast";
 const AllCharity = () => {
   const [singleCharity, setSingleCharity] = useState([]);
   const [charityId, setCharityId] = useState("");
-  console.log(singleCharity);
+
   const tableHeading = [
     { name: "Title", id: 1 },
     { name: "Location", id: 3 },
@@ -64,10 +64,11 @@ const AllCharity = () => {
   ] = useDeleteCharityMutation();
 
   useEffect(() => {
-    fetch(`http://localhost:8000/charityDonations/${charityContentData?._id}`)
+    fetch(
+      `https://alumni-managemnet-app-server.vercel.app/charityDonations/${charityContentData?._id}`
+    )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setSingleCharity(data);
       })
       .catch((error) => {
@@ -93,21 +94,13 @@ const AllCharity = () => {
   }, [errorDelete, isDeleteError, isDeleteSuccess]);
 
   const handleApprove = (_id) => {
-    console.log(_id);
-
-    const agree = window.confirm(
-      `Are you Sure . You want to Approve The Charity`
-    );
+    const agree = window.confirm(`Are you Sure . You want to Approve The Charity`);
     if (agree) {
-      fetch(
-        `https://alumni-managemnet-app-server.vercel.app/approveCharity/${_id}`,
-        {
-          method: "PUT",
-        }
-      )
+      fetch(`https://alumni-managemnet-app-server.vercel.app/approveCharity/${_id}`, {
+        method: "PUT",
+      })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data.modifiedCount > 0) {
             toast.success("Successfully Approved");
           }
@@ -119,19 +112,13 @@ const AllCharity = () => {
   };
 
   const handleUnApprove = (_id) => {
-    const agree = window.confirm(
-      `Are you Sure . You want to unApprove The Charity`
-    );
+    const agree = window.confirm(`Are you Sure . You want to unApprove The Charity`);
     if (agree) {
-      fetch(
-        `https://alumni-managemnet-app-server.vercel.app/unApproveCharity/${_id}`,
-        {
-          method: "PUT",
-        }
-      )
+      fetch(`https://alumni-managemnet-app-server.vercel.app/unApproveCharity/${_id}`, {
+        method: "PUT",
+      })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data.modifiedCount > 0) {
             toast.success("Successfully unApproved");
           }
@@ -151,11 +138,7 @@ const AllCharity = () => {
   if (!isCharityLoading && isCharityError) {
     charityContent = <ErrorAlert text={charityError} />;
   }
-  if (
-    !isCharityLoading &&
-    !isCharityError &&
-    charityContentData?.length === 0
-  ) {
+  if (!isCharityLoading && !isCharityError && charityContentData?.length === 0) {
     charityContent = <ErrorAlert text="No Category Find" />;
   }
   if (!isCharityLoading && !isCharityError && charityContentData?.length > 0) {
@@ -260,7 +243,7 @@ const AllCharity = () => {
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="w-6 h-6 text-green-600"
+                        className="w-6 h-6 text-green-600"
                       >
                         <path
                           stroke-linecap="round"
@@ -279,7 +262,7 @@ const AllCharity = () => {
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="w-6 h-6 text-secondary"
+                        className="w-6 h-6 text-secondary"
                       >
                         <path
                           stroke-linecap="round"

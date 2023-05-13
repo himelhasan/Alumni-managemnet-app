@@ -3,8 +3,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://alumni-managemnet-app-server.vercel.app",
-    // baseUrl: "http://localhost:8000/",
+    // baseUrl: "https://alumni-managemnet-app-server.vercel.app",
+    baseUrl: "https://alumni-managemnet-app-server.vercel.app/",
   }),
   tagTypes: [
     "userRoles",
@@ -192,7 +192,7 @@ export const apiSlice = createApi({
 
     //  Get user based comments
     getAllNewsCommentsOfaUser: builder.query({
-      query: ({ email, id }) => `/single-comment?email=${email}&id=${id}`,
+      query: ({ email, id }) => `/singleComment?email=${email}&id=${id}`,
       providesTags: (result, error, arg) => [{ type: "newsComments", id: arg.id }],
     }),
 
@@ -209,7 +209,7 @@ export const apiSlice = createApi({
     // delete a News comment
     deleteNewsComment: builder.mutation({
       query: (id) => ({
-        url: `/newsComments/${id}`,
+        url: `/newsComments/delete/${id}`,
         method: "DELETE",
         headers: {
           authorization: `bearer ${localStorage.getItem("access_token")}`,

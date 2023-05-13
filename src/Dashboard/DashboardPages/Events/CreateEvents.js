@@ -34,15 +34,13 @@ const CreateEvents = () => {
     const batch = form.eventsBatch.value;
     const event_title = form.eventsHeading.value;
     const date = selectedDate;
-    console.log(date);
+
     const location = form.eventsLocation.value;
     const description = form.eventsDetails.value;
     const category = form.eventsCategory.value;
     const image_url = form.image.files[0];
     const formData = new FormData();
     formData.append("image", image_url);
-    console.log(category);
-    console.log(formData);
 
     fetch("https://api.imgbb.com/1/upload?key=dd1a5cd35aa9d832298beb50053079da", {
       method: "POST",
@@ -50,8 +48,6 @@ const CreateEvents = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-
         addEvents({
           authorEmail: authorEmail,
           batch,
@@ -75,7 +71,6 @@ const CreateEvents = () => {
       toast.success("Event created!");
     } else if (isEventsAddError) {
       toast.error(eventsAddError.message);
-      console.log(eventsAddError);
     }
   }, [isEventsAddSuccess, isEventsAddError, eventsAddError]);
 

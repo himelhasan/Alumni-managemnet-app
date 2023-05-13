@@ -14,9 +14,7 @@ import { toast } from "react-hot-toast";
 const AllSuccessFulStoryOfUser = () => {
   const { user } = useContext(AuthContext);
 
-  const handleSuccessStoryEdit = (story) => {
-    console.log(story);
-  };
+  const handleSuccessStoryEdit = (story) => {};
   const tableHeading = [
     { name: "Title", id: 1 },
     { name: "Author_name & email", id: 4 },
@@ -32,8 +30,6 @@ const AllSuccessFulStoryOfUser = () => {
     error: successError,
   } = useGetAllSuccessfulStoriesOfAUserQuery(user?.email);
   // } = useGetAllSuccessfulStoriesOfAUserQuery(user?.email);
-
-  console.log(userSuccessStoryContentData)
 
   // mutation for deleting data
   const [
@@ -67,10 +63,7 @@ const AllSuccessFulStoryOfUser = () => {
   //handle approve
 
   const handleApprove = (_id) => {
-    console.log(_id);
-    const agree = window.confirm(
-      `Are you Sure . You want to Approve The SuccessStory`
-    );
+    const agree = window.confirm(`Are you Sure . You want to Approve The SuccessStory`);
     if (agree) {
       fetch(
         `https://alumni-managemnet-app-server.vercel.app/approveSuccessStory/${_id}`,
@@ -80,7 +73,6 @@ const AllSuccessFulStoryOfUser = () => {
       )
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data.modifiedCount > 0) {
             toast.success("Successfully Approved");
           }
@@ -92,9 +84,7 @@ const AllSuccessFulStoryOfUser = () => {
   };
 
   const handleUnApprove = (_id) => {
-    const agree = window.confirm(
-      `Are you Sure . You want to unApprove The SuccessStory`
-    );
+    const agree = window.confirm(`Are you Sure . You want to unApprove The SuccessStory`);
     if (agree) {
       fetch(
         `https://alumni-managemnet-app-server.vercel.app/unApproveSuccessStory/${_id}`,
@@ -104,7 +94,6 @@ const AllSuccessFulStoryOfUser = () => {
       )
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data.modifiedCount > 0) {
             toast.success("Successfully unApproved");
           }
@@ -125,11 +114,7 @@ const AllSuccessFulStoryOfUser = () => {
   if (!isSuccessLoading && isSuccessError) {
     successContent = <ErrorAlert text={successError} />;
   }
-  if (
-    !isSuccessLoading &&
-    !isSuccessError &&
-    userSuccessStoryContentData?.length === 0
-  ) {
+  if (!isSuccessLoading && !isSuccessError && userSuccessStoryContentData?.length === 0) {
     successContent = <ErrorAlert text="No Data Found." />;
   }
   if (!isSuccessLoading && !isSuccessError && userSuccessStoryContentData?.length > 0) {
@@ -165,12 +150,11 @@ const AllSuccessFulStoryOfUser = () => {
                 <div className="flex flex-col justify-center">
                   <h6 className="mb-0 leading-normal text-sm">
                     {story?.title ? (
-                      
                       <Link to={`/successFullStory/${story?._id}`}>
-                    <p className="mb-0 leading-normal text-sm break-normal">
-                      {story?.title?.slice(0, 50)}
-                    </p>
-                  </Link>
+                        <p className="mb-0 leading-normal text-sm break-normal">
+                          {story?.title?.slice(0, 50)}
+                        </p>
+                      </Link>
                     ) : (
                       <>
                         <p>Title Missing</p>
@@ -185,7 +169,10 @@ const AllSuccessFulStoryOfUser = () => {
             <td className="p-2 align-middle bg-transparent border-b whitespace-nowrap shadow-transparent">
               <p className="mb-0 leading-tight text-xs text-slate-400">
                 {story?.name ? (
-                  <> {story?.name } <br /> {story?.email}</>
+                  <>
+                    {" "}
+                    {story?.name} <br /> {story?.email}
+                  </>
                 ) : (
                   <>
                     <p>Batch missing</p>
@@ -227,7 +214,7 @@ const AllSuccessFulStoryOfUser = () => {
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="w-6 h-6 text-green-600"
+                        className="w-6 h-6 text-green-600"
                       >
                         <path
                           stroke-linecap="round"
@@ -246,7 +233,7 @@ const AllSuccessFulStoryOfUser = () => {
                         viewBox="0 0 24 24"
                         stroke-width="1.5"
                         stroke="currentColor"
-                        class="w-6 h-6 text-secondary"
+                        className="w-6 h-6 text-secondary"
                       >
                         <path
                           stroke-linecap="round"
@@ -314,7 +301,10 @@ const AllSuccessFulStoryOfUser = () => {
     <div className="w-full px-8">
       <div className="relative flex flex-col w-full min-w-0 mb-0 break-words bg-white border-0 border-transparent border-solid shadow-soft-xl rounded-2xl bg-clip-border">
         <div className="p-6 pb-0 mb-0 bg-white rounded-t-2xl">
-          <h6>Your Successful Stories. Total stories are {userSuccessStoryContentData?.length}.</h6>
+          <h6>
+            Your Successful Stories. Total stories are{" "}
+            {userSuccessStoryContentData?.length}.
+          </h6>
         </div>
         <div className="flex-auto px-0 pt-0 pb-2">
           <div className="p-0 overflow-x-auto">

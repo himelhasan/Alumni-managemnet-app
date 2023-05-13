@@ -45,14 +45,12 @@ const NewsSection = () => {
   }
 
   const handlePrevious = () => {
-    console.log("previous");
     if (previous > 0) {
       setNext(next - 3);
       setPrevious(previous - 3);
     }
   };
   const handleNext = () => {
-    console.log("next");
     setNext(next + 3);
     setPrevious(previous + 3);
   };

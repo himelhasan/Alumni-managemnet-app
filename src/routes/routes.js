@@ -6,16 +6,13 @@ import Rakib from "../Pages/TestingPage/Rakib";
 import Uhai from "../Pages/TestingPage/Uhai";
 import Main from "../../src/layout/Main";
 import LogIn from "../Pages/LogIn.js/LogIn";
-import SignUp from "../Pages/SignUp/SignUp";
 import Events from "../Pages/Events/Events";
 import AboutUs from "../Pages/AboutUs/AboutUs";
 import SingleEvent from "../Pages/SingleEvent/SingleEvent";
 import SinglePerson from "../Pages/SinglePerson/SinglePerson";
 import AlumniPage from "../Pages/AlumniDirectory/AlumniPage";
-// import MembershipForm from "../Pages/MembershipForm/MembershipForm";
 import DashboardLayout from "../layout/DashboardLayout";
 import DashboardMain from "../Dashboard/DashboardPages/DashboardMain";
-import DashboardTestPage from "../Dashboard/DashboardPages/DashboardTestPage";
 import AddAEvent from "../Dashboard/DashboardPages/Events/AddAEvent";
 import CheckoutPage from "../Pages/CheckoutPage/CheckoutPage";
 import SingleNewsSection from "../sharedComponents/NewsCards/SingleNewsSection";
@@ -27,14 +24,12 @@ import NewsCreateForm from "../Dashboard/DashboardPages/News/NewsCreateForm";
 import CreateGallery from "../Dashboard/DashboardPages/CreateGallery/CreateGallery";
 import CreateSuccessFullStory from "../Dashboard/DashboardPages/successFullStory/CreateSuccessFullStory";
 import SingleSuccessFullStory from "../Pages/singleSuccessfulStory/SingleSuccessFullStory";
-// import CreateCharity from "../Dashboard/DashboardPages/CreateCharity/CreateCharity";
 import AllEvents from "../Dashboard/DashboardPages/Events/AllEvents";
 import UpdateSuccessFullStory from "../Dashboard/DashboardPages/successFullStory/updateSuccessFullStory";
 import UpdateCharity from "../Dashboard/DashboardPages/Charity/UpdateCharity";
 import UpdateGallery from "../sharedComponents/UpdateGallery/UpdateGallery";
 import NewsUpdatePage from "../sharedComponents/NewsUpdatePage/NewsUpdatePage";
 import NewsUpdate from "../Dashboard/DashboardPages/News/NewsUpdate";
-// import AllCharity from "../Dashboard/DashboardPages/CreateCharity/AllCharity";
 import AllNews from "../Dashboard/DashboardPages/News/AllNews";
 import AllSuccessFullStory from "../Dashboard/DashboardPages/successFullStory/AllSuccessFullStory";
 import AllNewsPage from "../Pages/AllNews/AllNews";
@@ -56,6 +51,7 @@ import AllEventsOfUser from "../Dashboard/DashboardPages/Events/AllEventsOfUser"
 import AllCharityOfUser from "../Dashboard/DashboardPages/Charity/AllCharityOfUser";
 import AllNewsOfUser from "../Dashboard/DashboardPages/News/AllNewsOfUser";
 import BatchWiseSuccessfulStory from "../Dashboard/DashboardPages/successFullStory/BatchWiseSuccessfulStory";
+import BatchWiseEvents from "../Dashboard/DashboardPages/Events/BatchWiseEvents";
 
 const routes = createBrowserRouter([
   {
@@ -184,26 +180,49 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard/alumni/",
         element: (
-          // <AdminRoutes>
-          <AllAlumni />
-          // </AdminRoutes>
+          <AdminRoutes>
+            <AllAlumni />
+          </AdminRoutes>
         ),
       },
       { path: "/dashboard/profile/:email", element: <MembershipForm /> },
       // All News
-      { path: "/dashboard/news/", element: <AllNews /> },
+      {
+        path: "/dashboard/news/",
+        element: (
+          <AdminRoutes>
+            <AllNews />
+          </AdminRoutes>
+        ),
+      },
       { path: "/dashboard/news/add-a-news", element: <NewsCreateForm /> },
       {
         path: "/dashboard/news/edit/:id",
         element: <NewsUpdate></NewsUpdate>,
       },
       // E V E N T S
-      { path: "/dashboard/events", element: <AllEvents /> },
+      {
+        path: "/dashboard/events",
+        element: (
+          <AdminRoutes>
+            {" "}
+            <AllEvents />
+          </AdminRoutes>
+        ),
+      },
       { path: "/dashboard/events/add-a-event", element: <AddAEvent /> },
       { path: "/dashboard/events/edit/:id", element: <EventUpdate /> },
 
       // CHARITY
-      { path: "/dashboard/charity", element: <AllCharity></AllCharity> },
+      {
+        path: "/dashboard/charity",
+        element: (
+          <AdminRoutes>
+            {" "}
+            <AllCharity></AllCharity>
+          </AdminRoutes>
+        ),
+      },
       {
         path: "/dashboard/charity/add-a-charity",
         element: <CreateCharity></CreateCharity>,
@@ -214,11 +233,21 @@ const routes = createBrowserRouter([
       },
       {
         path: "/dashboard/charity/allDonation",
-        element: <AllDonation></AllDonation>,
+        element: (
+          <AdminRoutes>
+            {" "}
+            <AllDonation></AllDonation>
+          </AdminRoutes>
+        ),
       },
       {
         path: "/dashboard/successfulStory/mySuccessStory",
-        element: <AllSuccessFulStoryOfUser></AllSuccessFulStoryOfUser>,
+        element: (
+          <AdminRoutes>
+            {" "}
+            <AllSuccessFulStoryOfUser></AllSuccessFulStoryOfUser>
+          </AdminRoutes>
+        ),
       },
       {
         path: "/dashboard/successfulStory/batchWiseSuccessfullStory",
@@ -230,7 +259,7 @@ const routes = createBrowserRouter([
       },
       {
         path: "/dashboard/charity/batchWiseCharity",
-        element: <AllCharityOfUser></AllCharityOfUser>,
+        element: <BatchWiseEvents />,
       },
 
       {
@@ -244,7 +273,11 @@ const routes = createBrowserRouter([
       // Successful Story
       {
         path: "/dashboard/successfulStory/",
-        element: <AllSuccessFullStory />,
+        element: (
+          <AdminRoutes>
+            <AllSuccessFullStory />,
+          </AdminRoutes>
+        ),
       },
       // create a new  Successful story
       {

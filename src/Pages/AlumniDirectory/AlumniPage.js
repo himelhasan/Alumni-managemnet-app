@@ -26,14 +26,10 @@ const AlumniPage = () => {
   const dispatch = useDispatch();
   const { isEmployed, sort, bloodGroup, selectedMajor, cityWise, batchWise } =
     useSelector((state) => state.alumniFilter);
-  console.log(isEmployed, sort, bloodGroup);
 
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const { data: majorSubject } = useGetAllGraduationMajorQuery();
   const { data: filterBatchData } = useGetAllBatchesQuery();
-
-  // const allMajorSubject = [...majorSubject];
-  // console.log(allMajorSubject);
 
   const sortOptions = [
     { name: "Name A to Z", current: true },

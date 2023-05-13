@@ -18,7 +18,7 @@ const DisplayCharity = ({ charity }) => {
     time,
     status,
   } = charity;
-  console.log(charity);
+
   return (
     <div>
       <>

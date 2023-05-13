@@ -27,22 +27,17 @@ const SingleEvent = () => {
   const location = useLocation();
   // get the current path
   const currentPath = location.pathname.split("/events/")[1];
-  // console.log({ currentPath });
+
   //load data using redux
 
-  const { data, isLoading, isError, error } =
-    useGetSingleEventQuery(currentPath);
-  // console.log(data);
-  const { _id, description, image_url, event_title, category, batch, date } =
-    data || {};
-  console.log(data);
+  const { data, isLoading, isError, error } = useGetSingleEventQuery(currentPath);
+
+  const { _id, description, image_url, event_title, category, batch, date } = data || {};
+
   const [eventData, setEventData] = useState("");
-  console.log(eventData);
-  console.log(data);
+
   const eventDate = new Date(date);
   const today = new Date();
-  console.log(eventDate);
-  console.log(today);
 
   useEffect(() => {
     if (user?.email && _id) {
@@ -67,20 +62,15 @@ const SingleEvent = () => {
       date: date,
     };
 
-    fetch(
-      `https://alumni-managemnet-app-server.vercel.app/join-event/${eventData._id}`,
-      {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(userInfo),
-      }
-    )
+    fetch(`https://alumni-managemnet-app-server.vercel.app/join-event/${eventData._id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(userInfo),
+    })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-
         toast.success("Update Successfully.");
         emailjs
           .sendForm(
@@ -90,9 +80,7 @@ const SingleEvent = () => {
             "hWyA-erRGdIIJOqPT"
           )
           .then(
-            (result) => {
-              // console.log(result.text);
-            },
+            (result) => {},
             (error) => {
               console.log(error.text);
             }
@@ -108,7 +96,9 @@ const SingleEvent = () => {
         `https://alumni-managemnet-app-server.vercel.app/join-event/delete/${eventData._id}`,
         {
           method: "DELETE",
-        }
+          headers: { authorization: `bearer ${localStorage.getItem("access_token")}` }
+        },
+        
       )
         .then((res) => res.json())
         .then((data) => {
@@ -134,8 +124,6 @@ const SingleEvent = () => {
       event_title: event_title,
     };
 
-    console.log(userInfo);
-
     fetch("https://alumni-managemnet-app-server.vercel.app/join-event", {
       method: "POST",
       headers: {
@@ -145,8 +133,6 @@ const SingleEvent = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-
         toast.success("Event Join Successful.");
 
         emailjs
@@ -157,9 +143,7 @@ const SingleEvent = () => {
             "hWyA-erRGdIIJOqPT"
           )
           .then(
-            (result) => {
-              // console.log(result.text);
-            },
+            (result) => {},
             (error) => {
               console.log(error.text);
             }
@@ -209,9 +193,7 @@ const SingleEvent = () => {
                 <h1 className="text-xl font-semibold">
                   {event_title ? <>{event_title}</> : <></>}
                 </h1>
-                <p className="mt-3 mb-3">
-                  {description ? <>{description}</> : <></>}
-                </p>
+                <p className="mt-3 mb-3">{description ? <>{description}</> : <></>}</p>
                 <p>Event Date :{new Date(date).toLocaleDateString("en-US")}</p>
                 <p> Batch: {batch}</p>
               </div>
