@@ -17,6 +17,12 @@ import { FaEdit, FaTrash } from "react-icons/fa";
 const SingleEvent = () => {
   const { user } = useContext(AuthContext);
 
+  const [drawer, setDrawer] = useState(false);
+
+  const handleDrawer = () =>{
+    setDrawer(true);
+  }
+
   //  get location using react-router-dom
   const location = useLocation();
   // get the current path
@@ -46,6 +52,7 @@ const SingleEvent = () => {
 
   const handleEventEdit = (event) => {
     event.preventDefault();
+    setDrawer(false);
     const f = event.target;
     const userInfo = {
       first_name: f.first_name.value,
@@ -89,7 +96,9 @@ const SingleEvent = () => {
         `https://alumni-managemnet-app-server.vercel.app/join-event/delete/${eventData._id}`,
         {
           method: "DELETE",
-        }
+          headers: { authorization: `bearer ${localStorage.getItem("access_token")}` }
+        },
+        
       )
         .then((res) => res.json())
         .then((data) => {
@@ -103,6 +112,7 @@ const SingleEvent = () => {
   const form = useRef();
   const handleEvent = (event) => {
     event.preventDefault();
+    setDrawer(false);
     const f = event.target;
     const userInfo = {
       first_name: f.first_name.value,
@@ -199,6 +209,7 @@ const SingleEvent = () => {
 
                   <label
                     htmlFor="event-modal-edit"
+                    onClick={handleDrawer}
                     className="text-center lg:mx-4 cursor-pointer bg-primary p-2  my-2 text-white"
                   >
                     <span className="text-lg"> Edit</span>{" "}
@@ -225,6 +236,7 @@ const SingleEvent = () => {
                     <>
                       <label
                         htmlFor="event-modal"
+                        onClick={handleDrawer}
                         className="text-center  cursor-pointer bg-primary px-4 py-2 mt-10   text-white"
                       >
                         Join Event
@@ -234,8 +246,15 @@ const SingleEvent = () => {
                 </label>
               )}
 
-              {/* modal for post joining data */}
-              <input type="checkbox" id="event-modal" className="modal-toggle" />
+              {
+                drawer === true ?
+                <>
+                {/* modal for post joining data */}
+              <input
+                type="checkbox"
+                id="event-modal"
+                className="modal-toggle"
+              />
 
               <div className="modal">
                 <div className="modal-box">
@@ -325,9 +344,22 @@ const SingleEvent = () => {
                   </form>
                 </div>
               </div>
+                </>
+                :
+                <>
+                
+                </>
+              }
 
-              {/* modal for edit joining data */}
-              <input type="checkbox" id="event-modal-edit" className="modal-toggle" />
+              {
+                drawer === true ?
+                <>
+                  {/* modal for edit joining data */}
+              <input
+                type="checkbox"
+                id="event-modal-edit"
+                className="modal-toggle"
+              />
               <div className="modal">
                 <div className="modal-box">
                   <label
@@ -413,6 +445,11 @@ const SingleEvent = () => {
                   </form>
                 </div>
               </div>
+                </>
+                :
+                <>
+                </>
+              }
 
               {/* </button> */}
             </div>
