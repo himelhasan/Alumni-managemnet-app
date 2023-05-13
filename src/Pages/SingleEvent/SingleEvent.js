@@ -96,7 +96,9 @@ const SingleEvent = () => {
         `https://alumni-managemnet-app-server.vercel.app/join-event/delete/${eventData._id}`,
         {
           method: "DELETE",
-        }
+          headers: { authorization: `bearer ${localStorage.getItem("access_token")}` }
+        },
+        
       )
         .then((res) => res.json())
         .then((data) => {
