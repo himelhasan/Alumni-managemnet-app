@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import Loading from "../../../sharedComponents/Loading/Loading";
 import ErrorAlert from "../../../sharedComponents/Skeletion/ErrorAlert";
 import {
-  useDeleteCharityMutation,
   useDeleteEventMutation,
   useGetBatchWiseEventsQuery,
 } from "../../../features/Api/apiSlice";

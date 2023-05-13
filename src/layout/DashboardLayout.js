@@ -112,6 +112,7 @@ const DashboardLayout = () => {
             />
 
             {(pathname === "/dashboard/events" ||
+              pathname === "/dashboard/events/myEvents" ||
               pathname === "/dashboard/events/add-a-event") && (
               <DashBoardNavItem
                 name="Add a Event"
